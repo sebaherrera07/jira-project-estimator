@@ -5,5 +5,14 @@ require:
 AllCops:
   NewCops: enable
 
+RSpec/MessageSpies:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/StubbedMock:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false

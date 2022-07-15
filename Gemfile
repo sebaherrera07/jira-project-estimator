@@ -50,9 +50,13 @@ gem 'bootsnap', require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+gem 'jira-ruby', '~> 2.2'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem 'byebug', '~> 11.1', '>= 11.1.3'
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+  gem 'dotenv-rails', '~> 2.7', '>= 2.7.6'
   gem 'rspec-rails', '~> 5.1', '>= 5.1.2'
   gem 'rubocop-rails', '~> 2.15', '>= 2.15.2', require: false
   gem 'rubocop-rspec', '~> 2.12', '>= 2.12.1', require: false

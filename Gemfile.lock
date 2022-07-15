@@ -69,10 +69,13 @@ GEM
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.2)
+    atlassian-jwt (0.2.1)
+      jwt (~> 2.1)
     bindex (0.8.1)
     bootsnap (1.12.0)
       msgpack (~> 1.2)
     builder (3.2.4)
+    byebug (11.1.3)
     capybara (3.37.1)
       addressable
       matrix
@@ -90,6 +93,10 @@ GEM
       reline (>= 0.3.1)
     diff-lcs (1.5.0)
     digest (3.1.0)
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     erubi (1.10.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
@@ -104,7 +111,13 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jira-ruby (2.2.0)
+      activesupport
+      atlassian-jwt
+      multipart-post
+      oauth (~> 0.5, >= 0.5.0)
     json (2.6.2)
+    jwt (2.4.1)
     loofah (2.18.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -116,6 +129,7 @@ GEM
     mini_mime (1.1.2)
     minitest (5.16.2)
     msgpack (1.5.3)
+    multipart-post (2.2.3)
     net-imap (0.2.3)
       digest
       net-protocol
@@ -133,6 +147,7 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.7-x86_64-darwin)
       racc (~> 1.4)
+    oauth (0.5.10)
     parallel (1.22.1)
     parser (3.1.2.0)
       ast (~> 2.4.1)
@@ -260,10 +275,13 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
+  byebug (~> 11.1, >= 11.1.3)
   capybara
   debug
+  dotenv-rails (~> 2.7, >= 2.7.6)
   importmap-rails
   jbuilder
+  jira-ruby (~> 2.2)
   pg (~> 1.4, >= 1.4.1)
   puma (~> 5.0)
   rails (~> 7.0.3, >= 7.0.3.1)
