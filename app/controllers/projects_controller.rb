@@ -10,12 +10,12 @@ class ProjectsController < ApplicationController
   private
 
   def jira_projects
-    jira_client = JiraApiClientService.new.jira_client
-    projects = jira_client.Project.all
+    response = JiraApiClientService.new.query_projects
+    projects = response['values']
     return ['No Projects'] if projects.empty?
 
     projects.map do |project|
-      "Project - #{project}"
+      "Project - #{project['name']}"
     end
   end
 end

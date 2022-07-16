@@ -1,19 +1,21 @@
 # frozen_string_literal: true
 
 class JiraApiClientService
-  def jira_client
-    @jira_client ||= JIRA::Client.new(jira_options)
+  def query_projects
+    HTTParty.get("#{BASE_URL}project/search", request_params)
   end
 
   private
 
-  def jira_options
+  BASE_URL = "#{ENV.fetch('JIRA_SITE_URL')}rest/api/3/".freeze
+
+  def request_params
     {
-      username: ENV.fetch('JIRA_USERNAME'),
-      site: ENV.fetch('JIRA_SITE_URL'),
-      context_path: '',
-      auth_type: :basic,
-      default_headers: { 'Authorization' => "Bearer #{ENV.fetch('JIRA_API_TOKEN')}" }
+      headers: { 'Accept' => 'application/json' },
+      basic_auth: {
+        username: ENV.fetch('JIRA_USERNAME'),
+        password: ENV.fetch('JIRA_API_TOKEN')
+      }
     }
   end
 end
