@@ -2,9 +2,7 @@
 
 class IssuesController < ApplicationController
   def index
-    @jira_epic_issues = jira_epic_issues(params[:project_id], params[:epic_id])
-  rescue StandardError => e
-    raise e
+    @issues = jira_epic_issues(params[:project_id], params[:epic_id])
   end
 
   private

@@ -10,4 +10,8 @@ class Epic
     @status = args[:status]
     @labels = args[:labels]
   end
+
+  def completed?
+    status == 'Done'
+  end
 end

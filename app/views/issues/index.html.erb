@@ -7,8 +7,8 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Key</th>
-        <th scope="col">Project Key</th>
-        <th scope="col">Epic Key</th>
+        <th scope="col">Project</th>
+        <th scope="col">Epic</th>
         <th scope="col">Summary</th>
         <th scope="col">Labels</th>
         <th scope="col">Story Points</th>
@@ -16,12 +16,12 @@
       </tr>
     </thead>
     <tbody>
-      <% @jira_epic_issues.each_with_index do |issue, index| %>
+      <% @issues.each_with_index do |issue, index| %>
         <tr>
           <th scope="row"><%= index %></th>
           <td><%= issue.key %></td>
           <td><%= issue.project_key %></td>
-          <td><%= issue.epic_key %></td>
+          <td><%= link_to issue.epic_key, project_epic_path(project_id: issue.project_key, id: issue.epic_key) %></td>
           <td><%= issue.summary %></td>
           <td><%= issue.labels %></td>
           <td><%= issue.story_points %></td>

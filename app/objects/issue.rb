@@ -13,4 +13,8 @@ class Issue
     @story_points = args[:story_points]
     @finished_date = args[:finished_date] if status == 'Done'
   end
+
+  def completed?
+    status == 'Done'
+  end
 end

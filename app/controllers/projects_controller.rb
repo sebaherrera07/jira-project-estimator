@@ -2,9 +2,7 @@
 
 class ProjectsController < ApplicationController
   def index
-    @jira_projects = jira_projects
-  rescue StandardError => e
-    raise e
+    @projects = jira_projects
   end
 
   private

@@ -16,6 +16,13 @@ class JiraApiClientService
     end
   end
 
+  def query_project_epic(project_key, epic_key)
+    requery_query_params = { query: { jql: "project = #{project_key} AND issuetype = Epic AND key = #{epic_key}" } }
+    response = HTTParty.get("#{BASE_URL}/search", request_params.merge(requery_query_params))
+    epic_hash = response['issues'].first
+    epic(epic_hash)
+  end
+
   def query_epic_issues(project_key, epic_key)
     requery_query_params = { query: { jql: "project = #{project_key} AND parent = #{epic_key}" } }
     response = HTTParty.get("#{BASE_URL}/search", request_params.merge(requery_query_params))

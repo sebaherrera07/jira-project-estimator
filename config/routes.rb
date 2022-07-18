@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root 'projects#index'
 
   resources :projects, only: %i[index] do
-    resources :epics, only: [:index] do
+    resources :epics, only: %i[index show] do
       resources :issues, only: [:index]
     end
   end

@@ -1,0 +1,35 @@
+<div>
+  <p class="h1">Project Epic</p>
+  <br />
+
+  <p><%= link_to "Issues", project_epic_issues_path(project_id: @epic_presenter.project_key, epic_id: @epic_presenter.key) %></p>
+
+  <p><%= "Key #{@epic_presenter.key}" %></p>
+  <p><%= "Project Key #{@epic_presenter.project_key}" %></p>
+  <p><%= "Summary #{@epic_presenter.summary}" %></p>
+  <p><%= "Status #{@epic_presenter.status}" %></p>
+  <p><%= "labels #{@epic_presenter.labels}" %></p>
+
+  <br />
+
+  <p><%= "Total Issues #{@epic_presenter.total_issues_count}" %></p>
+  <p><%= "Completed Issues #{@epic_presenter.completed_issues_count}" %></p>
+  <p><%= "Remaining Issues #{@epic_presenter.remaining_issues_count}" %></p>
+
+  <br />
+
+  <p><%= "Total Story Points #{@epic_presenter.total_story_points}" %></p>
+  <p><%= "Completed Story Points #{@epic_presenter.completed_story_points}" %></p>
+  <p><%= "Remaining Story Points #{@epic_presenter.remaining_story_points}" %></p>
+
+  <br />
+
+  <p><%= "Earned Value #{@epic_presenter.earned_value}" %></p>
+  <p><%= "Remaining Earned Value #{@epic_presenter.remaining_earned_value}" %></p>
+
+  <br />
+
+  <p><%= "Avg Story Points Per Week (since beginning) #{@epic_presenter.avg_story_points_per_week_since_beginning}" %></p>
+  <p><%= "Avg Story Points Per Week (since last 3) #{@epic_presenter.avg_story_points_per_week_since_last_3_weeks}" %></p>
+  <p><%= "Estimated Weeks To Complete #{@epic_presenter.estimated_weeks_to_complete}" %></p>
+</div>

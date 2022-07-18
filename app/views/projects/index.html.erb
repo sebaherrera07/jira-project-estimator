@@ -8,14 +8,16 @@
         <th scope="col">#</th>
         <th scope="col">Key</th>
         <th scope="col">Name</th>
+        <th scope="col">Epics</th>
       </tr>
     </thead>
     <tbody>
-      <% @jira_projects.each_with_index do |project, index| %>
+      <% @projects.each_with_index do |project, index| %>
         <tr>
           <th scope="row"><%= index %></th>
           <td><%= project.key %></td>
           <td><%= project.name %></td>
+          <td><%= link_to "Epics", project_epics_path(project_id: project.key) %></td>
         </tr>
       <% end %>
     </tbody>
