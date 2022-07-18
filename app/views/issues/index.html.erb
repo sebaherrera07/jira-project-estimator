@@ -1,0 +1,33 @@
+<div>
+  <p class="h1">Epic Issues List</p>
+  <br />
+  
+  <table class="table table-sm table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Key</th>
+        <th scope="col">Project Key</th>
+        <th scope="col">Epic Key</th>
+        <th scope="col">Summary</th>
+        <th scope="col">Labels</th>
+        <th scope="col">Story Points</th>
+        <th scope="col">Finished Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @jira_epic_issues.each_with_index do |issue, index| %>
+        <tr>
+          <th scope="row"><%= index %></th>
+          <td><%= issue.key %></td>
+          <td><%= issue.project_key %></td>
+          <td><%= issue.epic_key %></td>
+          <td><%= issue.summary %></td>
+          <td><%= issue.labels %></td>
+          <td><%= issue.story_points %></td>
+          <td><%= issue.finished_date %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

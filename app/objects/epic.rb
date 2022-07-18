@@ -6,7 +6,7 @@ class Epic
   def initialize(args)
     @key = args[:key]
     @project_key = args[:project_key]
-    @summmary = args[:summary]
+    @summary = args[:summary]
     @status = args[:status]
     @labels = args[:labels]
   end
