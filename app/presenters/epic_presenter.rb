@@ -41,15 +41,23 @@ class EpicPresenter
   end
 
   def avg_story_points_per_week_since_beginning
-    3
+    3 # calculate this one
   end
 
   def avg_story_points_per_week_since_last_3_weeks
-    2
+    2 # calculate this one
   end
 
-  def estimated_weeks_to_complete
-    5
+  def estimated_weeks_to_complete_using_since_beggining_avg
+    weeks = remaining_story_points / avg_story_points_per_week_since_beginning
+    date = Time.zone.today.beginning_of_week + weeks.weeks
+    "#{weeks} weeks (#{date.strftime('%a, %d %b %Y')})"
+  end
+
+  def estimated_weeks_to_complete_using_since_last_3_weeks_avg
+    weeks = remaining_story_points / avg_story_points_per_week_since_last_3_weeks
+    date = Time.zone.today.beginning_of_week + weeks.weeks
+    "#{weeks} weeks (#{date.strftime('%a, %d %b %Y')})"
   end
 
   private
