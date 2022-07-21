@@ -5,6 +5,16 @@ require:
 AllCops:
   NewCops: enable
 
+Metrics/MethodLength:
+  Exclude:
+    - spec/support/mocks/jira_api_mocker.rb
+
+Rails/FilePath:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Max: 20
+
 RSpec/MessageSpies:
   Enabled: false
 

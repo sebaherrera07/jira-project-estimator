@@ -6,20 +6,21 @@ RSpec.describe JiraApiClientService do
   describe '#query_projects' do
     subject { described_class.new.query_projects }
 
-    let(:url) { "#{ENV.fetch('JIRA_SITE_URL')}/rest/api/3/project/search" }
-    let(:request_params) do
-      {
-        headers: { 'Accept' => 'application/json' },
-        basic_auth: {
-          username: ENV.fetch('JIRA_USERNAME'),
-          password: ENV.fetch('JIRA_API_TOKEN')
-        }
-      }
+    before do
+      JiraApiMocker.new.stub_query_projects
+    end
+
+    it 'returns a list of Project objects' do
+      expect(subject).to all(be_a(Project))
     end
 
     it 'makes request with expected options' do
-      expect(HTTParty).to receive(:get).with(url, request_params).and_return({ 'values' => [] })
       subject
+      url = "#{ENV.fetch('JIRA_SITE_URL')}/rest/api/3/project/search"
+      expect(WebMock).to have_requested(:get, url).with(
+        headers: { 'Accept' => 'application/json' },
+        basic_auth: [ENV.fetch('JIRA_USERNAME'), ENV.fetch('JIRA_API_TOKEN')]
+      )
     end
   end
 
