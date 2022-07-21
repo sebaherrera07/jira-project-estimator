@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
 class Epic
-  attr_reader :key, :project_key, :summary, :status, :labels
+  attr_reader :key, :labels, :project_key, :status, :summary
 
   def initialize(args)
     @key = args[:key]
-    @project_key = args[:project_key]
-    @summary = args[:summary]
-    @status = args[:status]
     @labels = args[:labels]
+    @project_key = args[:project_key]
+    @status = args[:status]
+    @summary = args[:summary]
   end
 
   def completed?
-    status == 'Done'
+    status.downcase == 'done'
   end
 end

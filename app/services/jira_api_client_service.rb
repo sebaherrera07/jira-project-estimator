@@ -55,22 +55,26 @@ class JiraApiClientService
   def epic(epic_hash)
     Epic.new(
       key: epic_hash['key'],
+      labels: epic_hash.dig('fields', 'labels'),
       project_key: epic_hash.dig('fields', 'project', 'key'),
-      summary: epic_hash.dig('fields', 'summary'),
       status: epic_hash.dig('fields', 'status', 'name'),
-      labels: epic_hash.dig('fields', 'labels')
+      summary: epic_hash.dig('fields', 'summary')
     )
   end
 
+  # rubocop:disable Metrics/MethodLength
   def issue(issue_hash)
     Issue.new(
-      key: issue_hash['key'],
-      project_key: issue_hash.dig('fields', 'project', 'key'),
+      created_date: issue_hash.dig('fields', 'created'),
       epic_key: issue_hash.dig('fields', 'parent', 'key'),
-      summary: issue_hash.dig('fields', 'summary'),
-      status: issue_hash.dig('fields', 'status', 'name'),
+      key: issue_hash['key'],
       labels: issue_hash.dig('fields', 'labels'),
-      story_points: issue_hash.dig('fields', 'customfield_10016')
+      project_key: issue_hash.dig('fields', 'project', 'key'),
+      status: issue_hash.dig('fields', 'status', 'name'),
+      status_category_change_date: issue_hash.dig('fields', 'statuscategorychangedate'),
+      story_points: issue_hash.dig('fields', 'customfield_10016'),
+      summary: issue_hash.dig('fields', 'summary')
     )
   end
+  # rubocop:enable Metrics/MethodLength
 end

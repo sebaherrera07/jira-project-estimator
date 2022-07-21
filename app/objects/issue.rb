@@ -1,20 +1,35 @@
 # frozen_string_literal: true
 
 class Issue
-  attr_reader :key, :project_key, :epic_key, :summary, :status, :labels, :story_points, :finished_date
+  attr_reader :created_date,
+              :epic_key,
+              :key,
+              :labels,
+              :project_key,
+              :status,
+              :status_category_change_date,
+              :story_points,
+              :summary
 
   def initialize(args)
-    @key = args[:key]
-    @project_key = args[:project_key]
+    @created_date = args[:created_date]
     @epic_key = args[:epic_key]
-    @summary = args[:summary]
-    @status = args[:status]
+    @key = args[:key]
     @labels = args[:labels]
-    @story_points = args[:story_points]
-    @finished_date = args[:finished_date] if status == 'Done'
+    @project_key = args[:project_key]
+    @status = args[:status]
+    @status_category_change_date = args[:status_category_change_date]&.to_datetime
+    @story_points = args[:story_points]&.round
+    @summary = args[:summary]
   end
 
   def completed?
-    status == 'Done'
+    status.downcase == 'done'
+  end
+
+  def finish_date
+    return unless completed?
+
+    status_category_change_date
   end
 end
