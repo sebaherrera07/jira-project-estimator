@@ -1,14 +1,16 @@
 <div>
-  <p class="h1">Epic Issues List</p>
+  <p class="h1">Epic Issues</p>
+  <br />
+
+  <p class="h5">Project: <%= link_to @project_key, project_epics_path(project_id: @project_key) %></p>
+  <p class="h5">Epic: <%= link_to @epic_key, project_epic_path(project_id: @project_key, id: @epic_key) %></p>
   <br />
   
   <table class="table table-sm table-bordered">
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Key</th>
-        <th scope="col">Project</th>
-        <th scope="col">Epic</th>
+        <th scope="col">Issue Key</th>
         <th scope="col">Summary</th>
         <th scope="col">Labels</th>
         <th scope="col">Story Points</th>
@@ -20,8 +22,6 @@
         <tr>
           <th scope="row"><%= index %></th>
           <td><%= issue.key %></td>
-          <td><%= issue.project_key %></td>
-          <td><%= link_to issue.epic_key, project_epic_path(project_id: issue.project_key, id: issue.epic_key) %></td>
           <td><%= issue.summary %></td>
           <td><%= issue.labels %></td>
           <td><%= issue.story_points %></td>

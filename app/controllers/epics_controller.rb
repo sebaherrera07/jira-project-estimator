@@ -2,12 +2,14 @@
 
 class EpicsController < ApplicationController
   def index
-    @epics = jira_project_epics(params[:project_id])
+    @project_key = params[:project_id]
+    @epics = jira_project_epics(@project_key)
   end
 
   def show
-    epic = jira_project_epic(params[:project_id], params[:id])
-    epic_issues = jira_epic_issues(params[:project_id], params[:id])
+    @project_key = params[:project_id]
+    epic = jira_project_epic(@project_key, params[:id])
+    epic_issues = jira_epic_issues(@project_key, params[:id])
     @epic_presenter = EpicPresenter.new(epic, epic_issues)
   end
 

@@ -2,7 +2,9 @@
 
 class IssuesController < ApplicationController
   def index
-    @issues = jira_epic_issues(params[:project_id], params[:epic_id])
+    @project_key = params[:project_id]
+    @epic_key = params[:epic_id]
+    @issues = jira_epic_issues(@project_key, @epic_key)
   end
 
   private
