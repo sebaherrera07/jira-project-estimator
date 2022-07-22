@@ -34,6 +34,7 @@
         <th scope="col">Total Issues</th>
         <th scope="col">Completed Issues</th>
         <th scope="col">Remaining Issues</th>
+        <th scope="col">Started Issues</th>
         <th scope="col">Unestimated Issues</th>
       </tr>
     </thead>
@@ -42,6 +43,7 @@
         <td><%= @epic_presenter.total_issues_count %></td>
         <td><%= @epic_presenter.completed_issues_count %></td>
         <td><%= @epic_presenter.remaining_issues_count %></td>
+        <td><%= @epic_presenter.started_issues_count %></td>
         <td><%= @epic_presenter.unestimated_issues_count %></td>
       </tr>
     </tbody>
@@ -51,7 +53,7 @@
 
   <p class="h5">Story Points and Progress</p>
   <% if @epic_presenter.unestimated_issues_count.positive? %>
-    <p><%= "There are #{@epic_presenter.unestimated_issues_count} issues without story points. It can affect estimations."%></p>
+    <p class="text-danger"><%= "There are #{@epic_presenter.unestimated_issues_count} issues without story points. It can affect estimations."%></p>
   <% end %>
   <table class="table table-sm table-bordered">
     <thead>

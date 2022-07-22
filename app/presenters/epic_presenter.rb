@@ -22,8 +22,12 @@ class EpicPresenter
     @remaining_issues_count ||= total_issues_count - completed_issues_count
   end
 
+  def started_issues_count
+    @started_issues_count ||= started_issues.count
+  end
+
   def unestimated_issues_count
-    @unestimated_issues_count ||= issues.select { |issue| issue.story_points.nil? }.count
+    @unestimated_issues_count ||= unestimated_issues.count
   end
 
   def total_story_points
@@ -47,13 +51,20 @@ class EpicPresenter
   end
 
   def avg_story_points_per_week_since_beginning
-    3 # calculate this one
-    # completed_issues.select{|x| x.finish_date < Time.zone.today.beginning_of_week}.sum(&:story_points) / 3
+    project_start_date = nil # If known, it's more accurate to pass it via param
+    @avg_story_points_per_week_since_beginning ||= AverageStoryPointsCalculator.new(
+      completed_issues: completed_issues,
+      project_start_date: project_start_date
+    ).calculate
   end
 
   def avg_story_points_per_week_since_last_3_weeks
-    0 # calculate this one
-    # completed_issues.select{|x| x.finish_date < Time.zone.today.beginning_of_week}.sum(&:story_points) / 3
+    project_start_date = nil # If known, it's more accurate to pass it via param
+    @avg_story_points_per_week_since_last_3_weeks ||= AverageStoryPointsCalculator.new(
+      completed_issues: completed_issues,
+      weeks_ago_since: 3,
+      project_start_date: project_start_date
+    ).calculate
   end
 
   def estimated_weeks_to_complete_using_since_beggining_avg
@@ -79,7 +90,23 @@ class EpicPresenter
   private
 
   def estimated_issues
-    @estimated_issues ||= issues.select { |issue| issue.story_points.present? }
+    @estimated_issues ||= issues.select(&:estimated?)
+  end
+
+  def unestimated_issues
+    @unestimated_issues ||= issues.reject(&:estimated?)
+  end
+
+  def completed_issues
+    @completed_issues ||= issues.select(&:done?)
+  end
+
+  def completed_estimated_issues
+    @completed_estimated_issues ||= estimated_issues.intersection(completed_issues)
+  end
+
+  def started_issues
+    @started_issues ||= issues.select(&:started?)
   end
 
   def earned_value_number
@@ -89,13 +116,5 @@ class EpicPresenter
       ratio = completed_story_points / (total_story_points * 1.0)
       (ratio * 100).round
     end
-  end
-
-  def completed_issues
-    @completed_issues ||= issues.select(&:completed?)
-  end
-
-  def completed_estimated_issues
-    @completed_estimated_issues ||= estimated_issues.select(&:completed?)
   end
 end

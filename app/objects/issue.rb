@@ -23,12 +23,24 @@ class Issue
     @summary = args[:summary]
   end
 
-  def completed?
+  def estimated?
+    story_points.present?
+  end
+
+  def to_do?
+    status.downcase == 'to do'
+  end
+
+  def done?
     status.downcase == 'done'
   end
 
+  def started?
+    !to_do? && !done?
+  end
+
   def finish_date
-    return unless completed?
+    return unless done?
 
     status_category_change_date
   end
