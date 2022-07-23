@@ -5,18 +5,34 @@ class JiraApiMocker
     url = "#{BASE_URL}/project/search"
     stub_request(url, request_params).to_return(
       status: 200,
-      body: {
-        'values' => [
-          {
-            'key' => 'PA',
-            'name' => 'Project A'
-          },
-          {
-            'key' => 'PB',
-            'name' => 'Project B'
-          }
-        ]
-      }.to_json
+      body: JiraApiResponses.query_projects_response_body
+    )
+  end
+
+  def stub_query_project_epics(project_key)
+    url = "#{BASE_URL}/search"
+    query_params = { query: { jql: "project = #{project_key} AND issuetype = Epic" } }
+    stub_request(url, request_params(query_params)).to_return(
+      status: 200,
+      body: JiraApiResponses.query_project_epics_response_body(project_key)
+    )
+  end
+
+  def stub_query_project_epic(project_key, epic_key)
+    url = "#{BASE_URL}/search"
+    query_params = { query: { jql: "project = #{project_key} AND issuetype = Epic AND key = #{epic_key}" } }
+    stub_request(url, request_params(query_params)).to_return(
+      status: 200,
+      body: JiraApiResponses.query_project_epic_response_body(project_key, epic_key)
+    )
+  end
+
+  def stub_query_epic_issues(project_key, epic_key)
+    url = "#{BASE_URL}/search"
+    query_params = { query: { jql: "project = #{project_key} AND parent = #{epic_key}" } }
+    stub_request(url, request_params(query_params)).to_return(
+      status: 200,
+      body: JiraApiResponses.query_epic_issues_response_body(project_key, epic_key)
     )
   end
 

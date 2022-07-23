@@ -7,7 +7,7 @@ AllCops:
 
 Metrics/MethodLength:
   Exclude:
-    - spec/support/mocks/jira_api_mocker.rb
+    - spec/support/mocks/jira_api_responses.rb
 
 Rails/FilePath:
   Enabled: false
