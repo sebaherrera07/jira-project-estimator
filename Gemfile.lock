@@ -105,6 +105,13 @@ GEM
       railties (>= 3.2)
     erubi (1.10.0)
     execjs (2.8.1)
+    factory_bot (6.2.1)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
+    faker (2.21.0)
+      i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
@@ -302,6 +309,8 @@ DEPENDENCIES
   capybara
   debug
   dotenv-rails (~> 2.7, >= 2.7.6)
+  factory_bot_rails (~> 6.2)
+  faker (~> 2.21)
   httparty (~> 0.20.0)
   importmap-rails
   jbuilder
