@@ -61,7 +61,6 @@ class JiraApiClientService
       key: epic_hash['key'],
       labels: epic_hash.dig('fields', 'labels'),
       project_key: epic_hash.dig('fields', 'project', 'key'),
-      status: epic_hash.dig('fields', 'status', 'name'),
       summary: epic_hash.dig('fields', 'summary')
     )
   end

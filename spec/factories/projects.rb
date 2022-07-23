@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :project do
-    key { 'PRO' }
-    name { 'PROJECT-1' }
+    key { name.upcase.first(4) }
+    name { Faker::Lorem.word.capitalize }
 
     initialize_with { new(attributes) }
   end
