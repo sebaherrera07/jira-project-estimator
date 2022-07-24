@@ -52,7 +52,7 @@
   <br />
 
   <p class="h5">Story Points and Progress</p>
-  <% if @epic_presenter.unestimated_issues_count.positive? %>
+  <% if @epic_presenter.any_unestimated_issues? %>
     <p class="text-danger"><%= "There are #{@epic_presenter.unestimated_issues_count} issues without story points. It can affect estimations."%></p>
   <% end %>
   <table class="table table-sm table-bordered">

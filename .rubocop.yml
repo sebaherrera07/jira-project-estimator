@@ -15,6 +15,9 @@ Rails/FilePath:
 RSpec/ExampleLength:
   Max: 20
 
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
 RSpec/MessageSpies:
   Enabled: false
 
