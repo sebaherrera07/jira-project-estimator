@@ -1,0 +1,24 @@
+<% if epic_progress_presenter.any_unestimated_issues? %>
+  <p class="text-danger"><%= "There are #{epic_progress_presenter.unestimated_issues_count} issues without story points. It can affect estimations."%></p>
+<% end %>
+
+<table class="table table-sm table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Total Story Points</th>
+      <th scope="col">Completed Story Points</th>
+      <th scope="col">Remaining Story Points</th>
+      <th scope="col">Earned Value</th>
+      <th scope="col">Remaining Earned Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= epic_progress_presenter.total_story_points %></td>
+      <td><%= epic_progress_presenter.completed_story_points %></td>
+      <td><%= epic_progress_presenter.remaining_story_points %></td>
+      <td><%= epic_progress_presenter.earned_value %></td>
+      <td><%= epic_progress_presenter.remaining_earned_value %></td>
+    </tr>
+  </tbody>
+</table>

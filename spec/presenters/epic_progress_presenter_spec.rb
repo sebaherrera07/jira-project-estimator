@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe EpicProgressPresenter do
   describe '#total_story_points' do
-    subject { described_class.new(issues).total_story_points }
+    subject { described_class.new(issues: issues).total_story_points }
 
     context 'when epic has no issues' do
       let(:issues) { [] }

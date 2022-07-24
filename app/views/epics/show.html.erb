@@ -5,96 +5,19 @@
   <p class="h5">Project: <%= link_to @project_key, project_epics_path(project_id: @project_key) %></p>
   <br />
 
-  <p class="h5">Epic Details</p>
-  <table class="table table-sm table-bordered">
-    <thead>
-      <tr>
-        <th scope="col">Epic Key</th>
-        <th scope="col">Summary</th>
-        <th scope="col">Labels</th>
-        <th scope="col">Issues</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><%= @epic_presenter.key %></td>
-        <td><%= @epic_presenter.summary %></td>
-        <td><%= @epic_presenter.labels %></td>
-        <td><%= link_to "Issues", project_epic_issues_path(project_id: @epic_presenter.project_key, epic_id: @epic_presenter.key) %></td>
-      </tr>
-    </tbody>
-  </table>
-
+  <p class="h5">Details</p>
+  <%= render 'epics/epic_details_table', epic_presenter: @epic_presenter %>
   <br />
 
   <p class="h5">Issues</p>
-  <table class="table table-sm table-bordered">
-    <thead>
-      <tr>
-        <th scope="col">Total Issues</th>
-        <th scope="col">Completed Issues</th>
-        <th scope="col">Remaining Issues</th>
-        <th scope="col">Started Issues</th>
-        <th scope="col">Unestimated Issues</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><%= @epic_presenter.total_issues_count %></td>
-        <td><%= @epic_presenter.completed_issues_count %></td>
-        <td><%= @epic_presenter.remaining_issues_count %></td>
-        <td><%= @epic_presenter.started_issues_count %></td>
-        <td><%= @epic_presenter.unestimated_issues_count %></td>
-      </tr>
-    </tbody>
-  </table>
-
+  <%= render 'epics/epic_issues_count_table', epic_presenter: @epic_presenter %>
   <br />
 
-  <p class="h5">Story Points and Progress</p>
-  <% if @epic_presenter.any_unestimated_issues? %>
-    <p class="text-danger"><%= "There are #{@epic_presenter.unestimated_issues_count} issues without story points. It can affect estimations."%></p>
-  <% end %>
-  <table class="table table-sm table-bordered">
-    <thead>
-      <tr>
-        <th scope="col">Total Story Points</th>
-        <th scope="col">Completed Story Points</th>
-        <th scope="col">Remaining Story Points</th>
-        <th scope="col">Earned Value</th>
-        <th scope="col">Remaining Earned Value</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><%= @epic_presenter.total_story_points %></td>
-        <td><%= @epic_presenter.completed_story_points %></td>
-        <td><%= @epic_presenter.remaining_story_points %></td>
-        <td><%= @epic_presenter.earned_value %></td>
-        <td><%= @epic_presenter.remaining_earned_value %></td>
-      </tr>
-    </tbody>
-  </table>
-
+  <p class="h5">Progress</p>
+  <%= link_to 'View Details', project_epic_progress_index_path(project_id: @project_key, epic_id: @epic_key) %>
+  <%= render 'shared/epic_progress_table', epic_progress_presenter: @epic_presenter %>
   <br />
 
   <p class="h5">Estimation</p>
-  <table class="table table-sm table-bordered">
-    <thead>
-      <tr>
-        <th scope="col">Avg Story Points Per Week (since beginning)</th>
-        <th scope="col">Avg Story Points Per Week (since last 3)</th>
-        <th scope="col">Estimated Weeks To Complete (using since beginning avg)</th>
-        <th scope="col">Estimated Weeks To Complete (using last 3)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><%= @epic_presenter.avg_story_points_per_week_since_beginning %></td>
-        <td><%= @epic_presenter.avg_story_points_per_week_since_last_3_weeks %></td>
-        <td><%= @epic_presenter.estimated_weeks_to_complete_using_since_beggining_avg %></td>
-        <td><%= @epic_presenter.estimated_weeks_to_complete_using_since_last_3_weeks_avg %></td>
-      </tr>
-    </tbody>
-  </table>
+  <%= render 'epics/epic_estimations_table', epic_presenter: @epic_presenter %>
 </div>

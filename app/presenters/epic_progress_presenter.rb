@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class EpicProgressPresenter
-  def initialize(issues = [])
+  def initialize(issues:)
     @issues = issues
   end
 
@@ -25,8 +25,12 @@ class EpicProgressPresenter
     @remaining_earned_value ||= "#{100 - earned_value_number}%"
   end
 
+  def unestimated_issues_count
+    @unestimated_issues_count ||= unestimated_issues.count
+  end
+
   def any_unestimated_issues?
-    @any_unestimated_issues ||= issues.reject(&:estimated?).any?
+    @any_unestimated_issues ||= unestimated_issues.any?
   end
 
   private
@@ -35,6 +39,10 @@ class EpicProgressPresenter
 
   def estimated_issues
     @estimated_issues ||= issues.select(&:estimated?)
+  end
+
+  def unestimated_issues
+    @unestimated_issues ||= issues.reject(&:estimated?)
   end
 
   def completed_issues

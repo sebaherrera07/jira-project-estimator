@@ -1,0 +1,18 @@
+<table class="table table-sm table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Avg Story Points Per Week (since beginning)</th>
+      <th scope="col">Avg Story Points Per Week (since last 3)</th>
+      <th scope="col">Estimated Weeks To Complete (using since beginning avg)</th>
+      <th scope="col">Estimated Weeks To Complete (using last 3)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= epic_presenter.avg_story_points_per_week_since_beginning %></td>
+      <td><%= epic_presenter.avg_story_points_per_week_since_last_3_weeks %></td>
+      <td><%= epic_presenter.estimated_weeks_to_complete_using_since_beggining_avg %></td>
+      <td><%= epic_presenter.estimated_weeks_to_complete_using_since_last_3_weeks_avg %></td>
+    </tr>
+  </tbody>
+</table>

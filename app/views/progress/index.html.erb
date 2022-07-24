@@ -1,0 +1,15 @@
+<div>
+  <p class="h1">Epic Progress</p>
+  <br />
+
+  <p class="h5">Project: <%= link_to @project_key, project_epics_path(project_id: @project_key) %></p>
+  <p class="h5">Epic: <%= link_to @epic_key, project_epic_path(project_id: @project_key, id: @epic_key) %></p>
+  <br />
+  
+  <p class="h5">Progress</p>
+  <%= render 'shared/epic_progress_table', epic_progress_presenter: @epic_progress_presenter %>
+  <br />
+
+  <p class="h5">Earned Value</p>
+  <%= render 'progress/epic_earned_value_table', epic_earned_value_presenter: @epic_earned_value_presenter %>
+</div>

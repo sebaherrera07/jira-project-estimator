@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe EpicPresenter do
   describe 'delegates to Epic' do
-    subject { described_class.new(epic, issues) }
+    subject { described_class.new(epic: epic, issues: issues) }
 
     let(:epic) { build(:epic) }
     let(:issues) { [] }
@@ -16,7 +16,7 @@ RSpec.describe EpicPresenter do
   end
 
   describe 'delegates to EpicIssuesCountPresenter' do
-    subject { described_class.new(epic, issues) }
+    subject { described_class.new(epic: epic, issues: issues) }
 
     let(:epic) { build(:epic) }
     let(:issues) { [] }
@@ -29,7 +29,7 @@ RSpec.describe EpicPresenter do
   end
 
   describe 'delegates to EpicProgressPresenter' do
-    subject { described_class.new(epic, issues) }
+    subject { described_class.new(epic: epic, issues: issues) }
 
     let(:epic) { build(:epic) }
     let(:issues) { [] }
@@ -43,7 +43,7 @@ RSpec.describe EpicPresenter do
   end
 
   describe 'delegates to EpicEstimationPresenter' do
-    subject { described_class.new(epic, issues) }
+    subject { described_class.new(epic: epic, issues: issues) }
 
     let(:epic) { build(:epic) }
     let(:issues) { [] }

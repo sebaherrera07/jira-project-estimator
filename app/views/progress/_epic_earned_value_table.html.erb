@@ -1,0 +1,26 @@
+<table class="table table-sm table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Week</th>
+      <th scope="col">Issue Key</th>
+      <th scope="col">Finish Date</th>
+      <th scope="col">Story Points</th>
+      <th scope="col">Earned Value</th>
+      <th scope="col">Cumulative Earned Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @epic_earned_value_presenter.earned_value_items.each_with_index do |earned_value_item, index| %>
+      <tr>
+        <th scope="row"><%= index %></th>
+        <td><%= earned_value_item.finish_week %></td>
+        <td><%= earned_value_item.issue_key %></td>
+        <td><%= earned_value_item.finish_date.strftime("%a, %d %b %Y") %></td>
+        <td><%= earned_value_item.story_points %></td>
+        <td><%= "#{earned_value_item.earned_value}%" %></td>
+        <td><%= "#{earned_value_item.cumulative_earned_value}%" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

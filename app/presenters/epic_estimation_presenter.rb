@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class EpicEstimationPresenter
-  def initialize(issues = [])
+  def initialize(issues:)
     @issues = issues
   end
 

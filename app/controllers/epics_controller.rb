@@ -8,9 +8,10 @@ class EpicsController < ApplicationController
 
   def show
     @project_key = params[:project_id]
-    epic = jira_project_epic(@project_key, params[:id])
-    epic_issues = jira_epic_issues(@project_key, params[:id])
-    @epic_presenter = EpicPresenter.new(epic, epic_issues)
+    @epic_key = params[:id]
+    epic = jira_project_epic(@project_key, @epic_key)
+    epic_issues = jira_epic_issues(@project_key, @epic_key)
+    @epic_presenter = EpicPresenter.new(epic: epic, issues: epic_issues)
   end
 
   private

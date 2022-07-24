@@ -3,7 +3,7 @@
 class EpicPresenter
   attr_reader :epic, :issues
 
-  def initialize(epic, issues = [])
+  def initialize(epic:, issues:)
     @epic = epic
     @issues = issues
   end
@@ -34,14 +34,14 @@ class EpicPresenter
   private
 
   def issues_count_presenter
-    @issues_count_presenter ||= EpicIssuesCountPresenter.new(issues)
+    @issues_count_presenter ||= EpicIssuesCountPresenter.new(issues: issues)
   end
 
   def progress_presenter
-    @progress_presenter ||= EpicProgressPresenter.new(issues)
+    @progress_presenter ||= EpicProgressPresenter.new(issues: issues)
   end
 
   def estimation_presenter
-    @estimation_presenter ||= EpicEstimationPresenter.new(issues)
+    @estimation_presenter ||= EpicEstimationPresenter.new(issues: issues)
   end
 end

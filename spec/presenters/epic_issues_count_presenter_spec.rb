@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe EpicIssuesCountPresenter do
   describe '#total_issues_count' do
-    subject { described_class.new(issues).total_issues_count }
+    subject { described_class.new(issues: issues).total_issues_count }
 
     context 'when epic has no issues' do
       let(:issues) { [] }
@@ -24,7 +24,7 @@ RSpec.describe EpicIssuesCountPresenter do
   end
 
   describe '#completed_issues_count' do
-    subject { described_class.new(issues).completed_issues_count }
+    subject { described_class.new(issues: issues).completed_issues_count }
 
     context 'when epic has no issues' do
       let(:issues) { [] }
@@ -54,7 +54,7 @@ RSpec.describe EpicIssuesCountPresenter do
   end
 
   describe '#remaining_issues_count' do
-    subject { described_class.new(issues).remaining_issues_count }
+    subject { described_class.new(issues: issues).remaining_issues_count }
 
     context 'when epic has no issues' do
       let(:issues) { [] }
@@ -86,7 +86,7 @@ RSpec.describe EpicIssuesCountPresenter do
   end
 
   describe '#started_issues_count' do
-    subject { described_class.new(issues).started_issues_count }
+    subject { described_class.new(issues: issues).started_issues_count }
 
     context 'when epic has no issues' do
       let(:issues) { [] }
@@ -120,7 +120,7 @@ RSpec.describe EpicIssuesCountPresenter do
   end
 
   describe '#unestimated_issues_count' do
-    subject { described_class.new(issues).unestimated_issues_count }
+    subject { described_class.new(issues: issues).unestimated_issues_count }
 
     context 'when epic has no issues' do
       let(:issues) { [] }
