@@ -42,6 +42,9 @@ class EpicPresenter
   end
 
   def estimation_presenter
-    @estimation_presenter ||= EpicEstimationPresenter.new(issues: issues)
+    @estimation_presenter ||= EpicEstimationPresenter.new(
+      issues: issues,
+      remaining_story_points: remaining_story_points
+    )
   end
 end
