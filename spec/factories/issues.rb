@@ -8,7 +8,7 @@ FactoryBot.define do
     labels { [] }
     project_key { Faker::Lorem.word.upcase.first(4) }
     status { ['To Do', 'In Progress', 'Done', 'Other'].sample }
-    status_category_change_date { Time.zone.now }
+    status_change_date { Time.zone.now }
     story_points { [1, 2, 3, 5, 8, 13].sample }
     summary { 'Summary' }
 

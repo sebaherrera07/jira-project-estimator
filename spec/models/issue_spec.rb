@@ -89,13 +89,13 @@ RSpec.describe Issue do
     subject { issue.finish_date }
 
     context 'when status is Done' do
-      let(:issue) { build(:issue, status: 'Done', status_category_change_date: Time.zone.now) }
+      let(:issue) { build(:issue, status: 'Done', status_change_date: Time.zone.now) }
 
-      it { is_expected.to eq issue.status_category_change_date }
+      it { is_expected.to eq issue.status_change_date }
     end
 
     context 'when status is not Done' do
-      let(:issue) { build(:issue, status: 'In Progress', status_category_change_date: Time.zone.now) }
+      let(:issue) { build(:issue, status: 'In Progress', status_change_date: Time.zone.now) }
 
       it { is_expected.to be_nil }
     end

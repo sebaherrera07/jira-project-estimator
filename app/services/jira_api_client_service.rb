@@ -74,7 +74,7 @@ class JiraApiClientService
       labels: issue_hash.dig('fields', 'labels'),
       project_key: issue_hash.dig('fields', 'project', 'key'),
       status: issue_hash.dig('fields', 'status', 'name'),
-      status_category_change_date: issue_hash.dig('fields', 'statuscategorychangedate'),
+      status_change_date: issue_hash.dig('fields', 'statuscategorychangedate'),
       story_points: issue_hash.dig('fields', 'customfield_10016'),
       summary: issue_hash.dig('fields', 'summary')
     )

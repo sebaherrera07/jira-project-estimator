@@ -7,7 +7,7 @@ class Issue
               :labels,
               :project_key,
               :status,
-              :status_category_change_date,
+              :status_change_date,
               :story_points,
               :summary
 
@@ -18,7 +18,7 @@ class Issue
     @labels = args[:labels]
     @project_key = args[:project_key]
     @status = args[:status]
-    @status_category_change_date = args[:status_category_change_date]&.to_datetime
+    @status_change_date = args[:status_change_date]&.to_datetime
     @story_points = args[:story_points]&.round
     @summary = args[:summary]
   end
@@ -42,6 +42,6 @@ class Issue
   def finish_date
     return unless done?
 
-    status_category_change_date
+    status_change_date
   end
 end
