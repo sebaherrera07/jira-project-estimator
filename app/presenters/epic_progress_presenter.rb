@@ -46,6 +46,7 @@ class EpicProgressPresenter
   end
 
   def completed_issues
+    # TODO: consider only up to previous week for progress and estimations?
     @completed_issues ||= issues.select(&:done?)
   end
 
@@ -60,11 +61,5 @@ class EpicProgressPresenter
       ratio = completed_story_points / (total_story_points * 1.0)
       (ratio * 100).round
     end
-  end
-
-  def formatted_estimation(avg_story_points_per_week)
-    weeks = remaining_story_points / (avg_story_points_per_week * 1.0).round
-    date = Time.zone.today.beginning_of_week + weeks.weeks
-    "#{weeks} weeks (#{date.strftime('%a, %d %b %Y')})"
   end
 end

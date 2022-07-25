@@ -43,4 +43,32 @@ class EpicEstimationPresenter
   def completed_issues
     @completed_issues ||= issues.select(&:done?)
   end
+
+  def formatted_estimation(avg_story_points_per_week)
+    weeks = (remaining_story_points / (avg_story_points_per_week * 1.0)).round(1)
+    date = Time.zone.today.beginning_of_week + weeks.weeks
+    "#{weeks} weeks (#{date.strftime('%a, %d %b %Y')})"
+  end
+
+  def remaining_story_points
+    # TODO: avoid duplicating this
+    @remaining_story_points ||= total_story_points - completed_story_points
+  end
+
+  def total_story_points
+    @total_story_points ||= estimated_issues.sum(&:story_points)
+  end
+
+  def completed_story_points
+    # TODO: consider only up to previous week for progress and estimations?
+    @completed_story_points ||= completed_estimated_issues.sum(&:story_points)
+  end
+
+  def estimated_issues
+    @estimated_issues ||= issues.select(&:estimated?)
+  end
+
+  def completed_estimated_issues
+    @completed_estimated_issues ||= estimated_issues.intersection(completed_issues)
+  end
 end

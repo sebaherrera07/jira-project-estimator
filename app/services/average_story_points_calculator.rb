@@ -14,7 +14,7 @@ class AverageStoryPointsCalculator
   def calculate
     return 0 if completed_estimated_issues.empty? || number_of_weeks_in_period.zero?
 
-    completed_estimated_issues_in_selected_period.sum(&:story_points) / number_of_weeks_in_period
+    (completed_estimated_issues_in_selected_period.sum(&:story_points) / (number_of_weeks_in_period * 1.0)).round(1)
   end
 
   private

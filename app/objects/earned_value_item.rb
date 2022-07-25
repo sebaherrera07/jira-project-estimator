@@ -22,7 +22,7 @@ class EarnedValueItem
   end
 
   def cumulative_earned_value
-    @cumulative_earned_value ||= previous_cumulative_earned_value + earned_value
+    @cumulative_earned_value ||= (previous_cumulative_earned_value + earned_value).round(2)
   end
 
   def finish_date
