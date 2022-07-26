@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-class ProjectStartDateCalculator
+class ProjectImplementationStartWeekCalculator
   def initialize(issues:)
     @issues = issues
   end
 
   def calculate
-    return Time.zone.today if first_status_changed_issue.blank?
+    return if first_status_changed_issue.blank?
 
     # Might not be 100% accurate, but it's something.
-    first_status_changed_issue.status_change_date.to_date
+    first_status_changed_issue.status_change_date.to_date.beginning_of_week
   end
 
   private

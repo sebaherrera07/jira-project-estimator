@@ -23,6 +23,8 @@ class EpicPresenter
            :earned_value,
            :remaining_earned_value,
            :any_unestimated_issues?,
+           :implementation_calculated_start_date,
+           :completed_weeks_since_beginning,
            to: :progress_presenter
 
   delegate :avg_story_points_per_week_since_beginning,
@@ -44,7 +46,8 @@ class EpicPresenter
   def estimation_presenter
     @estimation_presenter ||= EpicEstimationPresenter.new(
       issues: issues,
-      remaining_story_points: remaining_story_points
+      remaining_story_points: remaining_story_points,
+      implementation_start_date: implementation_calculated_start_date
     )
   end
 end

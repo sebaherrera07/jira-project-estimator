@@ -1,25 +1,24 @@
 # frozen_string_literal: true
 
 class EpicEstimationPresenter
-  def initialize(issues:, remaining_story_points:)
+  def initialize(issues:, remaining_story_points:, implementation_start_date:)
     @issues = issues
     @remaining_story_points = remaining_story_points
+    @implementation_start_date = implementation_start_date
   end
 
   def avg_story_points_per_week_since_beginning
-    project_start_date = nil # If known, it's more accurate to pass it via param
     @avg_story_points_per_week_since_beginning ||= AverageStoryPointsCalculator.new(
       completed_issues: completed_issues,
-      project_start_date: project_start_date
+      implementation_start_date: implementation_start_date
     ).calculate
   end
 
   def avg_story_points_per_week_since_last_3_weeks
-    project_start_date = nil # If known, it's more accurate to pass it via param
     @avg_story_points_per_week_since_last_3_weeks ||= AverageStoryPointsCalculator.new(
       completed_issues: completed_issues,
       weeks_ago_since: 3,
-      project_start_date: project_start_date
+      implementation_start_date: implementation_start_date
     ).calculate
   end
 
@@ -39,14 +38,14 @@ class EpicEstimationPresenter
 
   private
 
-  attr_reader :issues, :remaining_story_points
+  attr_reader :issues, :remaining_story_points, :implementation_start_date
 
   def completed_issues
     @completed_issues ||= issues.select(&:done?)
   end
 
   def formatted_estimation(avg_story_points_per_week)
-    weeks = (remaining_story_points / (avg_story_points_per_week * 1.0)).round(1)
+    weeks = (remaining_story_points / avg_story_points_per_week.to_f).round(1)
     date = Time.zone.today.beginning_of_week + weeks.weeks
     "#{weeks} weeks (#{date.strftime('%a, %d %b %Y')})"
   end

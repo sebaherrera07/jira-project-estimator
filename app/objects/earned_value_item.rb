@@ -18,7 +18,7 @@ class EarnedValueItem
   def earned_value
     return 0 if total_story_points.zero? || story_points.zero?
 
-    @earned_value ||= (story_points / (total_story_points * 1.0) * 100).round(2)
+    @earned_value ||= (story_points / total_story_points.to_f * 100).round(2)
   end
 
   def cumulative_earned_value

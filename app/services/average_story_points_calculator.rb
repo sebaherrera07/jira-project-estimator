@@ -1,29 +1,23 @@
 # frozen_string_literal: true
 
 class AverageStoryPointsCalculator
-  def initialize(completed_issues:, weeks_ago_since: 0, project_start_date: nil)
+  def initialize(completed_issues:, implementation_start_date:, weeks_ago_since: 0)
     @completed_issues = completed_issues
+    @implementation_start_date = implementation_start_date
 
     # Use 0 for 'since beginning'
     @weeks_ago_since = weeks_ago_since
-
-    # If known, it's more accurate to pass it via param
-    @project_start_date = project_start_date || calculated_project_start_date
   end
 
   def calculate
     return 0 if completed_estimated_issues.empty? || number_of_weeks_in_period.zero?
 
-    (completed_estimated_issues_in_selected_period.sum(&:story_points) / (number_of_weeks_in_period * 1.0)).round(1)
+    (completed_estimated_issues_in_selected_period.sum(&:story_points) / number_of_weeks_in_period.to_f).round(1)
   end
 
   private
 
-  attr_reader :completed_issues, :weeks_ago_since, :project_start_date
-
-  def calculated_project_start_date
-    @calculated_project_start_date ||= ProjectStartDateCalculator.new(issues: completed_issues).calculate
-  end
+  attr_reader :completed_issues, :weeks_ago_since, :implementation_start_date
 
   def completed_estimated_issues
     @completed_estimated_issues ||= completed_issues.select(&:estimated?)
@@ -47,15 +41,15 @@ class AverageStoryPointsCalculator
 
   def period_start_date
     @period_start_date ||=
-      if weeks_ago_since.zero? || weeks_ago_previous_than_project_start_date?
-        project_start_date.beginning_of_week
+      if weeks_ago_since.zero? || weeks_ago_previous_than_implementation_start_date?
+        implementation_start_date.beginning_of_week
       else
         weeks_ago_week_start_date
       end
   end
 
-  def weeks_ago_previous_than_project_start_date?
-    weeks_ago_week_start_date < project_start_date.beginning_of_week
+  def weeks_ago_previous_than_implementation_start_date?
+    weeks_ago_week_start_date < implementation_start_date.beginning_of_week
   end
 
   def weeks_ago_week_start_date

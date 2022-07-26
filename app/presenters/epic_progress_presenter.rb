@@ -33,6 +33,18 @@ class EpicProgressPresenter
     @any_unestimated_issues ||= unestimated_issues.any?
   end
 
+  def implementation_calculated_start_date
+    @implementation_calculated_start_date ||= ProjectImplementationStartWeekCalculator.new(issues: issues).calculate
+  end
+
+  def completed_weeks_since_beginning
+    return if implementation_calculated_start_date.blank?
+
+    @completed_weeks_since_beginning ||= implementation_calculated_start_date.step(
+      Time.zone.today.beginning_of_week - 1.day, 7
+    ).count
+  end
+
   private
 
   attr_reader :issues
@@ -46,7 +58,6 @@ class EpicProgressPresenter
   end
 
   def completed_issues
-    # TODO: consider only up to previous week for progress and estimations?
     @completed_issues ||= issues.select(&:done?)
   end
 
@@ -58,7 +69,7 @@ class EpicProgressPresenter
     return 0 if total_story_points.zero?
 
     @earned_value_number ||= begin
-      ratio = completed_story_points / (total_story_points * 1.0)
+      ratio = completed_story_points / total_story_points.to_f
       (ratio * 100).round
     end
   end
