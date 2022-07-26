@@ -1,24 +1,45 @@
-# README
+# About
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Add a description of the application here.
 
-Things you may want to cover:
+## Considerations
+* Mention specifics about how the estimations are calculated.
+* Mention how the JIRA project, epics and issues should be structured to use this tool.
 
-* Ruby version
 
-* System dependencies
+# Development
+## Ruby version
+3.1.2
 
-* Configuration
+## Database creation
+You need to have PostgreSQL installed. You can install it with `brew`, `Postgres.app`, or any other way that works for you.
 
-* Database creation
+Then run:
 
-* Database initialization
+```
+rails db:create
+rails db:migrate
+```
 
-* How to run the test suite
+_Note: so far nothing is being persisted in the database. PostgreSQL was added for future requirements._
 
-* Services (job queues, cache servers, search engines, etc.)
+## How to run the test suite
+```ruby
+bundle exec rspec
+```
 
-* Deployment instructions
 
-* ...
+# Connecting to your JIRA instance
+
+## Create an API token
+Steps:
+1. Step 1
+2. Step 2
+3. Step 3
+
+## Set the necessary ENV vars
+```
+JIRA_API_TOKEN=<your-api-token>
+JIRA_SITE_URL=https://your-domain.atlassian.net
+JIRA_USERNAME=user_email@example.com
+```
