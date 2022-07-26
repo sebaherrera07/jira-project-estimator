@@ -38,7 +38,7 @@ class EpicProgressPresenter
   end
 
   def completed_weeks_since_beginning
-    return if implementation_calculated_start_date.blank?
+    return 0 if implementation_calculated_start_date.blank?
 
     @completed_weeks_since_beginning ||= implementation_calculated_start_date.step(
       Time.zone.today.beginning_of_week - 1.day, 7

@@ -4,9 +4,7 @@ class AverageStoryPointsCalculator
   def initialize(completed_issues:, implementation_start_date:, weeks_ago_since: 0)
     @completed_issues = completed_issues
     @implementation_start_date = implementation_start_date
-
-    # Use 0 for 'since beginning'
-    @weeks_ago_since = weeks_ago_since
+    @weeks_ago_since = weeks_ago_since # Use 0 for 'since beginning'
   end
 
   def calculate
