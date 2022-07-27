@@ -24,7 +24,7 @@ rails db:migrate
 _Note: so far nothing is being persisted in the database. PostgreSQL was added for future requirements._
 
 ## How to run the test suite
-```ruby
+```
 bundle exec rspec
 ```
 

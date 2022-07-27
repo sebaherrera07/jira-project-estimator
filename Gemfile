@@ -67,6 +67,9 @@ group :development, :test do
 end
 
 group :development do
+  gem 'brakeman', '~> 5.2', '>= 5.2.3'
+  gem 'bundler-audit', '~> 0.9.1'
+
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'web-console'
 
