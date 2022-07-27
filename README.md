@@ -1,4 +1,4 @@
-# About
+# ![Jira Project Estimator](public/ms-icon-28x44.png) Jira Project Estimator 
 
 Add a description of the application here.
 
