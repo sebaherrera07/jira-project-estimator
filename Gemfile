@@ -50,9 +50,14 @@ gem 'sassc-rails'
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+# For making HTTP requests
 gem 'httparty', '~> 0.20.0'
 
+# HTML, CSS, and JavaScript library
 gem 'bootstrap', '~> 5.1', '>= 5.1.3'
+
+# For user authentication
+gem 'devise', '~> 4.8', '>= 4.8.1'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -69,6 +74,8 @@ end
 group :development do
   gem 'brakeman', '~> 5.2', '>= 5.2.3'
   gem 'bundler-audit', '~> 0.9.1'
+
+  gem 'letter_opener', '~> 1.8', '>= 1.8.1'
 
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'web-console'

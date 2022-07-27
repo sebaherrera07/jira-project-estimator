@@ -3,9 +3,18 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
+  devise_for :users
+
   # Defines the root path route ("/")
-  get '/', to: redirect('/projects')
-  # root 'projects#index'
+  unauthenticated do
+    get '/', to: redirect('users/sign_in')
+    root 'devise/sessions#new', as: :unauthenticated_root
+  end
+
+  authenticated :user do
+    get '/', to: redirect('/projects')
+    root 'projects#index'
+  end
 
   resources :projects, only: %i[index] do
     resources :epics, only: %i[index show] do

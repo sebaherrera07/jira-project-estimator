@@ -5,6 +5,14 @@ require:
 AllCops:
   NewCops: enable
 
+Layout/LineLength:
+  Exclude:
+    - config/initializers/devise.rb
+
+Metrics/BlockLength:
+  Exclude:
+    - config/environments/development.rb
+
 Metrics/MethodLength:
   Exclude:
     - spec/support/mocks/jira_api_responses.rb
