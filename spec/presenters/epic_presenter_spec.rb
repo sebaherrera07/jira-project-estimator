@@ -15,52 +15,44 @@ RSpec.describe EpicPresenter do
     it { is_expected.to delegate_method(:summary).to(:epic) }
   end
 
-  describe 'delegates to EpicIssuesCountPresenter' do
-    subject { described_class.new(epic: epic, issues: issues) }
+  describe '#issues_count_presenter' do
+    subject { described_class.new(epic: epic, issues: issues).issues_count_presenter }
 
     let(:epic) { build(:epic) }
     let(:issues) { [] }
 
-    it { is_expected.to delegate_method(:total_issues_count).to(:issues_count_presenter) }
-    it { is_expected.to delegate_method(:completed_issues_count).to(:issues_count_presenter) }
-    it { is_expected.to delegate_method(:remaining_issues_count).to(:issues_count_presenter) }
-    it { is_expected.to delegate_method(:started_issues_count).to(:issues_count_presenter) }
-    it { is_expected.to delegate_method(:unestimated_issues_count).to(:issues_count_presenter) }
+    it { is_expected.to be_a(EpicIssuesCountPresenter) }
   end
 
-  describe 'delegates to EpicProgressPresenter' do
-    subject { described_class.new(epic: epic, issues: issues) }
+  describe '#progress_presenter' do
+    subject do
+      described_class.new(
+        epic: epic,
+        issues: issues,
+        implementation_start_date: implementation_start_date
+      ).progress_presenter
+    end
 
     let(:epic) { build(:epic) }
     let(:issues) { [] }
+    let(:implementation_start_date) { [3.weeks.ago, nil].sample }
 
-    it { is_expected.to delegate_method(:total_story_points).to(:progress_presenter) }
-    it { is_expected.to delegate_method(:completed_story_points).to(:progress_presenter) }
-    it { is_expected.to delegate_method(:remaining_story_points).to(:progress_presenter) }
-    it { is_expected.to delegate_method(:earned_value).to(:progress_presenter) }
-    it { is_expected.to delegate_method(:remaining_earned_value).to(:progress_presenter) }
-    it { is_expected.to delegate_method(:any_unestimated_issues?).to(:progress_presenter) }
+    it { is_expected.to be_a(EpicProgressPresenter) }
   end
 
-  describe 'delegates to EpicEstimationPresenter' do
-    subject { described_class.new(epic: epic, issues: issues) }
+  describe '#estimation_presenter' do
+    subject do
+      described_class.new(
+        epic: epic,
+        issues: issues,
+        implementation_start_date: implementation_start_date
+      ).estimation_presenter
+    end
 
     let(:epic) { build(:epic) }
     let(:issues) { [] }
+    let(:implementation_start_date) { [3.weeks.ago, nil].sample }
 
-    it { is_expected.to delegate_method(:avg_story_points_per_week_since_beginning).to(:estimation_presenter) }
-    it { is_expected.to delegate_method(:avg_story_points_per_week_since_last_3_weeks).to(:estimation_presenter) }
-
-    it {
-      expect(subject).to delegate_method(
-        :estimated_weeks_to_complete_using_since_beggining_avg
-      ).to(:estimation_presenter)
-    }
-
-    it {
-      expect(subject).to delegate_method(
-        :estimated_weeks_to_complete_using_since_last_3_weeks_avg
-      ).to(:estimation_presenter)
-    }
+    it { is_expected.to be_a(EpicEstimationPresenter) }
   end
 end

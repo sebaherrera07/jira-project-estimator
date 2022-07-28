@@ -11,7 +11,11 @@ class EpicsController < ApplicationController
     @epic_key = params[:id]
     epic = jira_project_epic(@project_key, @epic_key)
     epic_issues = jira_epic_issues(@project_key, @epic_key, params[:labels])
-    @epic_presenter = EpicPresenter.new(epic: epic, issues: epic_issues)
+    @epic_presenter = EpicPresenter.new(
+      epic: epic,
+      issues: epic_issues,
+      implementation_start_date: implementation_start_date
+    )
   end
 
   private
@@ -30,5 +34,11 @@ class EpicsController < ApplicationController
 
   def jira_api_client_service
     @jira_api_client_service ||= JiraApiClientService.new
+  end
+
+  def implementation_start_date
+    return if params[:implementation_start_date].blank?
+
+    Date.strptime(params[:implementation_start_date], '%Y-%m-%d')
   end
 end

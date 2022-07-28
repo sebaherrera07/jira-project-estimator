@@ -3,51 +3,34 @@
 class EpicPresenter
   attr_reader :epic, :issues
 
-  def initialize(epic:, issues:)
+  def initialize(epic:, issues:, implementation_start_date: nil)
     @epic = epic
     @issues = issues
+    @implementation_start_date = implementation_start_date
   end
 
   delegate :key, :labels, :project_key, :summary, to: :epic
-
-  delegate :total_issues_count,
-           :completed_issues_count,
-           :remaining_issues_count,
-           :started_issues_count,
-           :unestimated_issues_count,
-           to: :issues_count_presenter
-
-  delegate :total_story_points,
-           :completed_story_points,
-           :remaining_story_points,
-           :earned_value,
-           :remaining_earned_value,
-           :any_unestimated_issues?,
-           :implementation_calculated_start_date,
-           :completed_weeks_since_beginning,
-           to: :progress_presenter
-
-  delegate :avg_story_points_per_week_since_beginning,
-           :avg_story_points_per_week_since_last_3_weeks,
-           :estimated_weeks_to_complete_using_since_beggining_avg,
-           :estimated_weeks_to_complete_using_since_last_3_weeks_avg,
-           to: :estimation_presenter
-
-  private
 
   def issues_count_presenter
     @issues_count_presenter ||= EpicIssuesCountPresenter.new(issues: issues)
   end
 
   def progress_presenter
-    @progress_presenter ||= EpicProgressPresenter.new(issues: issues)
+    @progress_presenter ||= EpicProgressPresenter.new(
+      issues: issues,
+      implementation_start_date: implementation_start_date
+    )
   end
 
   def estimation_presenter
     @estimation_presenter ||= EpicEstimationPresenter.new(
       issues: issues,
-      remaining_story_points: remaining_story_points,
-      implementation_start_date: implementation_calculated_start_date
+      remaining_story_points: progress_presenter.remaining_story_points,
+      implementation_start_date: progress_presenter.implementation_start_date
     )
   end
+
+  private
+
+  attr_reader :implementation_start_date
 end

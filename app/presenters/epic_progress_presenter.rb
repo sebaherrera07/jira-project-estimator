@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 class EpicProgressPresenter
-  def initialize(issues:)
+  attr_reader :implementation_start_date
+
+  def initialize(issues:, implementation_start_date: nil)
     @issues = issues
+    @implementation_start_date = (implementation_start_date || implementation_calculated_start_date)&.beginning_of_week
   end
 
   def total_story_points
@@ -33,14 +36,10 @@ class EpicProgressPresenter
     @any_unestimated_issues ||= unestimated_issues.any?
   end
 
-  def implementation_calculated_start_date
-    @implementation_calculated_start_date ||= ProjectImplementationStartWeekCalculator.new(issues: issues).calculate
-  end
-
   def completed_weeks_since_beginning
-    return 0 if implementation_calculated_start_date.blank?
+    return 0 if implementation_start_date.blank?
 
-    @completed_weeks_since_beginning ||= implementation_calculated_start_date.step(
+    @completed_weeks_since_beginning ||= implementation_start_date.step(
       Time.zone.today.beginning_of_week - 1.day, 7
     ).count
   end
@@ -72,5 +71,9 @@ class EpicProgressPresenter
       ratio = completed_story_points / total_story_points.to_f
       (ratio * 100).round
     end
+  end
+
+  def implementation_calculated_start_date
+    @implementation_calculated_start_date ||= ProjectImplementationStartDateCalculator.new(issues: issues).calculate
   end
 end

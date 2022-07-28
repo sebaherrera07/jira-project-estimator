@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ProjectImplementationStartWeekCalculator
+class ProjectImplementationStartDateCalculator
   def initialize(issues:)
     @issues = issues
   end
@@ -9,7 +9,7 @@ class ProjectImplementationStartWeekCalculator
     return if first_status_changed_issue.blank?
 
     # Might not be 100% accurate, but it's something.
-    first_status_changed_issue.status_change_date.to_date.beginning_of_week
+    first_status_changed_issue.status_change_date.to_date
   end
 
   private

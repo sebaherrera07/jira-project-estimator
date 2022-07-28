@@ -67,7 +67,6 @@ class JiraApiClientService
     )
   end
 
-  # rubocop:disable Metrics/MethodLength
   def issue(issue_hash)
     Issue.new(
       created_date: issue_hash.dig('fields', 'created'),
@@ -81,5 +80,4 @@ class JiraApiClientService
       summary: issue_hash.dig('fields', 'summary')
     )
   end
-  # rubocop:enable Metrics/MethodLength
 end
