@@ -12,6 +12,11 @@ Layout/LineLength:
 Metrics/BlockLength:
   Exclude:
     - config/environments/development.rb
+    - lib/tasks/auto_annotate_models.rake
+
+Metrics/ClassLength:
+  Exclude:
+    - spec/support/mocks/jira_api_responses.rb
 
 Metrics/MethodLength:
   Max: 12
@@ -32,6 +37,9 @@ RSpec/MessageSpies:
 
 RSpec/NamedSubject:
   Enabled: false
+
+RSpec/NestedGroups:
+  Max: 5
 
 RSpec/StubbedMock:
   Enabled: false

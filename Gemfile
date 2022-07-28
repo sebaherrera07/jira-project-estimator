@@ -72,6 +72,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'annotate', '~> 3.2'
   gem 'brakeman', '~> 5.2', '>= 5.2.3'
   gem 'bundler-audit', '~> 0.9.1'
 
