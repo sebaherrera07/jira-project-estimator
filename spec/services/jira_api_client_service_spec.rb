@@ -78,29 +78,57 @@ RSpec.describe JiraApiClientService do
   end
 
   describe '#query_epic_issues' do
-    subject { described_class.new.query_epic_issues(project_key, epic_key) }
+    subject { described_class.new.query_epic_issues(project_key, epic_key, labels) }
 
     let(:project_key) { 'TEST' }
     let(:epic_key) { 'TEST-5' }
 
-    before do
-      JiraApiMocker.new.stub_query_epic_issues(project_key, epic_key)
+    context 'when no labels are passed' do
+      let(:labels) { nil }
+
+      before do
+        JiraApiMocker.new.stub_query_epic_issues(project_key, epic_key)
+      end
+
+      it 'returns a list of Issue objects' do
+        expect(subject).to all(be_a(Issue))
+      end
+
+      it 'makes request with expected options' do
+        subject
+        url = "#{ENV.fetch('JIRA_SITE_URL')}/rest/api/3/search"
+        expect(WebMock).to have_requested(:get, url).with(
+          headers: { 'Accept' => 'application/json' },
+          basic_auth: [ENV.fetch('JIRA_USERNAME'), ENV.fetch('JIRA_API_TOKEN')],
+          query: {
+            jql: "project = #{project_key} AND parent = #{epic_key}"
+          }
+        )
+      end
     end
 
-    it 'returns a list of Issue objects' do
-      expect(subject).to all(be_a(Issue))
-    end
+    context 'when labels are passed' do
+      let(:labels) { ['label-1', 'label 2'] }
 
-    it 'makes request with expected options' do
-      subject
-      url = "#{ENV.fetch('JIRA_SITE_URL')}/rest/api/3/search"
-      expect(WebMock).to have_requested(:get, url).with(
-        headers: { 'Accept' => 'application/json' },
-        basic_auth: [ENV.fetch('JIRA_USERNAME'), ENV.fetch('JIRA_API_TOKEN')],
-        query: {
-          jql: "project = #{project_key} AND parent = #{epic_key}"
-        }
-      )
+      before do
+        JiraApiMocker.new.stub_query_epic_issues_with_labels(project_key, epic_key, labels)
+      end
+
+      it 'returns a list of Issue objects' do
+        expect(subject).to all(be_a(Issue))
+      end
+
+      it 'makes request with expected options' do
+        subject
+        url = "#{ENV.fetch('JIRA_SITE_URL')}/rest/api/3/search"
+        expect(WebMock).to have_requested(:get, url).with(
+          headers: { 'Accept' => 'application/json' },
+          basic_auth: [ENV.fetch('JIRA_USERNAME'), ENV.fetch('JIRA_API_TOKEN')],
+          query: {
+            jql: "project = #{project_key} AND parent = #{epic_key} AND labels in (#{labels.join(',')})"
+          }
+        )
+      end
     end
   end
 end

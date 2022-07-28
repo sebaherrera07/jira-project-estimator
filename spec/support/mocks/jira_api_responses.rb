@@ -104,4 +104,49 @@ class JiraApiResponses
       ]
     }.to_json
   end
+
+  def self.query_epic_issues_with_labels_response_body(project_key, epic_key, labels)
+    {
+      'issues' => [
+        {
+          'key' => 'ISSUE-1',
+          'fields' => {
+            'created' => '2020-01-01T00:00:00.000Z',
+            'customfield_10016' => 3.0,
+            'labels' => labels,
+            'parent' => {
+              'key' => epic_key
+            },
+            'project' => {
+              'key' => project_key
+            },
+            'status' => {
+              'name' => 'Done'
+            },
+            'statuscategorychangedate' => '2020-01-01T00:00:00.000Z',
+            'summary' => 'Issue summary A'
+          }
+        },
+        {
+          'key' => 'ISSUE-2',
+          'fields' => {
+            'created' => '2020-01-01T00:00:00.000Z',
+            'customfield_10016' => nil,
+            'labels' => labels,
+            'parent' => {
+              'key' => epic_key
+            },
+            'project' => {
+              'key' => project_key
+            },
+            'status' => {
+              'name' => 'In Progress'
+            },
+            'statuscategorychangedate' => '2020-01-01T00:00:00.000Z',
+            'summary' => 'Issue summary B'
+          }
+        }
+      ]
+    }.to_json
+  end
 end

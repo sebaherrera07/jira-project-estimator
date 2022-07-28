@@ -36,6 +36,17 @@ class JiraApiMocker
     )
   end
 
+  def stub_query_epic_issues_with_labels(project_key, epic_key, labels)
+    url = "#{BASE_URL}/search"
+    query_params = { query: {
+      jql: "project = #{project_key} AND parent = #{epic_key} AND labels in (#{labels.join(',')})"
+    } }
+    stub_request(url, request_params(query_params)).to_return(
+      status: 200,
+      body: JiraApiResponses.query_epic_issues_with_labels_response_body(project_key, epic_key, labels)
+    )
+  end
+
   private
 
   BASE_URL = "#{ENV.fetch('JIRA_SITE_URL')}/rest/api/3".freeze
