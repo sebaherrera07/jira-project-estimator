@@ -3,9 +3,9 @@
   <br />
 
   <p class="h5">Project: <%= link_to @project_key, project_epics_path(project_id: @project_key) %></p>
-  <p class="h5">Epic: <%= link_to @epic_key, project_epic_path(project_id: @project_key, id: @epic_key) %></p>
+  <p class="h5">Epic: <%= link_to @epic_key, project_epic_path(project_id: @project_key, id: @epic_key, labels: params[:labels]) %></p>
   <br />
-  
+
   <table class="table table-sm table-bordered">
     <thead>
       <tr>

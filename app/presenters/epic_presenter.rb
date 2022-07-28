@@ -30,6 +30,13 @@ class EpicPresenter
     )
   end
 
+  def earned_value_presenter
+    @earned_value_presenter ||= EpicEarnedValuePresenter.new(
+      completed_issues: issues_count_presenter.completed_issues,
+      total_story_points: progress_presenter.total_story_points
+    )
+  end
+
   private
 
   attr_reader :implementation_start_date

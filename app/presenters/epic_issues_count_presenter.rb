@@ -25,16 +25,16 @@ class EpicIssuesCountPresenter
     @unestimated_issues_count ||= unestimated_issues.count
   end
 
+  def completed_issues
+    @completed_issues ||= issues.select(&:done?)
+  end
+
   private
 
   attr_reader :issues
 
   def unestimated_issues
     @unestimated_issues ||= issues.reject(&:estimated?)
-  end
-
-  def completed_issues
-    @completed_issues ||= issues.select(&:done?)
   end
 
   def started_issues

@@ -3,13 +3,17 @@
   <br />
 
   <p class="h5">Project: <%= link_to @project_key, project_epics_path(project_id: @project_key) %></p>
-  <p class="h5">Epic: <%= link_to @epic_key, project_epic_path(project_id: @project_key, id: @epic_key) %></p>
+  <p class="h5">Epic: <%= link_to @epic_key, project_epic_path(project_id: @project_key, id: @epic_key, implementation_start_date: params[:implementation_start_date], labels: params[:labels]) %></p>
+  <br />
+
+  <p class="h5">Details</p>
+  <%= render 'shared/epic_details_table', epic_presenter: @epic_presenter %>
   <br />
   
   <p class="h5">Progress</p>
-  <%= render 'shared/epic_progress_table', epic_progress_presenter: @epic_progress_presenter %>
+  <%= render 'shared/epic_progress_table', epic_progress_presenter: @epic_presenter.progress_presenter %>
   <br />
 
   <p class="h5">Earned Value</p>
-  <%= render 'progress/epic_earned_value_table', epic_earned_value_presenter: @epic_earned_value_presenter %>
+  <%= render 'progress/epic_earned_value_table', epic_earned_value_presenter: @epic_presenter.earned_value_presenter %>
 </div>

@@ -4,7 +4,8 @@
       <th scope="col">Epic Key</th>
       <th scope="col">Summary</th>
       <th scope="col">Labels</th>
-      <th scope="col">Issues</th>
+      <th scope="col">Implementation Start Week</th>
+      <th scope="col">Completed Weeks Since Start</th>
     </tr>
   </thead>
   <tbody>
@@ -12,7 +13,8 @@
       <td><%= epic_presenter.key %></td>
       <td><%= epic_presenter.summary %></td>
       <td><%= epic_presenter.labels %></td>
-      <td><%= link_to "Issues", project_epic_issues_path(project_id: epic_presenter.project_key, epic_id: epic_presenter.key) %></td>
+      <td><%= epic_presenter.progress_presenter.implementation_start_date&.strftime("%a, %d %b %Y") %></td>
+      <td><%= epic_presenter.progress_presenter.completed_weeks_since_beginning %></td>
     </tr>
   </tbody>
 </table>

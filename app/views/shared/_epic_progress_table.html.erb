@@ -5,8 +5,6 @@
 <table class="table table-sm table-bordered">
   <thead>
     <tr>
-      <th scope="col">Implementation Start Week</th>
-      <th scope="col">Completed Weeks Since Start</th>
       <th scope="col">Total Story Points</th>
       <th scope="col">Completed Story Points</th>
       <th scope="col">Remaining Story Points</th>
@@ -16,8 +14,6 @@
   </thead>
   <tbody>
     <tr>
-      <td><%= epic_progress_presenter.implementation_start_date&.strftime("%a, %d %b %Y") %></td>
-      <td><%= epic_progress_presenter.completed_weeks_since_beginning %></td>
       <td><%= epic_progress_presenter.total_story_points %></td>
       <td><%= epic_progress_presenter.completed_story_points %></td>
       <td><%= epic_progress_presenter.remaining_story_points %></td>
