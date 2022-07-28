@@ -17,7 +17,7 @@ class ProgressController < ApplicationController
 
   private
 
-  def jira_epic_issues(project_key, epic_key)
+  def jira_epic_issues(project_key, epic_key, labels)
     JiraApiClientService.new.query_epic_issues(project_key, epic_key, labels)
   end
 
