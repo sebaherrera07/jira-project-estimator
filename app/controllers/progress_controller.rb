@@ -4,7 +4,7 @@ class ProgressController < ApplicationController
   def index
     @project_key = params[:project_id]
     @epic_key = params[:epic_id]
-    epic_issues = jira_epic_issues(@project_key, @epic_key)
+    epic_issues = jira_epic_issues(@project_key, @epic_key, params[:labels])
     @epic_progress_presenter = EpicProgressPresenter.new(
       issues: epic_issues,
       implementation_start_date: implementation_start_date
@@ -18,7 +18,7 @@ class ProgressController < ApplicationController
   private
 
   def jira_epic_issues(project_key, epic_key)
-    JiraApiClientService.new.query_epic_issues(project_key, epic_key)
+    JiraApiClientService.new.query_epic_issues(project_key, epic_key, labels)
   end
 
   def completed_issues(epic_issues)
