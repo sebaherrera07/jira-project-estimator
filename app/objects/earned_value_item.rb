@@ -7,22 +7,14 @@ class EarnedValueItem
     @total_story_points = total_story_points
   end
 
-  def issue_key
-    @issue_key ||= completed_issue.key
-  end
-
-  def story_points
-    @story_points ||= completed_issue.story_points
+  def cumulative_earned_value
+    @cumulative_earned_value ||= (previous_cumulative_earned_value + earned_value).round(2)
   end
 
   def earned_value
-    return 0 if total_story_points.zero? || story_points.zero?
+    return 0 if total_story_points.zero? || story_points.nil? || story_points.zero?
 
     @earned_value ||= (story_points / total_story_points.to_f * 100).round(2)
-  end
-
-  def cumulative_earned_value
-    @cumulative_earned_value ||= (previous_cumulative_earned_value + earned_value).round(2)
   end
 
   def finish_date
@@ -33,8 +25,12 @@ class EarnedValueItem
     @finish_week ||= "#{formatted_beginning_of_week} - #{formatted_end_of_week}"
   end
 
-  def unestimated?
-    story_points.nil?
+  def issue_key
+    @issue_key ||= completed_issue.key
+  end
+
+  def story_points
+    @story_points ||= completed_issue.story_points
   end
 
   private
