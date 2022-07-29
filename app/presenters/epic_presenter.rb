@@ -3,10 +3,11 @@
 class EpicPresenter
   attr_reader :epic, :issues
 
-  def initialize(epic:, issues:, implementation_start_date: nil)
+  def initialize(epic:, issues:, implementation_start_date: nil, expected_average: nil)
     @epic = epic
     @issues = issues
     @implementation_start_date = implementation_start_date
+    @expected_average = expected_average
   end
 
   delegate :key, :labels, :project_key, :summary, to: :epic
@@ -26,7 +27,8 @@ class EpicPresenter
     @estimation_presenter ||= EpicEstimationPresenter.new(
       issues: issues,
       remaining_story_points: progress_presenter.remaining_story_points,
-      implementation_start_date: progress_presenter.implementation_start_date
+      implementation_start_date: progress_presenter.implementation_start_date,
+      expected_average: expected_average
     )
   end
 
@@ -39,5 +41,5 @@ class EpicPresenter
 
   private
 
-  attr_reader :implementation_start_date
+  attr_reader :implementation_start_date, :expected_average
 end

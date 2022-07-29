@@ -14,7 +14,8 @@ class EpicsController < ApplicationController
     @epic_presenter = EpicPresenter.new(
       epic: epic,
       issues: epic_issues,
-      implementation_start_date: implementation_start_date
+      implementation_start_date: implementation_start_date,
+      expected_average: expected_average
     )
   end
 
@@ -40,5 +41,10 @@ class EpicsController < ApplicationController
     return if params[:implementation_start_date].blank?
 
     Date.strptime(params[:implementation_start_date], '%Y-%m-%d')
+  end
+
+  def expected_average
+    # If it's nil or it's not a number, returns 0.0
+    params[:expected_average].to_f
   end
 end
