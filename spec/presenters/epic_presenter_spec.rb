@@ -55,4 +55,20 @@ RSpec.describe EpicPresenter do
 
     it { is_expected.to be_a(EpicEstimationPresenter) }
   end
+
+  describe '#earned_value_presenter' do
+    subject do
+      described_class.new(
+        epic: epic,
+        issues: issues,
+        implementation_start_date: implementation_start_date
+      ).earned_value_presenter
+    end
+
+    let(:epic) { build(:epic) }
+    let(:issues) { [] }
+    let(:implementation_start_date) { [3.weeks.ago, nil].sample }
+
+    it { is_expected.to be_a(EpicEarnedValuePresenter) }
+  end
 end

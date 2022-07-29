@@ -3,22 +3,32 @@
 require 'rails_helper'
 
 RSpec.describe EpicIssuesCountPresenter do
-  describe '#total_issues_count' do
-    subject { described_class.new(issues: issues).total_issues_count }
+  describe '#completed_issues' do
+    subject { described_class.new(issues: issues).completed_issues }
 
     context 'when epic has no issues' do
       let(:issues) { [] }
 
-      it 'returns 0' do
-        expect(subject).to eq(0)
+      it 'returns empty array' do
+        expect(subject).to eq([])
       end
     end
 
-    context 'when epic has issues' do
-      let(:issues) { build_list(:issue, rand(1..2)) }
+    context 'when epic has no completed issues' do
+      let(:issues) { build_list(:issue, rand(1..2), :in_progress) }
 
-      it 'returns the total number of issues' do
-        expect(subject).to eq(issues.count)
+      it 'returns empty array' do
+        expect(subject).to eq([])
+      end
+    end
+
+    context 'when epic has completed issues' do
+      let(:to_do_issues) { build_list(:issue, rand(1..2), :to_do) }
+      let(:completed_issues) { build_list(:issue, rand(1..2), :done) }
+      let(:issues) { to_do_issues + completed_issues }
+
+      it 'returns the total number of completed issues' do
+        expect(subject).to eq(completed_issues)
       end
     end
   end
@@ -115,6 +125,26 @@ RSpec.describe EpicIssuesCountPresenter do
 
       it 'returns the total number of started issues' do
         expect(subject).to eq(in_progress_issues.count + other_issues.count)
+      end
+    end
+  end
+
+  describe '#total_issues_count' do
+    subject { described_class.new(issues: issues).total_issues_count }
+
+    context 'when epic has no issues' do
+      let(:issues) { [] }
+
+      it 'returns 0' do
+        expect(subject).to eq(0)
+      end
+    end
+
+    context 'when epic has issues' do
+      let(:issues) { build_list(:issue, rand(1..2)) }
+
+      it 'returns the total number of issues' do
+        expect(subject).to eq(issues.count)
       end
     end
   end
