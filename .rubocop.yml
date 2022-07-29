@@ -23,6 +23,9 @@ Metrics/MethodLength:
   Exclude:
     - spec/support/mocks/jira_api_responses.rb
 
+RSpec/AnyInstance:
+  Enabled: false
+
 Rails/FilePath:
   Enabled: false
 
