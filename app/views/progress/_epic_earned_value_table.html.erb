@@ -11,7 +11,7 @@
     </tr>
   </thead>
   <tbody>
-    <% epic_earned_value_presenter.earned_value_items.each_with_index do |earned_value_item, index| %>
+    <% epic_earned_value_presenter.earned_value_items.each.with_index(1) do |earned_value_item, index| %>
       <tr>
         <th scope="row"><%= index %></th>
         <td><%= earned_value_item.finish_week %></td>

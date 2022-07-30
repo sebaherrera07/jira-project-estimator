@@ -1,5 +1,5 @@
 <div>
-  <p class="h1">Epic Issues</p>
+  <p class="h1">Issues</p>
   <br />
 
   <p class="h5">Project: <%= link_to @project_key, project_epics_path(project_id: @project_key) %></p>
@@ -19,7 +19,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @issues.each_with_index do |issue, index| %>
+      <% @issues.each.with_index(1) do |issue, index| %>
         <tr>
           <th scope="row"><%= index %></th>
           <td><%= issue.key %></td>
