@@ -33,5 +33,5 @@ RSpec.describe EpicProgressPresenter do
     end
   end
 
-  # TODO: add missing specs
+  # TODO: add tests
 end

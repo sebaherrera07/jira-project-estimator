@@ -8,6 +8,6 @@ class ProjectsController < ApplicationController
   private
 
   def jira_projects
-    JiraApiClientService.new.query_projects
+    JiraApiClientService.new.query_projects.sort_by(&:name)
   end
 end
