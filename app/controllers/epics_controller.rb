@@ -10,7 +10,7 @@ class EpicsController < ApplicationController
     @project_key = params[:project_id]
     @epic_key = params[:id]
     epic = jira_project_epic(@project_key, @epic_key)
-    epic_issues = jira_epic_issues(@project_key, @epic_key, params[:labels])
+    epic_issues = jira_epic_issues(@project_key, @epic_key, labels)
     @epic_presenter = EpicPresenter.new(
       epic: epic,
       issues: epic_issues,
@@ -35,6 +35,12 @@ class EpicsController < ApplicationController
 
   def jira_api_client_service
     @jira_api_client_service ||= JiraApiClientService.new
+  end
+
+  def labels
+    return if params[:labels].blank?
+
+    params[:labels].is_a?(Array) ? params[:labels] : [params[:labels]]
   end
 
   def implementation_start_date
