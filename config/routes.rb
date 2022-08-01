@@ -22,4 +22,6 @@ Rails.application.routes.draw do
       resources :progress, only: [:index]
     end
   end
+
+  resources :about, only: %i[index]
 end

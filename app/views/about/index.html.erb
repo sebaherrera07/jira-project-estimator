@@ -1,0 +1,23 @@
+<div>
+  <p class="h1">About</p>
+  <br />
+
+  <ol>
+    <li>The tool tracks progress and generates estimates for the Epic, based on its Issues story points and status (To Do, In Progress, Done, ...).</li>
+
+    <li>The tool considers all types of Issues (Story, Task, Bug, ...).</li>
+
+    <li>The tool does not track progress or generate estimates for Issues without Epic.</li>
+    
+    <li>The tool does not consider Sub-Tasks.</li>
+
+    <li>By default there are 2 estimations which are calculated based on the average velocity since: (1) the implementation start week; (2) the last 3 weeks. You can also ask for a 3rd estimation based on the average velocity you expect to achieve by passing the <i>expected_average</i> parameter to the tool.</li>
+
+    <li>The tool considers that weeks start on Monday and end on Sunday. Why do I mention this? Because if you started the implementation of a project on a Friday, the tool will consider that the implementation started on the previous Monday, and therefore your average velocity will be lower than expected. In this case you can either live with this difference, or pass the <i>implementation_start_date</i> parameter to the tool and say implementation started the following Monday.</li>
+
+
+    <li>If you want to estimate just a subset of an Epic, you can make use of Jira labels to filter the Issues you want to consider. First label your Issues in Jira, and then pass the <i>labels</i> parameter to the tool.</li>
+
+    <li>The calculations are more accurate when you estimate <strong>ALL</strong> the Issues and after multiple weeks of work (the first few weeks is expected to see unaccurate estimates).</li>
+  </ol>
+</div>
