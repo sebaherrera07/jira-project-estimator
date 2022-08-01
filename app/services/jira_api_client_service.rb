@@ -10,8 +10,8 @@ class JiraApiClientService
   end
 
   def query_project_epics(project_key)
-    requery_query_params = { query: { jql: "project = #{project_key} AND issuetype = Epic" } }
-    response = HTTParty.get("#{BASE_URL}/search", request_params.merge(requery_query_params))
+    request_query_params = { query: { jql: "project = #{project_key} AND issuetype = Epic" } }
+    response = HTTParty.get("#{BASE_URL}/search", request_params.merge(request_query_params))
     json_response = JSON.parse(response.body)
     json_response['issues'].map do |epic_hash|
       epic(epic_hash)
@@ -19,8 +19,8 @@ class JiraApiClientService
   end
 
   def query_project_epic(project_key, epic_key)
-    requery_query_params = { query: { jql: "project = #{project_key} AND issuetype = Epic AND key = #{epic_key}" } }
-    response = HTTParty.get("#{BASE_URL}/search", request_params.merge(requery_query_params))
+    request_query_params = { query: { jql: "project = #{project_key} AND issuetype = Epic AND key = #{epic_key}" } }
+    response = HTTParty.get("#{BASE_URL}/search", request_params.merge(request_query_params))
     json_response = JSON.parse(response.body)
     epic_hash = json_response['issues'].first
     epic(epic_hash)
@@ -29,8 +29,8 @@ class JiraApiClientService
   def query_epic_issues(project_key, epic_key, labels = [])
     jql_string = "project = #{project_key} AND parent = #{epic_key}"
     jql_string += " AND labels in (#{labels.join(',')})" if labels.present?
-    requery_query_params = { query: { jql: jql_string } }
-    response = HTTParty.get("#{BASE_URL}/search", request_params.merge(requery_query_params))
+    request_query_params = { query: { jql: jql_string } }
+    response = HTTParty.get("#{BASE_URL}/search", request_params.merge(request_query_params))
     json_response = JSON.parse(response.body)
     json_response['issues'].map do |issue_hash|
       issue(issue_hash)
