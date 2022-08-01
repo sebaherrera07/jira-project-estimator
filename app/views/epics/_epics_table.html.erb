@@ -1,0 +1,22 @@
+<table class="table table-sm table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Epic Key</th>
+      <th scope="col">Summary</th>
+      <th scope="col">Labels</th>
+      <th scope="col">Issues</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% epics.each.with_index(1) do |epic, index| %>
+      <tr>
+        <th scope="row"><%= index %></th>
+        <td><%= link_to epic.key, project_epic_path(project_id: epic.project_key, id: epic.key) %></td>
+        <td><%= epic.summary %></td>
+        <td><%= epic.labels %></td>
+        <td><%= link_to "Issues", project_epic_issues_path(project_id: epic.project_key, epic_id: epic.key) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

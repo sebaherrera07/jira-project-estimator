@@ -3,6 +3,7 @@
     <tr>
       <th scope="col">Epic Key</th>
       <th scope="col">Summary</th>
+      <th scope="col">Project Key</th>
       <th scope="col">Labels</th>
       <th scope="col">Implementation Start Week</th>
       <th scope="col">Completed Weeks Since Start</th>
@@ -10,8 +11,9 @@
   </thead>
   <tbody>
     <tr>
-      <td><%= epic_presenter.key %></td>
+      <td><%= link_to epic_presenter.key, project_epic_path(project_id: epic_presenter.project_key, id: epic_presenter.key, implementation_start_date: params[:implementation_start_date], labels: params[:labels], expected_average: params[:expected_average]) %></td>
       <td><%= epic_presenter.summary %></td>
+      <td><%= link_to epic_presenter.project_key, project_epics_path(project_id: epic_presenter.project_key) %></td>
       <td><%= epic_presenter.labels %></td>
       <td><%= epic_presenter.progress_presenter.implementation_start_date&.strftime("%a, %d %b %Y") %></td>
       <td><%= epic_presenter.progress_presenter.completed_weeks_since_beginning %></td>

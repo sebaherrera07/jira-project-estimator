@@ -2,10 +2,10 @@
   <p class="h1">Epic</p>
   <br />
 
-  <p class="h5">Project: <%= link_to @project_key, project_epics_path(project_id: @project_key) %></p>
+  <%= render 'epics/filters', project_id: @project_key, epic_id: @epic_key %>
   <br />
 
-  <p class="h5">Details</p>
+  <p class="h5">Epic Details</p>
   <%= render 'shared/epic_details_table', epic_presenter: @epic_presenter %>
   <br />
 

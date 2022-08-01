@@ -2,24 +2,5 @@
   <p class="h1">Projects</p>
   <br />
 
-  <table class="table table-sm table-bordered">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Project Key</th>
-        <th scope="col">Name</th>
-        <th scope="col">Epics</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @projects.each.with_index(1) do |project, index| %>
-        <tr>
-          <th scope="row"><%= index %></th>
-          <td><%= project.key %></td>
-          <td><%= project.name %></td>
-          <td><%= link_to "Epics", project_epics_path(project_id: project.key) %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <%= render 'projects/projects_table', projects: @projects %>
 </div>

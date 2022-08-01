@@ -2,6 +2,7 @@
 
 require 'rails_helper'
 
+# TODO: fix intermittent failures
 RSpec.describe AverageStoryPointsCalculator do
   describe '#calculate' do
     subject do
