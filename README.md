@@ -24,13 +24,15 @@ So the purpose of this tool is to help you monitor your team's progress and auto
 
 4. The tool does not consider Sub-Tasks.
 
-5. By default there are 2 estimations which are calculated based on the average velocity since: (1) the implementation start week; (2) the last 3 weeks. You can also ask for a 3rd estimation based on the average velocity you expect to achieve by passing the `expected_average` parameter to the tool.
+5. The unit of time for calculating average velocity and generating estimates is the week. This is to avoid having to consider if the team uses sprints, and eventually the sprint length which could be different for each team. Also, estimates in number of weeks should be fine for everyone.
 
-6. The tool considers that weeks start on Monday and end on Sunday. Why do I mention this? Because if you started the implementation of a project on a Friday, the tool will consider that the implementation started on the previous Monday, and therefore your average velocity will be lower than expected. In this case you can either live with this difference, or pass the `implementation_start_date` parameter to the tool and say implementation started the following Monday.
+6. By default there are 2 estimations which are calculated based on the average velocity since: (1) the implementation start week; (2) the last 3 weeks. You can also ask for a 3rd estimation based on the average velocity you expect to achieve by passing the `expected_average` parameter to the tool.
 
-7. If you want to estimate just a subset of an Epic, you can make use of Jira labels to filter the Issues you want to consider. First label your Issues in Jira, and then pass the `labels` parameter to the tool.
+7. The tool considers that weeks start on Monday and end on Sunday. Why do I mention this? Because if you started the implementation of a project on a Friday, the tool will consider that the implementation started on the previous Monday, and therefore your average velocity will be lower than expected. In this case you can either live with this difference, or pass the `implementation_start_date` parameter to the tool and say implementation started the following Monday.
 
-8. The calculations are more accurate when you estimate **ALL** the Issues and after multiple weeks of work (the first few weeks is expected to see unaccurate estimates).
+8. If you want to estimate just a subset of an Epic, you can make use of Jira labels to filter the Issues you want to consider. First label your Issues in Jira, and then pass the `labels` parameter to the tool.
+
+9. The calculations are more accurate when you estimate **ALL** the Issues and after multiple weeks of work (the first few weeks is expected to see unaccurate estimates).
 
 
 ## Development
