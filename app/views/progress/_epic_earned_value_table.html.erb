@@ -1,8 +1,8 @@
 <table class="table table-sm table-bordered">
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Week</th>
+      <th scope="col">Week Number</th>
+      <th scope="col">Week Dates</th>
       <th scope="col">Issue Key</th>
       <th scope="col">Finish Date</th>
       <th scope="col">Story Points</th>
@@ -11,10 +11,10 @@
     </tr>
   </thead>
   <tbody>
-    <% epic_earned_value_presenter.earned_value_items.each.with_index(1) do |earned_value_item, index| %>
+    <% epic_earned_value_presenter.earned_value_items.each do |earned_value_item| %>
       <tr>
-        <th scope="row"><%= index %></th>
-        <td><%= earned_value_item.finish_week %></td>
+        <td><%= earned_value_item.finish_week_number %></td>
+        <td><%= earned_value_item.finish_week_dates %></td>
         <td><%= earned_value_item.issue_key %></td>
         <td><%= earned_value_item.finish_date.strftime("%a, %d %b %Y") %></td>
         <td><%= earned_value_item.story_points %></td>

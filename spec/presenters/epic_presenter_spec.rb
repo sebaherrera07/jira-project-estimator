@@ -35,7 +35,7 @@ RSpec.describe EpicPresenter do
 
     let(:epic) { build(:epic) }
     let(:issues) { [] }
-    let(:implementation_start_date) { [3.weeks.ago, nil].sample }
+    let(:implementation_start_date) { [3.weeks.ago.to_date, nil].sample }
 
     it { is_expected.to be_a(EpicProgressPresenter) }
   end
@@ -51,7 +51,7 @@ RSpec.describe EpicPresenter do
 
     let(:epic) { build(:epic) }
     let(:issues) { [] }
-    let(:implementation_start_date) { [3.weeks.ago, nil].sample }
+    let(:implementation_start_date) { [3.weeks.ago.to_date, nil].sample }
 
     it { is_expected.to be_a(EpicEstimationPresenter) }
   end
@@ -67,8 +67,24 @@ RSpec.describe EpicPresenter do
 
     let(:epic) { build(:epic) }
     let(:issues) { [] }
-    let(:implementation_start_date) { [3.weeks.ago, nil].sample }
+    let(:implementation_start_date) { [3.weeks.ago.to_date, nil].sample }
 
     it { is_expected.to be_a(EpicEarnedValuePresenter) }
+  end
+
+  describe '#weekly_earned_value_presenter' do
+    subject do
+      described_class.new(
+        epic: epic,
+        issues: issues,
+        implementation_start_date: implementation_start_date
+      ).weekly_earned_value_presenter
+    end
+
+    let(:epic) { build(:epic) }
+    let(:issues) { [] }
+    let(:implementation_start_date) { [3.weeks.ago.to_date, nil].sample }
+
+    it { is_expected.to be_a(EpicWeeklyEarnedValuePresenter) }
   end
 end

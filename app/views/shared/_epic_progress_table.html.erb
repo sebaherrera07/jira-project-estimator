@@ -1,5 +1,7 @@
 <% if epic_progress_presenter.any_unestimated_issues? %>
-  <p class="text-danger"><%= "There are #{epic_progress_presenter.unestimated_issues_count} issues without story points. It can affect estimations."%></p>
+  <p class="text-danger">
+    <%= "There are #{epic_progress_presenter.unestimated_issues_count} issues without story points. It can affect progress and estimations."%>
+  </p>
 <% end %>
 
 <table class="table table-sm table-bordered">

@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe EpicEstimationPresenter do
   let(:issues) { build_list(:issue, 3) }
   let(:remaining_story_points) { 50 }
-  let(:implementation_start_date) { 3.weeks.ago }
+  let(:implementation_start_date) { 3.weeks.ago.to_date }
 
   describe '#avg_story_points_per_week_since_beginning' do
     subject do

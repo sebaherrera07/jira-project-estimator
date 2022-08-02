@@ -115,13 +115,34 @@ RSpec.describe EarnedValueItem do
     it { is_expected.to eq(Date.new(2020, 1, 1)) }
   end
 
-  describe '#finish_week' do
-    subject { earned_value_item.finish_week }
+  describe '#finish_week_dates' do
+    subject { earned_value_item.finish_week_dates }
 
     let(:issue) { build(:issue, :done, status_change_date: Date.new(2022, 7, 20)) }
     let(:earned_value_item) { build(:earned_value_item, completed_issue: issue) }
 
     it { is_expected.to eq('2022-07-18 - 2022-07-24') }
+  end
+
+  describe '#finish_week_number' do
+    subject { earned_value_item.finish_week_number }
+
+    let(:issue) { build(:issue, :done, status_change_date: Date.new(2022, 7, 20)) }
+    let(:earned_value_item) do
+      build(:earned_value_item, completed_issue: issue, implementation_start_date: implementation_start_date)
+    end
+
+    context 'when finish date week is the same as implementation start date week' do
+      let(:implementation_start_date) { Date.new(2022, 7, 20).beginning_of_week }
+
+      it { is_expected.to eq(1) }
+    end
+
+    context 'when finish date week is after the implementation start date week' do
+      let(:implementation_start_date) { (Date.new(2022, 7, 20) - 3.weeks).beginning_of_week }
+
+      it { is_expected.to eq(4) }
+    end
   end
 
   describe '#issue_key' do

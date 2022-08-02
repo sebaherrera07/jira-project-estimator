@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class EpicEarnedValuePresenter
-  def initialize(completed_issues:, total_story_points:)
+  def initialize(completed_issues:, total_story_points:, implementation_start_date:)
     @completed_issues = completed_issues.sort_by(&:finish_date)
     @total_story_points = total_story_points
+    @implementation_start_date = implementation_start_date
   end
 
   def earned_value_items
@@ -21,13 +22,14 @@ class EpicEarnedValuePresenter
 
   private
 
-  attr_reader :completed_issues, :total_story_points
+  attr_reader :completed_issues, :total_story_points, :implementation_start_date
 
   def new_earned_value_item(completed_issue, previous_cumulative_earned_value)
     EarnedValueItem.new(
       completed_issue: completed_issue,
       previous_cumulative_earned_value: previous_cumulative_earned_value,
-      total_story_points: total_story_points
+      total_story_points: total_story_points,
+      implementation_start_date: implementation_start_date
     )
   end
 end

@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 class EarnedValueItem
-  def initialize(completed_issue:, previous_cumulative_earned_value:, total_story_points:)
+  def initialize(completed_issue:, previous_cumulative_earned_value:, total_story_points:, implementation_start_date:)
     @completed_issue = completed_issue
     @previous_cumulative_earned_value = previous_cumulative_earned_value
     @total_story_points = total_story_points
+    @implementation_start_date = implementation_start_date # it's for the project, not the issue
   end
 
   def cumulative_earned_value
@@ -21,8 +22,12 @@ class EarnedValueItem
     @finish_date ||= completed_issue.finish_date
   end
 
-  def finish_week
-    @finish_week ||= "#{formatted_beginning_of_week} - #{formatted_end_of_week}"
+  def finish_week_dates
+    @finish_week_dates ||= "#{formatted_beginning_of_week} - #{formatted_end_of_week}"
+  end
+
+  def finish_week_number
+    @finish_week_number ||= implementation_start_date.step(finish_date, 7).count
   end
 
   def issue_key
@@ -35,7 +40,7 @@ class EarnedValueItem
 
   private
 
-  attr_reader :completed_issue, :previous_cumulative_earned_value, :total_story_points
+  attr_reader :completed_issue, :previous_cumulative_earned_value, :total_story_points, :implementation_start_date
 
   def formatted_beginning_of_week
     finish_date.beginning_of_week.strftime('%Y-%m-%d')
