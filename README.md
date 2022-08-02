@@ -65,10 +65,19 @@ bundle exec bundler-audit
 ## Connecting to your JIRA instance
 
 ### Create an API token
-Steps:
-1. Step 1
-2. Step 2
-3. Step 3
+Extracted from: [Manage API tokens for your Atlassian account](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/)
+
+> You can use an API token to authenticate a script or other process with an Atlassian cloud product. You generate the token from your Atlassian account, then copy and paste it to the script.
+>
+> Steps:
+> 1. Log in to https://id.atlassian.com/manage-profile/security/api-tokens
+> 2. Click Create API token.
+> 3. From the dialog that appears, enter a memorable and concise Label for your token and click Create.
+> 4. Click Copy to clipboard, then paste the token to your script, or elsewhere to save:
+>
+> Notes:
+> * For security reasons it isn't possible to view the token after closing the creation dialog; if necessary, create a new token.
+> * You should store the token securely, just as for any password.
 
 ### Set the necessary ENV vars
 ```
