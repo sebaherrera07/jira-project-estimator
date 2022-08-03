@@ -35,7 +35,15 @@ class EpicPresenter
   def earned_value_presenter
     @earned_value_presenter ||= EpicEarnedValuePresenter.new(
       completed_issues: issues_count_presenter.completed_issues,
-      total_story_points: progress_presenter.total_story_points
+      total_story_points: progress_presenter.total_story_points,
+      implementation_start_date: progress_presenter.implementation_start_date
+    )
+  end
+
+  def weekly_earned_value_presenter
+    @weekly_earned_value_presenter ||= EpicWeeklyEarnedValuePresenter.new(
+      earned_value_items: earned_value_presenter.earned_value_items,
+      implementation_start_date: progress_presenter.implementation_start_date
     )
   end
 

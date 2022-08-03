@@ -1,0 +1,22 @@
+<table class="table table-sm table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Week Number</th>
+      <th scope="col">Week Dates</th>
+      <th scope="col">Story Points Completed</th>
+      <th scope="col">Earned Value</th>
+      <th scope="col">Cumulative Earned Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% epic_weekly_earned_value_presenter.weekly_earned_value_items.each do |weekly_earned_value_item| %>
+      <tr>
+        <td><%= weekly_earned_value_item.week_number %></td>
+        <td><%= weekly_earned_value_item.week_dates %></td>
+        <td><%= weekly_earned_value_item.story_points_completed %></td>
+        <td><%= "#{weekly_earned_value_item.earned_value}%" %></td>
+        <td><%= "#{weekly_earned_value_item.cumulative_earned_value}%" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

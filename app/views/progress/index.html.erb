@@ -10,6 +10,10 @@
   <%= render 'shared/epic_progress_table', epic_progress_presenter: @epic_presenter.progress_presenter %>
   <br />
 
-  <p class="h5">Earned Value</p>
+  <p class="h5">Weekly Earned Value</p>
+  <%= render 'progress/epic_weekly_earned_value_table', epic_weekly_earned_value_presenter: @epic_presenter.weekly_earned_value_presenter %>
+  <br />
+
+  <p class="h5">Issues Earned Value</p>
   <%= render 'progress/epic_earned_value_table', epic_earned_value_presenter: @epic_presenter.earned_value_presenter %>
 </div>
