@@ -1,0 +1,9 @@
+<%= form_with url: project_epic_progress_index_path(project_id: project_id, id: epic_id), method: :get do |form| %>
+  <%= form.label :labels, "Label" %>
+  <%= form.text_field :labels, value: params[:labels] %>
+
+  <%= form.label :implementation_start_date, "Implementation Start Date" %>
+  <%= form.date_field :implementation_start_date, value: params[:implementation_start_date] %>
+
+  <%= form.submit "Apply Filters", name: nil %>
+<% end %>
