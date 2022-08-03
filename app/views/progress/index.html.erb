@@ -2,6 +2,9 @@
   <p class="h1">Progress</p>
   <br />
 
+  <%= render 'progress/filters', project_id: @project_key, epic_id: @epic_key %>
+  <br />
+
   <p class="h5">Epic Details</p>
   <%= render 'shared/epic_details_table', epic_presenter: @epic_presenter %>
   <br />
