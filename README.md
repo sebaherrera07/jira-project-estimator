@@ -34,6 +34,8 @@ So the purpose of this tool is to help you monitor your team's progress and auto
 
 9. The calculations are more accurate when you estimate **ALL** the Issues and after multiple weeks of work (the first few weeks is expected to see unaccurate estimates).
 
+10. The tool works for Scrum, Kanban, or any other Jira board type. By default it might just work with Scrum boards by using the existing story points field, and if you need to use another custom field, you should set the `JIRA_STORY_POINTS_FIELD_CODES` environment variable, which allows comma separated values (e.g. `customfield_10016,customfield_10034`)
+
 
 ## Development
 ### Ruby version

@@ -20,5 +20,7 @@
     <li>If you want to estimate just a subset of an Epic, you can make use of Jira labels to filter the Issues you want to consider. First label your Issues in Jira, and then pass the <strong><i>labels</i></strong> parameter to the tool.</li>
     <br/>
     <li>The calculations are more accurate when you estimate <strong>ALL</strong> the Issues and after multiple weeks of work (the first few weeks is expected to see unaccurate estimates).</li>
+    <br/>
+    <li>The tool works for Scrum, Kanban, or any other Jira board type. By default it might just work with Scrum boards by using the existing story points field, and if you need to use another custom field, you should set the <strong><i>JIRA_STORY_POINTS_FIELD_CODES</i></strong> environment variable, which allows comma separated values (e.g. <i>customfield_10016,customfield_10034</i>)</li>
   </ol>
 </div>
