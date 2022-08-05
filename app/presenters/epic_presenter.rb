@@ -3,11 +3,12 @@
 class EpicPresenter
   attr_reader :epic, :issues
 
-  def initialize(epic:, issues:, implementation_start_date: nil, expected_average: nil)
+  def initialize(epic:, issues:, implementation_start_date: nil, expected_average: nil, uncertainty_level: nil)
     @epic = epic
     @issues = issues
     @implementation_start_date = implementation_start_date
     @expected_average = expected_average
+    @uncertainty_level = uncertainty_level
   end
 
   delegate :key, :labels, :project_key, :summary, to: :epic
@@ -28,6 +29,7 @@ class EpicPresenter
       issues: issues,
       remaining_story_points: progress_presenter.remaining_story_points,
       implementation_start_date: progress_presenter.implementation_start_date,
+      uncertainty_level: UncertaintyLevel.new(uncertainty_level),
       expected_average: expected_average
     )
   end
@@ -49,5 +51,5 @@ class EpicPresenter
 
   private
 
-  attr_reader :implementation_start_date, :expected_average
+  attr_reader :implementation_start_date, :expected_average, :uncertainty_level
 end

@@ -45,13 +45,17 @@ RSpec.describe EpicPresenter do
       described_class.new(
         epic: epic,
         issues: issues,
-        implementation_start_date: implementation_start_date
+        implementation_start_date: implementation_start_date,
+        uncertainty_level: uncertainty_level,
+        expected_average: expected_average
       ).estimation_presenter
     end
 
     let(:epic) { build(:epic) }
     let(:issues) { [] }
     let(:implementation_start_date) { [3.weeks.ago.to_date, nil].sample }
+    let(:uncertainty_level) { [nil, 'low', 'medium', 'high', 'very_high'].sample }
+    let(:expected_average) { [nil, 5].sample }
 
     it { is_expected.to be_a(EpicEstimationPresenter) }
   end
