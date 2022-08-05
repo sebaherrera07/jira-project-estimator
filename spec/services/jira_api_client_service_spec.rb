@@ -94,6 +94,10 @@ RSpec.describe JiraApiClientService do
         expect(subject).to all(be_a(Issue))
       end
 
+      it 'assigns story points to each Issue by default field' do
+        expect(subject.map(&:story_points)).to eq([3.0, nil])
+      end
+
       it 'makes request with expected options' do
         subject
         url = "#{ENV.fetch('JIRA_SITE_URL')}/rest/api/3/search"
@@ -126,6 +130,34 @@ RSpec.describe JiraApiClientService do
           basic_auth: [ENV.fetch('JIRA_USERNAME'), ENV.fetch('JIRA_API_TOKEN')],
           query: {
             jql: "project = #{project_key} AND parent = #{epic_key} AND labels in (#{labels.join(',')})"
+          }
+        )
+      end
+    end
+
+    context 'when story points custom field is different than default' do
+      let(:labels) { nil }
+
+      before do
+        JiraApiMocker.new.stub_query_epic_issues_with_custom_story_points_field(project_key, epic_key)
+      end
+
+      it 'returns a list of Issue objects' do
+        expect(subject).to all(be_a(Issue))
+      end
+
+      it 'assigns story points to each Issue by custom field' do
+        expect(subject.map(&:story_points)).to eq([3.0, 2.0])
+      end
+
+      it 'makes request with expected options' do
+        subject
+        url = "#{ENV.fetch('JIRA_SITE_URL')}/rest/api/3/search"
+        expect(WebMock).to have_requested(:get, url).with(
+          headers: { 'Accept' => 'application/json' },
+          basic_auth: [ENV.fetch('JIRA_USERNAME'), ENV.fetch('JIRA_API_TOKEN')],
+          query: {
+            jql: "project = #{project_key} AND parent = #{epic_key}"
           }
         )
       end

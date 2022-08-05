@@ -76,8 +76,19 @@ class JiraApiClientService
       project_key: issue_hash.dig('fields', 'project', 'key'),
       status: issue_hash.dig('fields', 'status', 'name'),
       status_change_date: issue_hash.dig('fields', 'statuscategorychangedate'),
-      story_points: issue_hash.dig('fields', 'customfield_10016'),
+      story_points: story_points(issue_hash),
       summary: issue_hash.dig('fields', 'summary')
     )
+  end
+
+  def story_points(issue_hash)
+    story_points_field_codes = (['customfield_10016'] + ENV.fetch('JIRA_STORY_POINTS_FIELD_CODES', '').split(',')).uniq
+    story_points_field_codes.each do |field_code|
+      value = issue_hash.dig('fields', field_code)
+      next if value.blank?
+
+      return value
+    end
+    nil
   end
 end
