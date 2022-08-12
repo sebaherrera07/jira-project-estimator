@@ -1,6 +1,6 @@
 # ![Jira Project Estimator](public/ms-icon-28x44.png) Jira Project Estimator 
 
-Every software team at some point will be asked the question: **"When will X be finished?"**
+Every software team at some point will be asked: **"When will X be finished?"**
 
 And then you can either:
 * A) Estimate the remaining work with any technique you like. _(E.g. a spreadsheet, compare with similar past experiences, rule of thumb, velocity, etc.)_
@@ -12,11 +12,11 @@ We know that sometimes estimates are considered as compromises by clients, and w
 
 We know that it's better to know that we are not going to meet the deadline as early as possible, so we can plan for the future and act accordingly.
 
-So the purpose of this tool is to help you monitor your team's progress and automatically get estimated finish dates, and to make it something quick and easy to use. **You just need to estimate your Jira tickets and the tool will do the rest.**
+So the purpose of this tool is to help you monitor your team's progress and automatically get estimated finish dates, and to make it something quick and easy to use. **You just need to estimate your Jira tickets and the tool will do the rest!**
 
 
 ## Considerations
-1. The tool tracks progress and generates estimates for the Epic, based on its Issues story points and status (To Do, In Progress, Done, ...).
+1. The tool tracks progress and generates estimates for the **Epic**, based on its Issues story points and status (To Do, In Progress, Done, ...).
 
 2. The tool considers all types of Issues (Story, Task, Bug, ...).
 
@@ -24,7 +24,7 @@ So the purpose of this tool is to help you monitor your team's progress and auto
 
 4. The tool does not consider Sub-Tasks.
 
-5. The unit of time for calculating average velocity and generating estimates is the week. This is to avoid having to consider if the team uses sprints, and eventually the sprint length which could be different for each team. Also, estimates in number of weeks should be fine for everyone.
+5. For calculating average velocity and generating estimates is **the unit of time is the week**. This is to avoid having to consider if the team uses sprints, and eventually the sprint length which could be different for each team. Also, estimates in number of weeks should be fine for everyone.
 
 6. By default there are 2 estimations which are calculated based on the average velocity since: (1) the implementation start week; (2) the last 3 weeks. You can also ask for a 3rd estimation based on the average velocity you expect to achieve by passing the `expected_average` parameter to the tool.
 
@@ -35,6 +35,47 @@ So the purpose of this tool is to help you monitor your team's progress and auto
 9. The calculations are more accurate when you estimate **ALL** the Issues and after multiple weeks of work (the first few weeks is expected to see unaccurate estimates).
 
 10. The tool works for Scrum, Kanban, or any other Jira board type. By default it might just work with Scrum boards by using the existing story points field, and if you need to use another custom field, you should set the `JIRA_STORY_POINTS_FIELD_CODES` environment variable, which allows comma separated values (e.g. `customfield_10016,customfield_10034`)
+
+
+## Connecting to your JIRA instance
+
+### Create an API token
+Extracted from: [Manage API tokens for your Atlassian account](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/)
+
+> You can use an API token to authenticate a script or other process with an Atlassian cloud product. You generate the token from your Atlassian account, then copy and paste it to the script.
+>
+> Steps:
+> 1. Log in to https://id.atlassian.com/manage-profile/security/api-tokens
+> 2. Click Create API token.
+> 3. From the dialog that appears, enter a memorable and concise Label for your token and click Create.
+> 4. Click Copy to clipboard, then paste the token to your script, or elsewhere to save:
+>
+> Notes:
+> * For security reasons it isn't possible to view the token after closing the creation dialog; if necessary, create a new token.
+> * You should store the token securely, just as for any password.
+
+### Set the necessary ENV vars
+```
+JIRA_API_TOKEN=<your-api-token>
+JIRA_SITE_URL=https://your-domain.atlassian.net
+JIRA_USERNAME=user_email@example.com
+```
+
+
+## Managing users
+There are no web pages for creating or deleting users.
+
+You can create users with the following command in the `rails console`:
+
+```ruby
+User.create(first_name: 'First', last_name: 'Last', email: 'admin@example.com', password: 's3cur3_P4ssw0rd#!')
+```
+
+You can delete users with the following command in the `rails console`:
+
+```ruby
+User.find_by(email: 'admin@example.com').destroy!
+```
 
 
 ## Development
@@ -66,42 +107,9 @@ bundle exec bundler-audit
 ```
 
 
-## Connecting to your JIRA instance
-
-### Create an API token
-Extracted from: [Manage API tokens for your Atlassian account](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/)
-
-> You can use an API token to authenticate a script or other process with an Atlassian cloud product. You generate the token from your Atlassian account, then copy and paste it to the script.
->
-> Steps:
-> 1. Log in to https://id.atlassian.com/manage-profile/security/api-tokens
-> 2. Click Create API token.
-> 3. From the dialog that appears, enter a memorable and concise Label for your token and click Create.
-> 4. Click Copy to clipboard, then paste the token to your script, or elsewhere to save:
->
-> Notes:
-> * For security reasons it isn't possible to view the token after closing the creation dialog; if necessary, create a new token.
-> * You should store the token securely, just as for any password.
-
-### Set the necessary ENV vars
-```
-JIRA_API_TOKEN=<your-api-token>
-JIRA_SITE_URL=https://your-domain.atlassian.net
-JIRA_USERNAME=user_email@example.com
-```
+## Contributing
+Bug reports and pull requests are welcome on GitHub at https://github.com/sebaherrera07/jira-project-estimator.
 
 
-## Managing users
-There are no web pages for managing users.
-
-You can create users with the following command in the `rails console`:
-
-```ruby
-User.create(first_name: 'First', last_name: 'Last', email: 'admin@example.com', password: 's3cur3_P4ssw0rd#!')
-```
-
-You can delete users with the following command in the `rails console`:
-
-```ruby
-User.find_by(email: 'admin@example.com').destroy!
-```
+## License
+This software is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
