@@ -1,9 +1,21 @@
 <%= form_with url: project_epic_progress_index_path(project_id: project_id, id: epic_id), method: :get do |form| %>
-  <%= form.label :labels, "Label" %>
-  <%= form.text_field :labels, value: params[:labels] %>
+  <div class="row">
+    <div class="col-lg-2">
+      <div class="form-group">
+        <%= form.label :labels, "Label", class: "form-label" %>
+        <%= form.text_field :labels, value: params[:labels], class: "form-control" %>
+      </div>
+    </div>
 
-  <%= form.label :implementation_start_date, "Implementation Start Date" %>
-  <%= form.date_field :implementation_start_date, value: params[:implementation_start_date] %>
+    <div class="col-lg-3">
+      <div class="form-group">
+        <%= form.label :implementation_start_date, "Implementation Start Date", class: "form-label" %>
+        <%= form.date_field :implementation_start_date, value: params[:implementation_start_date], class: "form-control" %>
+      </div>
+    </div>
 
-  <%= form.submit "Apply Filters", name: nil %>
+    <div class="col-lg-2" style="margin-top: 30px;">
+      <%= form.submit "Apply Filters", name: nil, class: "btn btn-secondary" %>
+    </div>
+  </div>
 <% end %>
