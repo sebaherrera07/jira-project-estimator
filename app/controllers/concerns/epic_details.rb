@@ -22,7 +22,8 @@ module EpicDetails
       epic: epic,
       issues: epic_issues,
       implementation_start_date: implementation_start_date,
-      expected_average: expected_average
+      expected_average: expected_average,
+      uncertainty_level: uncertainty_level
     )
   end
 
@@ -57,5 +58,9 @@ module EpicDetails
 
   def project_key
     @project_key ||= params[:project_id]
+  end
+
+  def uncertainty_level
+    params[:uncertainty_level]
   end
 end

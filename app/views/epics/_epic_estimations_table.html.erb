@@ -1,31 +1,23 @@
-<p class="text-secondary">For estimations only issues completed up to past week are considered, and the estimated number of weeks is from Monday.</p>
-
 <table class="table table-sm table-bordered">
   <thead>
     <tr>
-      <th scope="col">Avg Story Points Per Week (since beginning)</th>
-      <th scope="col">Avg Story Points Per Week (since last 3)</th>
-      <% if epic_estimation_presenter.avg_story_points_per_week_expected.present? %>
-        <th scope="col">Avg Story Points Per Week (expected)</th>
-      <% end %>
-      <th scope="col">Estimated Weeks To Complete (using since beginning avg)</th>
-      <th scope="col">Estimated Weeks To Complete (using last 3)</th>
-      <% if epic_estimation_presenter.avg_story_points_per_week_expected.present? %>
-        <th scope="col">Estimated Weeks To Complete (using expected)</th>
+      <th scope="col">Avg. Period</th>
+      <th scope="col">Avg. Story Points Per Week</th>
+      <th scope="col">Weeks To Complete (without uncertainty)</th>
+      <% if uncertainty_percentage.positive? %>
+        <th scope="col">Weeks To Complete (considering uncertainty)</th>
+        <th scope="col">Uncertainty</th>
       <% end %>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><%= epic_estimation_presenter.avg_story_points_per_week_since_beginning %></td>
-      <td><%= epic_estimation_presenter.avg_story_points_per_week_since_last_3_weeks %></td>
-      <% if epic_estimation_presenter.avg_story_points_per_week_expected.present? %>
-        <td><%= epic_estimation_presenter.avg_story_points_per_week_expected %></td>
-      <% end %>
-      <td><%= epic_estimation_presenter.estimated_weeks_to_complete_using_since_beggining_avg %></td>
-      <td><%= epic_estimation_presenter.estimated_weeks_to_complete_using_since_last_3_weeks_avg %></td>
-      <% if epic_estimation_presenter.avg_story_points_per_week_expected.present? %>
-        <td><%= epic_estimation_presenter.estimated_weeks_to_complete_using_expected %></td>
+      <td><%= period %></td>
+      <td><%= avg_story_points %></td>
+      <td><%= estimated_weeks_to_complete_without_uncertainty %></td>
+      <% if uncertainty_percentage.positive? %>
+        <td><%= estimated_weeks_to_complete_with_uncertainty %></td>
+        <td><%= "#{uncertainty_title} #{uncertainty_percentage}%" %></td>
       <% end %>
     </tr>
   </tbody>

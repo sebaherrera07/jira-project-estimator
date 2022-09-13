@@ -21,6 +21,13 @@
       </div>
     </div>
 
+    <div class="col-lg-2">
+      <div class="form-group">
+        <%= form.label :uncertainty_level, "Uncertainty Level", class: "form-label" %>
+        <%= form.select :uncertainty_level, [["Low", :low], ["Medium", :medium], ["High", :high], ["Very High", :very_high]], { selected: params[:uncertainty_level] }, { class: "form-control" } %>
+      </div>
+    </div>
+
     <div class="col-lg-2" style="margin-top: 30px;">
       <%= form.submit "Apply Filters", name: nil, class: "btn btn-secondary" %>
     </div>
