@@ -35,7 +35,9 @@ class EarnedValueItem
   end
 
   def story_points
-    @story_points ||= completed_issue.story_points
+    # Given that an issue can be completed without having story points, we assign 0 to it.
+    # Handling this in a better way can be a possible improvement to do in the future.
+    @story_points ||= completed_issue.story_points || 0
   end
 
   private
