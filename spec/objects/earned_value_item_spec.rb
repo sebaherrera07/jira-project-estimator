@@ -162,7 +162,7 @@ RSpec.describe EarnedValueItem do
     context 'when issue story points is nil' do
       let(:issue) { build(:issue, :done, :unestimated) }
 
-      it { is_expected.to be_nil }
+      it { is_expected.to eq(0) }
     end
 
     context 'when issue story points is 0' do
