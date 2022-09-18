@@ -1,0 +1,49 @@
+<%= form_with url: pert_index_path, method: :get do |form| %>
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="form-group">
+        <%= form.label :story_points, "Critical Path Story Points", class: "form-label" %>
+        <%= form.number_field :story_points, value: params[:story_points], class: "form-control", required: true, min: 1, step: 1 %>
+      </div>
+    </div>
+
+    <div class="col-lg-3">
+      <div class="form-group">
+        <%= form.label :start_date, "Start Date (optional)", class: "form-label" %>
+        <%= form.date_field :start_date, value: params[:start_date], class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <br />
+  <div class="row">
+    <p class="h6">The following values represent the average number of days to complete 1 Story Point</p>
+
+    <div class="col-lg-2">
+      <div class="form-group">
+        <%= form.label :optimistic, "Optimistic", class: "form-label" %>
+        <%= form.number_field :optimistic, value: params[:optimistic], class: "form-control", required: true, min: 0.1, step: 0.1 %>
+      </div>
+    </div>
+
+    <div class="col-lg-2">
+      <div class="form-group">
+        <%= form.label :most_likely, "Most Likely", class: "form-label" %>
+        <%= form.number_field :most_likely, value: params[:most_likely], class: "form-control", required: true, min: 0.1, step: 0.1 %>
+      </div>
+    </div>
+
+    <div class="col-lg-2">
+      <div class="form-group">
+        <%= form.label :pessimistic, "Pessimistic", class: "form-label" %>
+        <%= form.number_field :pessimistic, value: params[:pessimistic], class: "form-control", required: true, min: 0.1, step: 0.1 %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-2" style="margin-top: 30px;">
+      <%= form.submit "Calculate", name: nil, class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

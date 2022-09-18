@@ -1,0 +1,23 @@
+<% if pert_presenter.present? %>
+  <table class="table table-sm table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">PERT</th>
+        <th scope="col">Days To Complete</th>
+        <th scope="col">Weeks To Complete</th>
+        <% if pert_presenter.estimated_finish_date.present? %>
+          <th scope="col">Finish Date</th>
+        <% end %>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= pert_presenter.pert_formula %></td>
+        <td><%= pert_presenter.estimated_days_to_complete %></td>
+        <td><%= pert_presenter.estimated_weeks_to_complete %></td>
+        <% if pert_presenter.estimated_finish_date.present? %>
+          <td><%= pert_presenter.estimated_finish_date %></td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+<% end %>

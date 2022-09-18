@@ -23,5 +23,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :pert, only: %i[index]
+
   resources :about, only: %i[index]
 end

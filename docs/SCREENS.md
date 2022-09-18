@@ -8,3 +8,6 @@
 
 ### :bookmark: Epic issues
 ![Epic issues](images/3_epic_issues.png)
+
+### :crystal_ball: PERT estimation
+![PERT estimation](images/4_pert_estimation.png)
