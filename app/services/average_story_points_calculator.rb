@@ -24,7 +24,7 @@ class AverageStoryPointsCalculator
   def completed_estimated_issues_in_selected_period
     completed_estimated_issues.select do |issue|
       issue.finish_date >= period_start_date &&
-        issue.finish_date <= period_end_date
+        issue.finish_date <= period_end_date.end_of_day
     end
   end
 
