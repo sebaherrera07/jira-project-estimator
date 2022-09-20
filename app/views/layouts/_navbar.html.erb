@@ -1,19 +1,23 @@
-<header class="p-3 mb-3 border-bottom">
-  <div class="container">
-    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+<header class="mb-3">
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid container px-0">
+      <a href="/" class="navbar-brand">
         <img src="/ms-icon-70x70.png" alt="Logo" width="40" height="40" class="bi me-2">
       </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a href="/projects" class="nav-link px-2 link-dark">Projects</a></li>
+          <li class="nav-item"><a href="/pert" class="nav-link px-2 link-dark">PERT</a></li>
+          <li class="nav-item"><a href="/about" class="nav-link px-2 link-dark">About</a></li>
+        </ul>
 
-      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="/projects" class="nav-link px-2 link-dark">Projects</a></li>
-        <li><a href="/pert" class="nav-link px-2 link-dark">PERT</a></li>
-        <li><a href="/about" class="nav-link px-2 link-dark">About</a></li>
-      </ul>
-
-      <div class="text-end">
-        <a href="/users/sign_out" class="nav-link px-2 link-dark">Sign out</a>
+        <div class="d-flex">
+          <a href="/users/sign_out" class="nav-link px-2 link-dark">Sign out</a>
+        </div>
       </div>
     </div>
-  </div>
+  </nav>
 </header>
