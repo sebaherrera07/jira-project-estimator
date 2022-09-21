@@ -13,10 +13,10 @@
   </head>
 
   <body>
+    <% if current_user.present? %>
+      <%= render 'layouts/navbar' %>
+    <% end %>
     <div class="container">
-      <% if current_user.present? %>
-        <%= render 'layouts/navbar' %>
-      <% end %>
       <%= render 'layouts/devise_flash_alerts' %>
       <%= yield %>
     </div>

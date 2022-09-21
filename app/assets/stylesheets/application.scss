@@ -17,4 +17,8 @@
  // here your custom bootstrap variables...
 @import "bootstrap";
 
-.forgot { text-align: end;}
+.navbar-toggler {
+  margin-right: .5rem;
+}
+
+.forgot { text-align: end; }
