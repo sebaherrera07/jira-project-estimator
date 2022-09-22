@@ -1,25 +1,24 @@
-
 <div class="container text-center">
   <%= image_tag("/ms-icon-150x150.png", alt: "Logo") %>
-  <div class="row justify-content-md-center"">
-    <div class="col col-lg-6">
+
+  <div class="row justify-content-md-center">
+    <div class="col col-lg-4">
       <h2>Log in</h2>
+      <br />
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field form-outline mb-4">
-          <%= f.label :email, class: "mb-2"%><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"%>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email", required: true %>
         </div>
 
         <div class="field form-outline mb-4">
-          <%= f.label :password, class: "mb-2" %><br />
-          <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+          <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "Password", required: true %>
         </div>
 
         <div class="row mb-4">
           <div class="col d-flex justify-content-center">
             <% if devise_mapping.rememberable? %>
-              <div class="field form-check"">
+              <div class="field form-check">
                 <%= f.check_box :remember_me, class: "form-check-input" %>
                 <%= f.label :remember_me, class: "form-check-label"  %>
               </div>
@@ -29,14 +28,11 @@
             </div>
           </div>
         </div>
-        
 
         <div class="actions">
-          <%= f.submit "Log in", class: "btn btn-primary btn-block w-100"  %>
+          <%= f.submit "Log in", class: "btn btn-primary btn-block w-100" %>
         </div>
       <% end %>
-
-      
     </div>
   </div>
 </div>
