@@ -22,6 +22,7 @@ Metrics/MethodLength:
   Max: 12
   Exclude:
     - spec/support/mocks/jira_api_responses.rb
+    - db/migrate/*
 
 RSpec/AnyInstance:
   Enabled: false
