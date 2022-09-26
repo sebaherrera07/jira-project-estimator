@@ -4,8 +4,6 @@ FactoryBot.define do
   factory :estimation do
     avg_weekly_earned_value { [1.5, 2.0, 3.2, 4.6, 8.3].sample }
     sequence(:epic_id) { |n| "EPIC-#{n}" }
-    estimated_finish_date { Time.zone.now.beginning_of_week + remaining_weeks.weeks }
-    estimated_finish_date_with_uncertainty { estimated_finish_date }
     filters_applied { nil }
     last_completed_week_number { [1, 2, 3, 4].sample }
     remaining_earned_value { [20.0, 32.0, 44.2, 61.7].sample }
@@ -18,7 +16,7 @@ FactoryBot.define do
     end
 
     trait :with_uncertainty do
-      estimated_finish_date_with_uncertainty { estimated_finish_date + 2.weeks }
+      remaining_weeks_with_uncertainty { remaining_weeks + 2 }
       uncertainty_level { UncertaintyLevel::LEVELS.keys.sample }
     end
   end

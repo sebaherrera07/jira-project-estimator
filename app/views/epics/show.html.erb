@@ -16,5 +16,6 @@
   <%= render 'shared/epic_progress_table', epic_progress_presenter: @epic_presenter.progress_presenter %>
 
   <p class="h5">Estimations</p>
+  <%= link_to 'View Details', project_epic_estimations_path(project_id: @project_key, epic_id: @epic_key, implementation_start_date: params[:implementation_start_date], labels: params[:labels], expected_average: params[:expected_average], uncertainty_level: params[:uncertainty_level]) %>
   <%= render 'shared/epic_estimations_tables', epic_estimation_presenter: @epic_presenter.estimation_presenter %>
 </div>

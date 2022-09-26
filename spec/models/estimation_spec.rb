@@ -12,7 +12,6 @@ RSpec.describe Estimation do
     it { is_expected.to validate_presence_of(:total_points) }
     it { is_expected.to validate_presence_of(:last_completed_week_number) }
     it { is_expected.to validate_presence_of(:remaining_weeks) }
-    it { is_expected.to validate_presence_of(:estimated_finish_date) }
     it { is_expected.to validate_presence_of(:avg_weekly_earned_value) }
     it { is_expected.to validate_presence_of(:remaining_earned_value) }
 

@@ -17,12 +17,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_26_000544) do
   create_table "estimations", force: :cascade do |t|
     t.decimal "avg_weekly_earned_value", precision: 7, scale: 2, null: false
     t.string "epic_id", null: false
-    t.date "estimated_finish_date", null: false
-    t.date "estimated_finish_date_with_uncertainty"
     t.jsonb "filters_applied"
     t.integer "last_completed_week_number", null: false
     t.decimal "remaining_earned_value", precision: 5, scale: 2, null: false
     t.decimal "remaining_weeks", precision: 7, scale: 2, null: false
+    t.decimal "remaining_weeks_with_uncertainty", precision: 7, scale: 2
     t.integer "total_points", null: false
     t.integer "uncertainty_level"
     t.bigint "user_id"

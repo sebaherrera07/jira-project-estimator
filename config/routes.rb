@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :epics, only: %i[index show] do
       resources :issues, only: [:index]
       resources :progress, only: [:index]
+      resources :estimations, only: [:index]
     end
   end
 

@@ -5,12 +5,11 @@ class CreateEstimations < ActiveRecord::Migration[7.0]
     create_table :estimations do |t|
       t.decimal :avg_weekly_earned_value, null: false, precision: 7, scale: 2
       t.string :epic_id, null: false, index: true
-      t.date :estimated_finish_date, null: false
-      t.date :estimated_finish_date_with_uncertainty, null: true
       t.jsonb :filters_applied, null: true
       t.integer :last_completed_week_number, null: false
       t.decimal :remaining_earned_value, null: false, precision: 5, scale: 2
       t.decimal :remaining_weeks, null: false, precision: 7, scale: 2
+      t.decimal :remaining_weeks_with_uncertainty, null: true, precision: 7, scale: 2
       t.integer :total_points, null: false
       t.integer :uncertainty_level, null: true
       t.references :user, null: true, foreign_key: true
