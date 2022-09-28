@@ -105,7 +105,7 @@ RSpec.describe JiraApiClientService do
           headers: { 'Accept' => 'application/json' },
           basic_auth: [ENV.fetch('JIRA_USERNAME'), ENV.fetch('JIRA_API_TOKEN')],
           query: {
-            jql: "project = #{project_key} AND parent = #{epic_key}"
+            jql: "project = #{project_key} AND (parent = #{epic_key} OR parentepic = #{epic_key})"
           }
         )
       end
@@ -129,7 +129,8 @@ RSpec.describe JiraApiClientService do
           headers: { 'Accept' => 'application/json' },
           basic_auth: [ENV.fetch('JIRA_USERNAME'), ENV.fetch('JIRA_API_TOKEN')],
           query: {
-            jql: "project = #{project_key} AND parent = #{epic_key} AND labels in (#{labels.join(',')})"
+            jql: "project = #{project_key} AND (parent = #{epic_key} OR parentepic = #{epic_key}) " \
+                 "AND labels in (#{labels.join(',')})"
           }
         )
       end
@@ -157,7 +158,7 @@ RSpec.describe JiraApiClientService do
           headers: { 'Accept' => 'application/json' },
           basic_auth: [ENV.fetch('JIRA_USERNAME'), ENV.fetch('JIRA_API_TOKEN')],
           query: {
-            jql: "project = #{project_key} AND parent = #{epic_key}"
+            jql: "project = #{project_key} AND (parent = #{epic_key} OR parentepic = #{epic_key})"
           }
         )
       end
