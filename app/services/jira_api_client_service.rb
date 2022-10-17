@@ -27,7 +27,7 @@ class JiraApiClientService
   end
 
   def query_epic_issues(project_key, epic_key, labels = [])
-    jql_string = "project = #{project_key} AND (parent = #{epic_key} OR parentepic = #{epic_key})"
+    jql_string = "project = #{project_key} AND (parent = #{epic_key} OR parentepic = #{epic_key}) AND issuetype != Epic"
     jql_string += " AND labels in (#{labels.join(',')})" if labels.present?
     request_query_params = { query: { jql: jql_string } }
     response = HTTParty.get("#{BASE_URL}/search", request_params.merge(request_query_params))
