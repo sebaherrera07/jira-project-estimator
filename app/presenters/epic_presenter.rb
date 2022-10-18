@@ -35,7 +35,6 @@ class EpicPresenter
   end
 
   def estimation_history_presenter
-    # TODO: implement tests
     @estimation_history_presenter ||= EpicEstimationHistoryPresenter.new(epic_id: epic.key)
   end
 

@@ -27,4 +27,23 @@ RSpec.describe Estimation do
     it { is_expected.to validate_numericality_of(:remaining_earned_value).is_greater_than_or_equal_to(0) }
     it { is_expected.to validate_numericality_of(:remaining_earned_value).is_less_than_or_equal_to(100) }
   end
+
+  describe '#estimated_finish_date' do
+    subject { estimation.estimated_finish_date }
+
+    let!(:estimation) { create(:estimation, created_at: '2022-10-18', remaining_weeks: 4) }
+
+    it { is_expected.to eq(Date.new(2022, 11, 14)) }
+  end
+
+  describe '#estimated_finish_date_with_uncertainty' do
+    subject { estimation.estimated_finish_date_with_uncertainty }
+
+    let!(:estimation) do
+      create(:estimation, created_at: '2022-10-18', uncertainty_level: UncertaintyLevel::LEVELS.keys.sample,
+                          remaining_weeks_with_uncertainty: 6)
+    end
+
+    it { is_expected.to eq(Date.new(2022, 11, 28)) }
+  end
 end

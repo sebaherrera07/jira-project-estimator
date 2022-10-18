@@ -40,12 +40,10 @@ class Estimation < ApplicationRecord
   validates :remaining_earned_value, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
 
   def estimated_finish_date
-    # TODO: implement tests
     beginning_of_week + remaining_weeks.weeks
   end
 
   def estimated_finish_date_with_uncertainty
-    # TODO: implement tests
     return if remaining_weeks_with_uncertainty.blank?
 
     beginning_of_week + remaining_weeks_with_uncertainty.weeks
