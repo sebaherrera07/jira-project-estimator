@@ -10,9 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_27_201219) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_26_000544) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "estimations", force: :cascade do |t|
+    t.decimal "avg_weekly_earned_value", precision: 7, scale: 2, null: false
+    t.string "epic_id", null: false
+    t.jsonb "filters_applied"
+    t.integer "last_completed_week_number", null: false
+    t.decimal "remaining_earned_value", precision: 5, scale: 2, null: false
+    t.decimal "remaining_weeks", precision: 7, scale: 2, null: false
+    t.decimal "remaining_weeks_with_uncertainty", precision: 7, scale: 2
+    t.integer "total_points", null: false
+    t.integer "uncertainty_level"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["epic_id"], name: "index_estimations_on_epic_id"
+    t.index ["user_id"], name: "index_estimations_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name"
@@ -28,4 +45,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_201219) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "estimations", "users"
 end

@@ -1,4 +1,4 @@
-<table class="table align-middle mb-0 bg-white table-hover">
+<table class="table align-middle mb-0 bg-white table-hover mb-5">
   <thead class="bg-light">
     <tr>
       <th scope="col">Epic Key</th>
@@ -10,7 +10,7 @@
   </thead>
   <tbody>
     <tr>
-      <td><%= link_to epic_presenter.key, project_epic_path(project_id: epic_presenter.project_key, id: epic_presenter.key, implementation_start_date: params[:implementation_start_date], labels: params[:labels], expected_average: params[:expected_average]) %></td>
+      <td><%= link_to epic_presenter.key, project_epic_path(project_id: epic_presenter.project_key, id: epic_presenter.key, implementation_start_date: params[:implementation_start_date], labels: params[:labels], expected_average: params[:expected_average], uncertainty_level: params[:uncertainty_level]) %></td>
       <td><%= epic_presenter.summary %></td>
       <td><%= link_to epic_presenter.project_key, project_epics_path(project_id: epic_presenter.project_key) %></td>
       <td><%= epic_presenter.progress_presenter.implementation_start_date&.strftime("%a, %d %b %Y") %></td>

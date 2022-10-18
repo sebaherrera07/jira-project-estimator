@@ -1,0 +1,15 @@
+<div>
+  <p class="h1">Estimations</p>
+
+  <%= render 'estimations/filters', project_id: @project_key, epic_id: @epic_key %>
+  <br />
+
+  <p class="h5">Epic Details</p>
+  <%= render 'shared/epic_details_table', epic_presenter: @epic_presenter %>
+
+  <p class="h5">Estimations</p>
+  <%= render 'shared/epic_estimations_tables', epic_estimation_presenter: @epic_presenter.estimation_presenter %>
+
+  <p class="h5">Estimations History</p>
+  <%= render 'estimations/epic_estimations_history_table', epic_estimation_history_presenter: @epic_presenter.estimation_history_presenter %>
+</div>

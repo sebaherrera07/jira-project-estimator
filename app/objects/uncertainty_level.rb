@@ -6,6 +6,13 @@ class UncertaintyLevel
   HIGH = :high
   VERY_HIGH = :very_high
 
+  LEVELS = {
+    LOW => 0,
+    MEDIUM => 1,
+    HIGH => 2,
+    VERY_HIGH => 3
+  }.with_indifferent_access.freeze
+
   attr_reader :level
 
   def initialize(level)

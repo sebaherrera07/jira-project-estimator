@@ -6,18 +6,16 @@
 
   <p class="h5">Epic Details</p>
   <%= render 'shared/epic_details_table', epic_presenter: @epic_presenter %>
-  <br />
 
   <p class="h5">Issues</p>
-  <%= link_to "View Details", project_epic_issues_path(project_id: @project_key, epic_id: @epic_key, labels: params[:labels]) %>
+  <%= link_to "View Details", project_epic_issues_path(project_id: @project_key, epic_id: @epic_key, implementation_start_date: params[:implementation_start_date], labels: params[:labels]) %>
   <%= render 'epics/epic_issues_count_table', epic_issues_count_presenter: @epic_presenter.issues_count_presenter %>
-  <br />
 
   <p class="h5">Progress</p>
   <%= link_to 'View Details', project_epic_progress_index_path(project_id: @project_key, epic_id: @epic_key, implementation_start_date: params[:implementation_start_date], labels: params[:labels]) %>
   <%= render 'shared/epic_progress_table', epic_progress_presenter: @epic_presenter.progress_presenter %>
-  <br />
 
-  <p class="h5">Estimation</p>
-  <%= render 'epics/epic_estimations_tables', epic_estimation_presenter: @epic_presenter.estimation_presenter %>
+  <p class="h5">Estimations</p>
+  <%= link_to 'View Details', project_epic_estimations_path(project_id: @project_key, epic_id: @epic_key, implementation_start_date: params[:implementation_start_date], labels: params[:labels], expected_average: params[:expected_average], uncertainty_level: params[:uncertainty_level]) %>
+  <%= render 'shared/epic_estimations_tables', epic_estimation_presenter: @epic_presenter.estimation_presenter %>
 </div>
