@@ -16,12 +16,14 @@
 #  created_at                       :datetime         not null
 #  updated_at                       :datetime         not null
 #  epic_id                          :string           not null, indexed
+#  project_id                       :string           default(""), not null, indexed
 #  user_id                          :bigint           indexed
 #
 # Indexes
 #
-#  index_estimations_on_epic_id  (epic_id)
-#  index_estimations_on_user_id  (user_id)
+#  index_estimations_on_epic_id     (epic_id)
+#  index_estimations_on_project_id  (project_id)
+#  index_estimations_on_user_id     (user_id)
 #
 # Foreign Keys
 #
@@ -34,7 +36,7 @@ class Estimation < ApplicationRecord
 
   enum uncertainty_level: UncertaintyLevel::LEVELS
 
-  validates :avg_weekly_earned_value, :epic_id, :last_completed_week_number, :remaining_earned_value,
+  validates :avg_weekly_earned_value, :epic_id, :last_completed_week_number, :project_id, :remaining_earned_value,
             :remaining_weeks, :total_points, presence: true
   validates :last_completed_week_number, :total_points,
             numericality: { only_integer: true, greater_than_or_equal_to: 0 }

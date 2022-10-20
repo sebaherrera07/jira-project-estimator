@@ -6,6 +6,7 @@ FactoryBot.define do
     sequence(:epic_id) { |n| "EPIC-#{n}" }
     filters_applied { nil }
     last_completed_week_number { [1, 2, 3, 4].sample }
+    project_id { Faker::Lorem.word.upcase.first(4) }
     remaining_earned_value { [20.0, 32.0, 44.2, 61.7].sample }
     remaining_weeks { [0.8, 1.3, 2.5, 3.0, 6.3].sample }
     total_points { [15, 25, 73, 81, 105, 230].sample }

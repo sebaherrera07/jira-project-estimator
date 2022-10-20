@@ -7,6 +7,7 @@
       <th scope="col">Remaining Earned Value</th>
       <th scope="col">Remaining Weeks</th>
       <th scope="col">Estimated Finish Date</th>
+      <th scope="col">Details</th>
     </tr>
   </thead>
   <tbody>
@@ -18,6 +19,7 @@
         <td><%= "#{estimation_item.remaining_earned_value.round}%" %></td>
         <td><%= estimation_item.remaining_weeks %></td>
         <td><%= estimation_item.estimated_finish_date.strftime("%a, %d %b %Y") %></td>
+        <td><%= link_to 'View', project_epic_estimation_path(project_id: estimation_item.project_id, epic_id: estimation_item.epic_id, id: estimation_item.id) %></td>
       </tr>
     <% end %>
   </tbody>
