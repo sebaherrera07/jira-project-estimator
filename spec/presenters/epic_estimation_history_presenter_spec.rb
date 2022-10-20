@@ -16,7 +16,13 @@ RSpec.describe EpicEstimationHistoryPresenter do
       let!(:estimation1) { create(:estimation, epic_id: epic_id, created_at: '2022-09-11') }
       let!(:estimation2) { create(:estimation, epic_id: epic_id, created_at: '2022-10-18') }
 
-      it { is_expected.to eq([estimation2, estimation1]) }
+      it 'returns EstimationDTOs' do
+        expect(subject).to all(be_a(EstimationDTO))
+      end
+
+      it 'returns estimations ordered by created_at descending' do
+        expect(subject).to eq([estimation2.to_dto, estimation1.to_dto])
+      end
     end
   end
 end

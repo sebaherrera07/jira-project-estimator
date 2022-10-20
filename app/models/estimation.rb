@@ -28,6 +28,8 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Estimation < ApplicationRecord
+  has_dto
+
   belongs_to :user, optional: true, inverse_of: nil
 
   enum uncertainty_level: UncertaintyLevel::LEVELS
