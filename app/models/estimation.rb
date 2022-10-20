@@ -13,6 +13,7 @@
 #  remaining_weeks_with_uncertainty :decimal(7, 2)
 #  total_points                     :integer          not null
 #  uncertainty_level                :integer
+#  uncertainty_percentage           :decimal(5, 2)
 #  created_at                       :datetime         not null
 #  updated_at                       :datetime         not null
 #  epic_id                          :string           not null, indexed
@@ -42,6 +43,8 @@ class Estimation < ApplicationRecord
             numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :avg_weekly_earned_value, :remaining_weeks, numericality: { greater_than_or_equal_to: 0 }
   validates :remaining_earned_value, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }
+  validates :remaining_weeks_with_uncertainty, :uncertainty_percentage,
+            numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
 
   def estimated_finish_date
     beginning_of_week + remaining_weeks.weeks

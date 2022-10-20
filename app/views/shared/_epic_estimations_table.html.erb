@@ -8,6 +8,7 @@
         <th scope="col">Weeks To Complete (considering uncertainty)</th>
         <th scope="col">Uncertainty</th>
       <% end %>
+      <th scope="col">Persist Estimation</th>
     </tr>
   </thead>
   <tbody>
@@ -19,6 +20,20 @@
         <td><%= estimated_weeks_to_complete_with_uncertainty %></td>
         <td><%= "#{uncertainty_title} #{uncertainty_percentage}%" %></td>
       <% end %>
+      <td>
+        <%=
+          render 'shared/create_estimation_button',
+            avg_weekly_earned_value: avg_story_points,
+            epic_id: epic_id,
+            implementation_start_date: implementation_start_date,
+            last_completed_week_number: last_completed_week_number,
+            project_id: project_id,
+            remaining_earned_value: remaining_earned_value,
+            remaining_weeks: estimated_weeks_to_complete_without_uncertainty,
+            remaining_weeks_with_uncertainty: estimated_weeks_to_complete_with_uncertainty,
+            total_points: total_story_points
+        %>
+      </td>
     </tr>
   </tbody>
 </table>

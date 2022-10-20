@@ -27,6 +27,14 @@ RSpec.describe Estimation do
     it { is_expected.to validate_numericality_of(:avg_weekly_earned_value).is_greater_than_or_equal_to(0) }
     it { is_expected.to validate_numericality_of(:remaining_earned_value).is_greater_than_or_equal_to(0) }
     it { is_expected.to validate_numericality_of(:remaining_earned_value).is_less_than_or_equal_to(100) }
+
+    it {
+      expect(subject).to validate_numericality_of(
+        :remaining_weeks_with_uncertainty
+      ).is_greater_than_or_equal_to(0).allow_nil
+    }
+
+    it { is_expected.to validate_numericality_of(:uncertainty_percentage).is_greater_than_or_equal_to(0).allow_nil }
   end
 
   describe '#estimated_finish_date' do

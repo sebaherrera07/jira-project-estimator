@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       resources :issues, only: [:index]
       resources :progress, only: [:index]
       resources :estimations, only: %i[index show]
+      post 'estimations', to: 'estimations#create', as: 'create_estimation'
     end
   end
 

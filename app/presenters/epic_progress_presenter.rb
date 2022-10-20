@@ -25,7 +25,7 @@ class EpicProgressPresenter
   end
 
   def remaining_earned_value
-    @remaining_earned_value ||= "#{100 - earned_value_number}%"
+    @remaining_earned_value ||= 100 - earned_value_number
   end
 
   def unestimated_issues_count

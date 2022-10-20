@@ -143,7 +143,7 @@ RSpec.describe EpicProgressPresenter do
     context 'when total_story_points is 0' do
       it 'returns 100%' do
         allow_any_instance_of(described_class).to receive(:total_story_points).and_return(0)
-        expect(subject).to eq('100%')
+        expect(subject).to eq(100)
       end
     end
 
@@ -152,7 +152,7 @@ RSpec.describe EpicProgressPresenter do
         it 'returns 100%' do
           allow_any_instance_of(described_class).to receive(:total_story_points).and_return(35)
           allow_any_instance_of(described_class).to receive(:completed_story_points).and_return(0)
-          expect(subject).to eq('100%')
+          expect(subject).to eq(100)
         end
       end
 
@@ -160,7 +160,7 @@ RSpec.describe EpicProgressPresenter do
         it 'returns the progress percentage' do
           allow_any_instance_of(described_class).to receive(:total_story_points).and_return(35)
           allow_any_instance_of(described_class).to receive(:completed_story_points).and_return(11)
-          expect(subject).to eq('69%')
+          expect(subject).to eq(69)
         end
       end
     end
