@@ -1,7 +1,7 @@
 <div>
   <p class="h1">Issues</p>
 
-  <%= render 'issues/filters', project_id: @project_key, epic_id: @epic_key %>
+  <%= render 'issues/filters', project_id: @epic_presenter.project_key, epic_id: @epic_presenter.key %>
   <br />
 
   <p class="h5">Epic Details</p>
