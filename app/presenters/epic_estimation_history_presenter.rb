@@ -6,8 +6,7 @@ class EpicEstimationHistoryPresenter
   end
 
   def estimation_items
-    # TODO: avoid exposing active record objects
-    Estimation.where(epic_id: epic_id).order(created_at: :desc)
+    Estimation.where(epic_id: epic_id).order(created_at: :desc).to_dto
   end
 
   private

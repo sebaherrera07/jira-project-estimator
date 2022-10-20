@@ -59,6 +59,9 @@ gem 'bootstrap', '~> 5.1', '>= 5.1.3'
 # For user authentication
 gem 'devise', '~> 4.8', '>= 4.8.1'
 
+# For DTOs usage
+gem 'ar2dto', '~> 0.2.1'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'byebug', '~> 11.1', '>= 11.1.3'
