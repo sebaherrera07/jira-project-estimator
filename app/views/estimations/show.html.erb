@@ -1,0 +1,10 @@
+<div>
+  <p class="h1">Estimation</p>
+
+  <%= link_to 'Back To Epic Estimations', project_epic_estimations_path(project_id: @estimation.project_id, epic_id: @estimation.epic_id) %>
+  <br />
+  <br />
+
+  <p class="h5">Details</p>
+  <%= render 'estimations/estimation_details_table', estimation: @estimation %>
+</div>
