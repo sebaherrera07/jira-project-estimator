@@ -11,6 +11,7 @@ FactoryBot.define do
     remaining_weeks { [0.8, 1.3, 2.5, 3.0, 6.3].sample }
     total_points { [15, 25, 73, 81, 105, 230].sample }
     uncertainty_level { nil }
+    uncertainty_percentage { nil }
 
     trait :with_user do
       user
@@ -19,6 +20,7 @@ FactoryBot.define do
     trait :with_uncertainty do
       remaining_weeks_with_uncertainty { remaining_weeks + 2 }
       uncertainty_level { UncertaintyLevel::LEVELS.keys.sample }
+      uncertainty_percentage { UncertaintyLevel.new(uncertainty_level).percentage }
     end
   end
 end

@@ -19,6 +19,10 @@
       <td><%= estimation.created_at.strftime("%a, %d %b %Y") %></td>
     </tr>
     <tr>
+      <td>Creation Date Week Start</td>
+      <td><%= estimation.created_at.beginning_of_week.strftime("%a, %d %b %Y") %></td>
+    </tr>
+    <tr>
       <td>Last Completed Week Number</td>
       <td><%= estimation.last_completed_week_number %></td>
     </tr>
@@ -39,19 +43,23 @@
       <td><%= estimation.remaining_weeks %></td>
     </tr>
     <tr>
-      <td>Estimated Finsih Date (without uncertainty)</td>
+      <td>Estimated Finish Date (without uncertainty)</td>
       <td><%= estimation.estimated_finish_date.strftime("%a, %d %b %Y") %></td>
     </tr>
     <tr>
       <td>Uncertainty Level</td>
       <td><%= estimation.uncertainty_level %></td>
     </tr>
-   <tr>
+    <tr>
+      <td>Uncertainty Percentage</td>
+      <td><%= "#{estimation.uncertainty_percentage}%" %></td>
+    </tr>
+    <tr>
       <td>Remaining Weeks (with uncertainty)</td>
       <td><%= estimation.remaining_weeks_with_uncertainty %></td>
     </tr>
     <tr>
-      <td>Estimated Finsih Date (with uncertainty)</td>
+      <td>Estimated Finish Date (with uncertainty)</td>
       <td><%= estimation.estimated_finish_date_with_uncertainty&.strftime("%a, %d %b %Y") %></td>
     </tr>
     <tr>

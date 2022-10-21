@@ -1,0 +1,19 @@
+<% if avg_weekly_earned_value.positive? %>
+  <%=
+    button_to "Save",
+    project_epic_create_estimation_path(project_id: project_id, epic_id: epic_id),
+    params: {
+      avg_weekly_earned_value: avg_weekly_earned_value,
+      expected_average: params[:expected_average],
+      implementation_start_date: implementation_start_date,
+      labels: params[:labels],
+      last_completed_week_number: last_completed_week_number,
+      remaining_earned_value: remaining_earned_value,
+      remaining_weeks: remaining_weeks,
+      remaining_weeks_with_uncertainty: remaining_weeks_with_uncertainty,
+      total_points: total_points,
+      uncertainty_level: params[:uncertainty_level]
+    },
+    class: "btn btn-primary btn-sm" 
+  %>
+<% end %>
