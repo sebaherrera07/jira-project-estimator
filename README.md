@@ -87,11 +87,11 @@ User.find_by(email: 'admin@example.com').destroy!
 ## :computer: Development
 ### Ruby version
 ```
-3.1.2
+3.1.3
 ```
 
 ### Database creation
-You need to have PostgreSQL installed. You can install it with `brew`, `Postgres.app`, or any other way that works for you.
+You need to have PostgreSQL installed. You can install it with `brew`, `Postgres.app`, `asdf`, or any other way that works for you.
 
 Then run:
 
