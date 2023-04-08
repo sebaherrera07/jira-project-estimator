@@ -42,6 +42,7 @@ To see some of the main screens, please check the [screens](docs/SCREENS.md) pag
 
 11. The tool works for Scrum, Kanban, or any other Jira board type. By default it might just work with Scrum boards by using the existing story points field, and if you need to use another custom field, you should set the `JIRA_STORY_POINTS_FIELD_CODES` environment variable, which allows comma separated values (e.g. `customfield_10016,customfield_10034`)
 
+12. The tool allows you to define your own set of ticket statuses. By default it uses `To Do` for "not started", `Done` for "finished", and every other status for "in progress". If you need to use a different set of statuses, should set the `TO_DO_STATUSES` and `DONE_STATUSES` environment variables, which allows comma separated values and is case insensitive (e.g. `TO_DO_STATUSES=To do,Open,pending review` and `DONE_STATUSES=done,resolved,Closed`)
 
 ## :electric_plug: Connecting to your Jira instance
 

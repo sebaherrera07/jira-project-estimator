@@ -28,11 +28,13 @@ class Issue
   end
 
   def to_do?
-    status.downcase == 'to do'
+    list = (['to do'] + ENV.fetch('TO_DO_STATUSES', '').split(',').map(&:downcase)).uniq
+    list.include?(status.downcase)
   end
 
   def done?
-    status.downcase == 'done'
+    list = (['done'] + ENV.fetch('DONE_STATUSES', '').split(',').map(&:downcase)).uniq
+    list.include?(status.downcase)
   end
 
   def started?
