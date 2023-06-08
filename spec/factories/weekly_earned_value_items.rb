@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :weekly_earned_value_item do
     earned_value_items { [build_list(:earned_value_item, 2)] }
     previous_cumulative_earned_value { Faker::Number.within(range: 0..50) }
-    week { build(:week) }
+    week { association :week }
 
     initialize_with do
       new(
