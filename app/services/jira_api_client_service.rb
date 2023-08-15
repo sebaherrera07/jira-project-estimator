@@ -63,7 +63,8 @@ class JiraApiClientService
       key: epic_hash['key'],
       labels: epic_hash.dig('fields', 'labels'),
       project_key: epic_hash.dig('fields', 'project', 'key'),
-      summary: epic_hash.dig('fields', 'summary')
+      summary: epic_hash.dig('fields', 'summary'),
+      start_date: start_date(epic_hash)
     )
   end
 
@@ -85,6 +86,17 @@ class JiraApiClientService
     story_points_field_codes = (['customfield_10016'] + ENV.fetch('JIRA_STORY_POINTS_FIELD_CODES', '').split(',')).uniq
     story_points_field_codes.each do |field_code|
       value = issue_hash.dig('fields', field_code)
+      next if value.blank?
+
+      return value
+    end
+    nil
+  end
+
+  def start_date(epic_hash)
+    start_date_field_codes = (['customfield_10015'] + ENV.fetch('JIRA_START_DATE_FIELD_CODES', '').split(',')).uniq
+    start_date_field_codes.each do |field_code|
+      value = epic_hash.dig('fields', field_code)
       next if value.blank?
 
       return value
