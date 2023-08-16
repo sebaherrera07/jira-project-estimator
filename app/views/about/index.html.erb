@@ -21,7 +21,7 @@
     <li>By default there are 2 estimations which are calculated based on the average velocity since: (1) the implementation start week; (2) the last 3 weeks. You can also ask for a 3rd estimation based on the average velocity you expect to achieve by using the <strong><i>Expected average</i></strong> filter.</li>
     <br/>
 
-    <li>The tool considers that weeks start on Monday and end on Sunday. Why do I mention this? Because if you started the implementation of a project on a Friday, the tool will consider that the implementation started on the previous Monday, and therefore your average velocity will be lower than expected. In this case you can either live with this difference, or use the <strong><i>Implementation start date</i></strong> filter and say implementation started the following Monday.</li>
+    <li>The tool considers that weeks start on Monday and end on Sunday. Why do I mention this? Because if you started the implementation of a project on a Friday, the tool will consider that the implementation started on the previous Monday, and therefore your average velocity will be lower than expected. In this case you can either live with this difference, or set the Epic start date in Jira and say implementation started the following Monday. If you need to use another custom field for the start date, you should set the <strong><i>JIRA_START_DATE_FIELD_CODES</i></strong> environment variable, which allows comma separated values (e.g. <i>customfield_10015,customfield_10034</i>)</li>
     <br/>
 
     <li>If you want to estimate just a subset of an Epic, you can make use of Jira labels to filter the Issues you want to consider. First label your Issues in Jira, and then use the <strong><i>Label</i></strong> filter.</li>
