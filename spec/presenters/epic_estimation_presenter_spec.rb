@@ -4,20 +4,20 @@ require 'rails_helper'
 
 RSpec.describe EpicEstimationPresenter do
   let(:issues) { build_list(:issue, 3) }
-  let(:remaining_story_points) { 50 }
+  let(:remaining_points) { 50 }
   let(:implementation_start_date) { 3.weeks.ago.to_date }
   let(:uncertainty_level) { build(:uncertainty_level) }
   let(:expected_average) { nil }
 
-  describe '#avg_story_points_per_week_expected' do
+  describe '#avg_points_per_week_expected' do
     subject do
       described_class.new(
         issues: issues,
-        remaining_story_points: remaining_story_points,
+        remaining_points: remaining_points,
         implementation_start_date: implementation_start_date,
         uncertainty_level: uncertainty_level,
         expected_average: expected_average
-      ).avg_story_points_per_week_expected
+      ).avg_points_per_week_expected
     end
 
     context 'when expected_average is nil' do
@@ -45,14 +45,14 @@ RSpec.describe EpicEstimationPresenter do
     end
   end
 
-  describe '#avg_story_points_per_week' do
+  describe '#avg_points_per_week' do
     subject do
       described_class.new(
         issues: issues,
-        remaining_story_points: remaining_story_points,
+        remaining_points: remaining_points,
         implementation_start_date: implementation_start_date,
         uncertainty_level: uncertainty_level
-      ).avg_story_points_per_week(weeks_ago_since: weeks_ago_since)
+      ).avg_points_per_week(weeks_ago_since: weeks_ago_since)
     end
 
     let(:to_do_issues) { build_list(:issue, 2, :to_do) }
@@ -61,14 +61,14 @@ RSpec.describe EpicEstimationPresenter do
     let(:issues) { to_do_issues + started_issues + completed_issues }
     let(:weeks_ago_since) { [0, 3].sample }
 
-    it 'calls AverageStoryPointsCalculator' do
+    it 'calls AveragePointsCalculator' do
       # TODO: this first expectation stopped working when updating to ruby 3.2.0
-      # expect(AverageStoryPointsCalculator).to receive(:new).with(
+      # expect(AveragePointsCalculator).to receive(:new).with(
       #   completed_issues: completed_issues,
       #   weeks_ago_since: weeks_ago_since,
       #   implementation_start_date: implementation_start_date
       # ).and_call_original
-      expect_any_instance_of(AverageStoryPointsCalculator).to receive(:calculate)
+      expect_any_instance_of(AveragePointsCalculator).to receive(:calculate)
       subject
     end
   end
@@ -77,7 +77,7 @@ RSpec.describe EpicEstimationPresenter do
     subject do
       described_class.new(
         issues: issues,
-        remaining_story_points: remaining_story_points,
+        remaining_points: remaining_points,
         implementation_start_date: implementation_start_date,
         uncertainty_level: uncertainty_level,
         expected_average: expected_average
@@ -99,20 +99,20 @@ RSpec.describe EpicEstimationPresenter do
     context 'when use_expected is false' do
       let(:use_expected) { false }
 
-      context 'when avg story points per week is 0' do
+      context 'when avg points per week is 0' do
         before do
-          allow_any_instance_of(AverageStoryPointsCalculator).to receive(:calculate).and_return(0)
+          allow_any_instance_of(AveragePointsCalculator).to receive(:calculate).and_return(0)
         end
 
         it { is_expected.to eq("Avg is 0. Can't generate estimation.") }
       end
 
-      context 'when avg story points per week is not 0' do
+      context 'when avg points per week is not 0' do
         let(:weeks) { 10.0 } # 50 remaining points, at 5 average per week
         let(:date) { Time.zone.today.beginning_of_week + weeks.weeks }
 
         before do
-          allow_any_instance_of(AverageStoryPointsCalculator).to receive(:calculate).and_return(5)
+          allow_any_instance_of(AveragePointsCalculator).to receive(:calculate).and_return(5)
         end
 
         it { is_expected.to eq("#{weeks} weeks (#{date.strftime('%a, %d %b %Y')})") }
@@ -124,7 +124,7 @@ RSpec.describe EpicEstimationPresenter do
     subject do
       described_class.new(
         issues: issues,
-        remaining_story_points: remaining_story_points,
+        remaining_points: remaining_points,
         implementation_start_date: implementation_start_date,
         uncertainty_level: uncertainty_level,
         expected_average: expected_average
@@ -147,20 +147,20 @@ RSpec.describe EpicEstimationPresenter do
     context 'when use_expected is false' do
       let(:use_expected) { false }
 
-      context 'when avg story points per week is 0' do
+      context 'when avg points per week is 0' do
         before do
-          allow_any_instance_of(AverageStoryPointsCalculator).to receive(:calculate).and_return(0)
+          allow_any_instance_of(AveragePointsCalculator).to receive(:calculate).and_return(0)
         end
 
         it { is_expected.to eq("Avg is 0. Can't generate estimation.") }
       end
 
-      context 'when avg story points per week is not 0' do
+      context 'when avg points per week is not 0' do
         let(:weeks) { 11.0 } # 55 remaining points (50 + 10%), at 5 average per week
         let(:date) { Time.zone.today.beginning_of_week + weeks.weeks }
 
         before do
-          allow_any_instance_of(AverageStoryPointsCalculator).to receive(:calculate).and_return(5)
+          allow_any_instance_of(AveragePointsCalculator).to receive(:calculate).and_return(5)
         end
 
         it { is_expected.to eq("#{weeks} weeks (#{date.strftime('%a, %d %b %Y')})") }
@@ -172,7 +172,7 @@ RSpec.describe EpicEstimationPresenter do
     subject do
       described_class.new(
         issues: issues,
-        remaining_story_points: remaining_story_points,
+        remaining_points: remaining_points,
         implementation_start_date: implementation_start_date,
         uncertainty_level: uncertainty_level,
         expected_average: expected_average
@@ -214,7 +214,7 @@ RSpec.describe EpicEstimationPresenter do
     subject do
       described_class.new(
         issues: issues,
-        remaining_story_points: remaining_story_points,
+        remaining_points: remaining_points,
         implementation_start_date: implementation_start_date,
         uncertainty_level: uncertainty_level,
         expected_average: expected_average

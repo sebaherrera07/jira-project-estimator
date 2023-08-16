@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class PertPresenter
-  def initialize(story_points:, optimistic:, most_likely:, pessimistic:, start_date: nil)
-    @story_points = story_points
+  def initialize(points:, optimistic:, most_likely:, pessimistic:, start_date: nil)
+    @points = points
     @optimistic = optimistic
     @most_likely = most_likely
     @pessimistic = pessimistic
@@ -33,16 +33,16 @@ class PertPresenter
   private
 
   def optimistic_number_of_days
-    @optimistic_number_of_days ||= optimistic * story_points
+    @optimistic_number_of_days ||= optimistic * points
   end
 
   def most_likely_number_of_days
-    @most_likely_number_of_days ||= most_likely * story_points
+    @most_likely_number_of_days ||= most_likely * points
   end
 
   def pessimistic_number_of_days
-    @pessimistic_number_of_days ||= pessimistic * story_points
+    @pessimistic_number_of_days ||= pessimistic * points
   end
 
-  attr_reader :story_points, :optimistic, :most_likely, :pessimistic, :start_date
+  attr_reader :points, :optimistic, :most_likely, :pessimistic, :start_date
 end

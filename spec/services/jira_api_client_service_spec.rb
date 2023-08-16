@@ -94,8 +94,8 @@ RSpec.describe JiraApiClientService do
         expect(subject).to all(be_a(Issue))
       end
 
-      it 'assigns story points to each Issue by default field' do
-        expect(subject.map(&:story_points)).to eq([3.0, nil])
+      it 'assigns points to each Issue by default field' do
+        expect(subject.map(&:points)).to eq([3.0, nil])
       end
 
       it 'makes request with expected options' do
@@ -136,19 +136,19 @@ RSpec.describe JiraApiClientService do
       end
     end
 
-    context 'when story points custom field is different than default' do
+    context 'when points custom field is different than default' do
       let(:labels) { nil }
 
       before do
-        JiraApiMocker.new.stub_query_epic_issues_with_custom_story_points_field(project_key, epic_key)
+        JiraApiMocker.new.stub_query_epic_issues_with_custom_points_field(project_key, epic_key)
       end
 
       it 'returns a list of Issue objects' do
         expect(subject).to all(be_a(Issue))
       end
 
-      it 'assigns story points to each Issue by custom field' do
-        expect(subject.map(&:story_points)).to eq([3.0, 2.0])
+      it 'assigns points to each Issue by custom field' do
+        expect(subject.map(&:points)).to eq([3.0, 2.0])
       end
 
       it 'makes request with expected options' do

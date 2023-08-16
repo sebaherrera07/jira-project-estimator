@@ -2,8 +2,8 @@
   <div class="row">
     <div class="col-lg-3">
       <div class="form-group">
-        <%= form.label :story_points, "Critical Path Story Points", class: "form-label" %>
-        <%= form.number_field :story_points, value: params[:story_points], class: "form-control", required: true, min: 1, step: 1 %>
+        <%= form.label :points, "Critical Path Points", class: "form-label" %>
+        <%= form.number_field :points, value: params[:points], class: "form-control", required: true, min: 1, step: 1 %>
       </div>
     </div>
 
@@ -17,7 +17,7 @@
 
   <br />
   <div class="row">
-    <p class="h6">The following values represent the average number of days to complete 1 Story Point</p>
+    <p class="h6">The following values represent the average number of days to complete 1 Point</p>
 
     <div class="col-lg-2">
       <div class="form-group">

@@ -20,7 +20,7 @@ To see some of the main screens, please check the [screens](docs/SCREENS.md) pag
 
 
 ## :thought_balloon: Considerations
-1. The tool tracks progress and generates estimates for the **Epic**, based on its Issues story points and status (To Do, In Progress, Done, ...).
+1. The tool tracks progress and generates estimates for the **Epic**, based on its Issues points and status (To Do, In Progress, Done, ...).
 
 2. The tool considers all types of Issues (Story, Task, Bug, ...).
 
@@ -36,11 +36,11 @@ To see some of the main screens, please check the [screens](docs/SCREENS.md) pag
 
 8. If you want to estimate just a subset of an Epic, you can make use of Jira labels to filter the Issues you want to consider. First label your Issues in Jira, and then use the `Label` filter.
 
-9. The tool allows you to consider a level of uncertainty when calculating an estimation, with 5 possible values: Empty, Low, Medium, High, Very High. For each value you can set a percentage associated to it, by setting the `LOW_UNCERTAINTY_PERCENTAGE, MEDIUM_UNCERTAINTY_PERCENTAGE, HIGH_UNCERTAINTY_PERCENTAGE, VERY_HIGH_UNCERTAINTY_PERCENTAGE` environment variables. What this will do is, for example, if right now you have 20 story points remaining, and you set the `MEDIUM_UNCERTAINTY_PERCENTAGE` to 20% and select `Uncertainty level` filter to Medium, the tool will consider that you have 24 story points remaining and calculate the number of weeks remaining based on that.
+9. The tool allows you to consider a level of uncertainty when calculating an estimation, with 5 possible values: Empty, Low, Medium, High, Very High. For each value you can set a percentage associated to it, by setting the `LOW_UNCERTAINTY_PERCENTAGE, MEDIUM_UNCERTAINTY_PERCENTAGE, HIGH_UNCERTAINTY_PERCENTAGE, VERY_HIGH_UNCERTAINTY_PERCENTAGE` environment variables. What this will do is, for example, if right now you have 20 points remaining, and you set the `MEDIUM_UNCERTAINTY_PERCENTAGE` to 20% and select `Uncertainty level` filter to Medium, the tool will consider that you have 24 points remaining and calculate the number of weeks remaining based on that.
 
 10. The calculations are more accurate when you estimate **ALL** the Issues and after multiple weeks of work (the first few weeks is expected to see unaccurate estimates).
 
-11. The tool works for Scrum, Kanban, or any other Jira board type. By default it might just work with Scrum boards by using the existing story points field, and if you need to use another custom field, you should set the `JIRA_STORY_POINTS_FIELD_CODES` environment variable, which allows comma separated values (e.g. `customfield_10016,customfield_10034`)
+11. The tool works for Scrum, Kanban, or any other Jira board type. By default it might just work with Scrum boards by using the existing points field, and if you need to use another custom field, you should set the `JIRA_STORY_POINTS_FIELD_CODES` environment variable, which allows comma separated values (e.g. `customfield_10016,customfield_10034`)
 
 12. The tool allows you to define your own set of ticket statuses. By default it uses `To Do` for "not started", `Done` for "finished", and every other status for "in progress". If you need to use a different set of statuses, should set the `TO_DO_STATUSES` and `DONE_STATUSES` environment variables, which allows comma separated values and is case insensitive (e.g. `TO_DO_STATUSES=To do,Open,pending review` and `DONE_STATUSES=done,resolved,Closed`)
 

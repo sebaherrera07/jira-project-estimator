@@ -7,14 +7,14 @@ RSpec.describe EpicEarnedValuePresenter do
     subject do
       described_class.new(
         completed_issues: completed_issues,
-        total_story_points: total_story_points,
+        total_points: total_points,
         implementation_start_date: implementation_start_date
       ).earned_value_items
     end
 
     context 'when epic has no completed issues' do
       let(:completed_issues) { [] }
-      let(:total_story_points) { 50 }
+      let(:total_points) { 50 }
       let(:implementation_start_date) { 5.weeks.ago.beginning_of_week.to_date }
 
       it 'returns empty array' do
@@ -23,11 +23,11 @@ RSpec.describe EpicEarnedValuePresenter do
     end
 
     context 'when epic has completed issues' do
-      let(:completed_issues) { build_list(:issue, 2, :done, story_points: 10) }
+      let(:completed_issues) { build_list(:issue, 2, :done, points: 10) }
       let(:implementation_start_date) { 5.weeks.ago.beginning_of_week.to_date }
 
-      context 'when total story points is 0' do
-        let(:total_story_points) { 0 }
+      context 'when total points is 0' do
+        let(:total_points) { 0 }
 
         it 'returns an array of EarnedValueItem' do
           expect(subject).to all(be_a(EarnedValueItem))
@@ -38,8 +38,8 @@ RSpec.describe EpicEarnedValuePresenter do
         end
       end
 
-      context 'when total story points is not 0' do
-        let(:total_story_points) { 100 }
+      context 'when total points is not 0' do
+        let(:total_points) { 100 }
 
         it 'returns an array of EarnedValueItem' do
           expect(subject).to all(be_a(EarnedValueItem))

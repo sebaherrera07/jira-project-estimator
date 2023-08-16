@@ -5,7 +5,7 @@
       <th scope="col">Week Dates</th>
       <th scope="col">Issue Key</th>
       <th scope="col">Finish Date</th>
-      <th scope="col">Story Points</th>
+      <th scope="col">Points</th>
       <th scope="col">Earned Value</th>
       <th scope="col">Cumulative Earned Value</th>
     </tr>
@@ -17,7 +17,7 @@
         <td><%= earned_value_item.finish_week_dates %></td>
         <td><%= earned_value_item.issue_key %></td>
         <td><%= earned_value_item.finish_date.strftime("%a, %d %b %Y") %></td>
-        <td><%= earned_value_item.story_points %></td>
+        <td><%= earned_value_item.points %></td>
         <td><%= "#{earned_value_item.earned_value}%" %></td>
         <td><%= "#{earned_value_item.cumulative_earned_value}%" %></td>
       </tr>

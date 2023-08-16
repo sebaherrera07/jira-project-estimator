@@ -69,8 +69,8 @@ RSpec.describe WeeklyEarnedValueItem do
     end
   end
 
-  describe '#story_points_completed' do
-    subject { weekly_earned_value_item.story_points_completed }
+  describe '#points_completed' do
+    subject { weekly_earned_value_item.points_completed }
 
     context 'when earned value items is empty' do
       let(:weekly_earned_value_item) do
@@ -86,7 +86,7 @@ RSpec.describe WeeklyEarnedValueItem do
         build(:weekly_earned_value_item, earned_value_items: earned_value_items)
       end
 
-      it { is_expected.to eq(earned_value_items.sum(&:story_points)) }
+      it { is_expected.to eq(earned_value_items.sum(&:points)) }
     end
   end
 

@@ -3,7 +3,7 @@
 <%=
   render 'shared/epic_estimations_table',
   period: 'Since Beginning',
-  avg_story_points: epic_estimation_presenter.avg_story_points_per_week,
+  avg_points: epic_estimation_presenter.avg_points_per_week,
   epic_id: epic_id,
   estimated_weeks_to_complete_without_uncertainty: epic_estimation_presenter.estimated_weeks_to_complete_without_uncertainty,
   estimated_weeks_to_complete_with_uncertainty: epic_estimation_presenter.estimated_weeks_to_complete_with_uncertainty,
@@ -11,7 +11,7 @@
   last_completed_week_number: epic_progress_presenter.completed_weeks_since_beginning,
   project_id: project_id,
   remaining_earned_value: epic_progress_presenter.remaining_earned_value,
-  total_story_points: epic_progress_presenter.total_story_points,
+  total_points: epic_progress_presenter.total_points,
   uncertainty_percentage: epic_estimation_presenter.uncertainty_percentage,
   uncertainty_title: epic_estimation_presenter.uncertainty_title
 %>
@@ -19,7 +19,7 @@
 <%=
   render 'shared/epic_estimations_table',
   period: 'Since Last 3 Weeks',
-  avg_story_points: epic_estimation_presenter.avg_story_points_per_week(weeks_ago_since: 3),
+  avg_points: epic_estimation_presenter.avg_points_per_week(weeks_ago_since: 3),
   epic_id: epic_id,
   estimated_weeks_to_complete_without_uncertainty: epic_estimation_presenter.estimated_weeks_to_complete_without_uncertainty(weeks_ago_since: 3),
   estimated_weeks_to_complete_with_uncertainty: epic_estimation_presenter.estimated_weeks_to_complete_with_uncertainty(weeks_ago_since: 3),
@@ -27,16 +27,16 @@
   last_completed_week_number: epic_progress_presenter.completed_weeks_since_beginning,
   project_id: project_id,
   remaining_earned_value: epic_progress_presenter.remaining_earned_value,
-  total_story_points: epic_progress_presenter.total_story_points,
+  total_points: epic_progress_presenter.total_points,
   uncertainty_percentage: epic_estimation_presenter.uncertainty_percentage,
   uncertainty_title: epic_estimation_presenter.uncertainty_title
 %>
 
-<% if epic_estimation_presenter.avg_story_points_per_week_expected.present? %>
+<% if epic_estimation_presenter.avg_points_per_week_expected.present? %>
   <%=
     render 'shared/epic_estimations_table',
     period: 'Expected',
-    avg_story_points: epic_estimation_presenter.avg_story_points_per_week_expected,
+    avg_points: epic_estimation_presenter.avg_points_per_week_expected,
     epic_id: epic_id,
     estimated_weeks_to_complete_without_uncertainty: epic_estimation_presenter.estimated_weeks_to_complete_without_uncertainty(use_expected: true),
     estimated_weeks_to_complete_with_uncertainty: epic_estimation_presenter.estimated_weeks_to_complete_with_uncertainty(use_expected: true),
@@ -44,7 +44,7 @@
     last_completed_week_number: epic_progress_presenter.completed_weeks_since_beginning,
     project_id: project_id,
     remaining_earned_value: epic_progress_presenter.remaining_earned_value,
-    total_story_points: epic_progress_presenter.total_story_points,
+    total_points: epic_progress_presenter.total_points,
     uncertainty_percentage: epic_estimation_presenter.uncertainty_percentage,
     uncertainty_title: epic_estimation_presenter.uncertainty_title
   %>

@@ -9,7 +9,7 @@ FactoryBot.define do
     project_key { Faker::Lorem.word.upcase.first(4) }
     status { ['To Do', 'In Progress', 'Done', 'Other'].sample }
     status_change_date { Time.zone.now }
-    story_points { [1, 2, 3, 5, 8, 13].sample }
+    points { [1, 2, 3, 5, 8, 13].sample }
     summary { 'Summary' }
 
     initialize_with { new(attributes) }
@@ -31,7 +31,7 @@ FactoryBot.define do
     end
 
     trait :unestimated do
-      story_points { nil }
+      points { nil }
     end
 
     trait :without_epic do

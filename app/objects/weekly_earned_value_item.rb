@@ -17,10 +17,10 @@ class WeeklyEarnedValueItem
     @earned_value ||= earned_value_items.sum(&:earned_value).round(2)
   end
 
-  def story_points_completed
+  def points_completed
     return 0 if earned_value_items.blank?
 
-    @story_points_completed ||= earned_value_items.sum(&:story_points)
+    @points_completed ||= earned_value_items.sum(&:points)
   end
 
   def week_dates

@@ -150,7 +150,7 @@ class JiraApiResponses
     }.to_json
   end
 
-  def self.query_epic_issues_with_custom_story_points_field_response_body(project_key, epic_key)
+  def self.query_epic_issues_with_custom_points_field_response_body(project_key, epic_key)
     {
       'issues' => [
         {

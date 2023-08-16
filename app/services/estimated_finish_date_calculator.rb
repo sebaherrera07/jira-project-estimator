@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 class EstimatedFinishDateCalculator
-  def initialize(remaining_story_points:, avg_story_points_per_week:, uncertainty_percentage:)
-    @remaining_story_points = remaining_story_points
-    @avg_story_points_per_week = avg_story_points_per_week
+  def initialize(remaining_points:, avg_points_per_week:, uncertainty_percentage:)
+    @remaining_points = remaining_points
+    @avg_points_per_week = avg_points_per_week
     @uncertainty_percentage = uncertainty_percentage
   end
 
   def weeks_lower_value
-    @weeks_lower_value ||= (remaining_story_points / avg_story_points_per_week.to_f).round(1)
+    @weeks_lower_value ||= (remaining_points / avg_points_per_week.to_f).round(1)
   end
 
   def date_lower_value
@@ -17,8 +17,8 @@ class EstimatedFinishDateCalculator
 
   def weeks_higher_value
     @weeks_higher_value ||= begin
-      possible_remaining_story_points = remaining_story_points * uncertainty_rate
-      (possible_remaining_story_points / avg_story_points_per_week.to_f).round(1)
+      possible_remaining_points = remaining_points * uncertainty_rate
+      (possible_remaining_points / avg_points_per_week.to_f).round(1)
     end
   end
 
@@ -28,7 +28,7 @@ class EstimatedFinishDateCalculator
 
   private
 
-  attr_reader :remaining_story_points, :avg_story_points_per_week, :uncertainty_percentage
+  attr_reader :remaining_points, :avg_points_per_week, :uncertainty_percentage
 
   def beginning_of_week
     @beginning_of_week ||= Time.zone.today.beginning_of_week

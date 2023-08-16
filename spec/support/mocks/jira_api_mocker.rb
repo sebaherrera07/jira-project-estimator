@@ -52,7 +52,7 @@ class JiraApiMocker
     )
   end
 
-  def stub_query_epic_issues_with_custom_story_points_field(project_key, epic_key)
+  def stub_query_epic_issues_with_custom_points_field(project_key, epic_key)
     url = "#{BASE_URL}/search"
     query_params = {
       query: {
@@ -61,7 +61,7 @@ class JiraApiMocker
     }
     stub_request(url, request_params(query_params)).to_return(
       status: 200,
-      body: JiraApiResponses.query_epic_issues_with_custom_story_points_field_response_body(project_key, epic_key)
+      body: JiraApiResponses.query_epic_issues_with_custom_points_field_response_body(project_key, epic_key)
     )
   end
 

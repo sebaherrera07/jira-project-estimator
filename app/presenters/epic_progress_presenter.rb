@@ -8,16 +8,16 @@ class EpicProgressPresenter
     @implementation_start_date = (implementation_start_date || implementation_calculated_start_date)&.beginning_of_week
   end
 
-  def total_story_points
-    @total_story_points ||= estimated_issues.sum(&:story_points)
+  def total_points
+    @total_points ||= estimated_issues.sum(&:points)
   end
 
-  def completed_story_points
-    @completed_story_points ||= completed_estimated_issues.sum(&:story_points)
+  def completed_points
+    @completed_points ||= completed_estimated_issues.sum(&:points)
   end
 
-  def remaining_story_points
-    @remaining_story_points ||= total_story_points - completed_story_points
+  def remaining_points
+    @remaining_points ||= total_points - completed_points
   end
 
   def earned_value
@@ -65,10 +65,10 @@ class EpicProgressPresenter
   end
 
   def earned_value_number
-    return 0 if total_story_points.zero?
+    return 0 if total_points.zero?
 
     @earned_value_number ||= begin
-      ratio = completed_story_points / total_story_points.to_f
+      ratio = completed_points / total_points.to_f
       (ratio * 100).round
     end
   end

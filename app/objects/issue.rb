@@ -8,7 +8,7 @@ class Issue
               :project_key,
               :status,
               :status_change_date,
-              :story_points,
+              :points,
               :summary
 
   def initialize(args)
@@ -19,12 +19,12 @@ class Issue
     @project_key = args[:project_key]
     @status = args[:status]
     @status_change_date = args[:status_change_date]&.to_datetime
-    @story_points = args[:story_points]&.round
+    @points = args[:points]&.round
     @summary = args[:summary]
   end
 
   def estimated?
-    story_points.present?
+    points.present?
   end
 
   def to_do?

@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class EarnedValueItem
-  def initialize(completed_issue:, previous_cumulative_earned_value:, total_story_points:, implementation_start_date:)
+  def initialize(completed_issue:, previous_cumulative_earned_value:, total_points:, implementation_start_date:)
     @completed_issue = completed_issue
     @previous_cumulative_earned_value = previous_cumulative_earned_value
-    @total_story_points = total_story_points
+    @total_points = total_points
     @implementation_start_date = implementation_start_date # it's for the project, not the issue
   end
 
@@ -13,9 +13,9 @@ class EarnedValueItem
   end
 
   def earned_value
-    return 0 if total_story_points.zero? || story_points.nil? || story_points.zero?
+    return 0 if total_points.zero? || points.nil? || points.zero?
 
-    @earned_value ||= (story_points / total_story_points.to_f * 100).round(2)
+    @earned_value ||= (points / total_points.to_f * 100).round(2)
   end
 
   def finish_date
@@ -34,15 +34,15 @@ class EarnedValueItem
     @issue_key ||= completed_issue.key
   end
 
-  def story_points
-    # Given that an issue can be completed without having story points, we assign 0 to it.
+  def points
+    # Given that an issue can be completed without having points, we assign 0 to it.
     # Handling this in a better way can be a possible improvement to do in the future.
-    @story_points ||= completed_issue.story_points || 0
+    @points ||= completed_issue.points || 0
   end
 
   private
 
-  attr_reader :completed_issue, :previous_cumulative_earned_value, :total_story_points, :implementation_start_date
+  attr_reader :completed_issue, :previous_cumulative_earned_value, :total_points, :implementation_start_date
 
   def formatted_beginning_of_week
     finish_date.beginning_of_week.strftime('%Y-%m-%d')

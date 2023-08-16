@@ -116,20 +116,20 @@ RSpec.describe Issue do
   describe '#estimated?' do
     subject { issue.estimated? }
 
-    context 'when story points is present' do
-      let(:issue) { build(:issue, story_points: 1) }
+    context 'when points is present' do
+      let(:issue) { build(:issue, points: 1) }
 
       it { is_expected.to be_truthy }
     end
 
-    context 'when story points is zero' do
-      let(:issue) { build(:issue, story_points: 0) }
+    context 'when points is zero' do
+      let(:issue) { build(:issue, points: 0) }
 
       it { is_expected.to be_truthy }
     end
 
-    context 'when story points is not present' do
-      let(:issue) { build(:issue, story_points: nil) }
+    context 'when points is not present' do
+      let(:issue) { build(:issue, points: nil) }
 
       it { is_expected.to be_falsey }
     end

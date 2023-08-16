@@ -2,7 +2,7 @@
   <thead class="bg-light">
     <tr>
       <th scope="col">Avg. Period</th>
-      <th scope="col">Avg. Story Points Per Week</th>
+      <th scope="col">Avg. Points Per Week</th>
       <th scope="col">Weeks To Complete (without uncertainty)</th>
       <% if uncertainty_percentage.positive? %>
         <th scope="col">Weeks To Complete (considering uncertainty)</th>
@@ -14,7 +14,7 @@
   <tbody>
     <tr>
       <td><%= period %></td>
-      <td><%= avg_story_points %></td>
+      <td><%= avg_points %></td>
       <td><%= estimated_weeks_to_complete_without_uncertainty %></td>
       <% if uncertainty_percentage.positive? %>
         <td><%= estimated_weeks_to_complete_with_uncertainty %></td>
@@ -23,7 +23,7 @@
       <td>
         <%=
           render 'shared/create_estimation_button',
-            avg_weekly_earned_value: avg_story_points,
+            avg_weekly_earned_value: avg_points,
             epic_id: epic_id,
             implementation_start_date: implementation_start_date,
             last_completed_week_number: last_completed_week_number,
@@ -31,7 +31,7 @@
             remaining_earned_value: remaining_earned_value,
             remaining_weeks: estimated_weeks_to_complete_without_uncertainty,
             remaining_weeks_with_uncertainty: estimated_weeks_to_complete_with_uncertainty,
-            total_points: total_story_points
+            total_points: total_points
         %>
       </td>
     </tr>

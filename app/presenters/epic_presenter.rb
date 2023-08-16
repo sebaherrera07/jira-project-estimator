@@ -26,7 +26,7 @@ class EpicPresenter
   def estimation_presenter
     @estimation_presenter ||= EpicEstimationPresenter.new(
       issues: issues,
-      remaining_story_points: progress_presenter.remaining_story_points,
+      remaining_points: progress_presenter.remaining_points,
       implementation_start_date: progress_presenter.implementation_start_date,
       uncertainty_level: UncertaintyLevel.new(uncertainty_level),
       expected_average: expected_average
@@ -40,7 +40,7 @@ class EpicPresenter
   def earned_value_presenter
     @earned_value_presenter ||= EpicEarnedValuePresenter.new(
       completed_issues: issues_count_presenter.completed_issues,
-      total_story_points: progress_presenter.total_story_points,
+      total_points: progress_presenter.total_points,
       implementation_start_date: progress_presenter.implementation_start_date
     )
   end

@@ -5,7 +5,7 @@ class PertController < ApplicationController
     return unless valid_params?
 
     @pert_presenter = PertPresenter.new(
-      story_points: story_points,
+      points: points,
       optimistic: optimistic,
       most_likely: most_likely,
       pessimistic: pessimistic,
@@ -15,8 +15,8 @@ class PertController < ApplicationController
 
   private
 
-  def story_points
-    @story_points ||= params[:story_points].to_i
+  def points
+    @points ||= params[:points].to_i
   end
 
   def start_date
@@ -38,7 +38,7 @@ class PertController < ApplicationController
   end
 
   def valid_params?
-    return false if story_points.zero?
+    return false if points.zero?
     return false if optimistic.zero?
     return false if most_likely.zero?
     return false if pessimistic.zero?

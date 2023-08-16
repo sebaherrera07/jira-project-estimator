@@ -6,7 +6,7 @@
       <th scope="col">Summary</th>
       <th scope="col">Labels</th>
       <th scope="col">Status</th>
-      <th scope="col">Story Points</th>
+      <th scope="col">Points</th>
       <th scope="col">Finish Date</th>
     </tr>
   </thead>
@@ -18,7 +18,7 @@
         <td><%= issue.summary %></td>
         <td><%= issue.labels %></td>
         <td><%= issue.status %></td>
-        <td><%= issue.story_points %></td>
+        <td><%= issue.points %></td>
         <td><%= issue.finish_date&.strftime("%a, %d %b %Y") %></td>
       </tr>
     <% end %>

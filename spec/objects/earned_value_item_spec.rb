@@ -9,7 +9,7 @@ RSpec.describe EarnedValueItem do
     subject { earned_value_item.cumulative_earned_value }
 
     context 'when previous cumulative earned value is 0' do
-      context 'when issue story points is nil' do
+      context 'when issue points is nil' do
         let(:issue) { build(:issue, :done, :unestimated) }
         let(:earned_value_item) do
           build(:earned_value_item, completed_issue: issue, previous_cumulative_earned_value: 0)
@@ -18,8 +18,8 @@ RSpec.describe EarnedValueItem do
         it { is_expected.to eq(0) }
       end
 
-      context 'when issue story points is 0' do
-        let(:issue) { build(:issue, :done, story_points: 0) }
+      context 'when issue points is 0' do
+        let(:issue) { build(:issue, :done, points: 0) }
         let(:earned_value_item) do
           build(:earned_value_item, completed_issue: issue, previous_cumulative_earned_value: 0)
         end
@@ -27,10 +27,10 @@ RSpec.describe EarnedValueItem do
         it { is_expected.to eq(0) }
       end
 
-      context 'when issue story points is not 0' do
-        let(:issue) { build(:issue, :done, story_points: 5) }
+      context 'when issue points is not 0' do
+        let(:issue) { build(:issue, :done, points: 5) }
         let(:earned_value_item) do
-          build(:earned_value_item, completed_issue: issue, total_story_points: 100,
+          build(:earned_value_item, completed_issue: issue, total_points: 100,
                                     previous_cumulative_earned_value: 0)
         end
 
@@ -39,7 +39,7 @@ RSpec.describe EarnedValueItem do
     end
 
     context 'when previous cumulative earned value is not 0' do
-      context 'when issue story points is nil' do
+      context 'when issue points is nil' do
         let(:issue) { build(:issue, :done, :unestimated) }
         let(:earned_value_item) do
           build(:earned_value_item, completed_issue: issue, previous_cumulative_earned_value: 50)
@@ -48,8 +48,8 @@ RSpec.describe EarnedValueItem do
         it { is_expected.to eq(50) }
       end
 
-      context 'when issue story points is 0' do
-        let(:issue) { build(:issue, :done, story_points: 0) }
+      context 'when issue points is 0' do
+        let(:issue) { build(:issue, :done, points: 0) }
         let(:earned_value_item) do
           build(:earned_value_item, completed_issue: issue, previous_cumulative_earned_value: 60.55)
         end
@@ -57,10 +57,10 @@ RSpec.describe EarnedValueItem do
         it { is_expected.to eq(60.55) }
       end
 
-      context 'when issue story points is not 0' do
-        let(:issue) { build(:issue, :done, story_points: 5) }
+      context 'when issue points is not 0' do
+        let(:issue) { build(:issue, :done, points: 5) }
         let(:earned_value_item) do
-          build(:earned_value_item, completed_issue: issue, total_story_points: 33,
+          build(:earned_value_item, completed_issue: issue, total_points: 33,
                                     previous_cumulative_earned_value: 50)
         end
 
@@ -74,32 +74,32 @@ RSpec.describe EarnedValueItem do
 
     let(:earned_value_item) { build(:earned_value_item, completed_issue: issue) }
 
-    context 'when issue story points is nil' do
+    context 'when issue points is nil' do
       let(:issue) { build(:issue, :done, :unestimated) }
 
       it { is_expected.to eq(0) }
     end
 
-    context 'when issue story points is 0' do
-      let(:issue) { build(:issue, :done, story_points: 0) }
+    context 'when issue points is 0' do
+      let(:issue) { build(:issue, :done, points: 0) }
 
       it { is_expected.to eq(0) }
     end
 
-    context 'when issue story points is not 0' do
-      let(:issue) { build(:issue, :done, story_points: 5) }
+    context 'when issue points is not 0' do
+      let(:issue) { build(:issue, :done, points: 5) }
       let(:earned_value_item) do
-        build(:earned_value_item, completed_issue: issue, total_story_points: 33)
+        build(:earned_value_item, completed_issue: issue, total_points: 33)
       end
 
       it { is_expected.to eq(15.15) }
     end
 
-    context 'when total story points is 0' do
+    context 'when total points is 0' do
       # This scenario shouldn't be possible but it's better to cover it.
-      let(:issue) { build(:issue, :done, story_points: 5) }
+      let(:issue) { build(:issue, :done, points: 5) }
       let(:earned_value_item) do
-        build(:earned_value_item, completed_issue: issue, total_story_points: 0)
+        build(:earned_value_item, completed_issue: issue, total_points: 0)
       end
 
       it { is_expected.to eq(0) }
@@ -154,25 +154,25 @@ RSpec.describe EarnedValueItem do
     it { is_expected.to eq('ABC-123') }
   end
 
-  describe '#story_points' do
-    subject { earned_value_item.story_points }
+  describe '#points' do
+    subject { earned_value_item.points }
 
     let(:earned_value_item) { build(:earned_value_item, completed_issue: issue) }
 
-    context 'when issue story points is nil' do
+    context 'when issue points is nil' do
       let(:issue) { build(:issue, :done, :unestimated) }
 
       it { is_expected.to eq(0) }
     end
 
-    context 'when issue story points is 0' do
-      let(:issue) { build(:issue, :done, story_points: 0) }
+    context 'when issue points is 0' do
+      let(:issue) { build(:issue, :done, points: 0) }
 
       it { is_expected.to eq(0) }
     end
 
-    context 'when issue story points is not 0' do
-      let(:issue) { build(:issue, :done, story_points: 5) }
+    context 'when issue points is not 0' do
+      let(:issue) { build(:issue, :done, points: 5) }
 
       it { is_expected.to eq(5) }
     end

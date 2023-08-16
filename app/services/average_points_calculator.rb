@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AverageStoryPointsCalculator
+class AveragePointsCalculator
   def initialize(completed_issues:, implementation_start_date:, weeks_ago_since: 0)
     @completed_issues = completed_issues
     @implementation_start_date = implementation_start_date
@@ -10,7 +10,7 @@ class AverageStoryPointsCalculator
   def calculate
     return 0 if completed_estimated_issues.empty? || number_of_weeks_in_period.zero?
 
-    (completed_estimated_issues_in_selected_period.sum(&:story_points) / number_of_weeks_in_period.to_f).round(1)
+    (completed_estimated_issues_in_selected_period.sum(&:points) / number_of_weeks_in_period.to_f).round(1)
   end
 
   private
