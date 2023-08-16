@@ -21,7 +21,6 @@ module EpicDetails
     EpicPresenter.new(
       epic: epic,
       issues: epic_issues,
-      implementation_start_date: implementation_start_date,
       expected_average: expected_average,
       uncertainty_level: uncertainty_level
     )
@@ -30,12 +29,6 @@ module EpicDetails
   def expected_average
     # If it's nil or it's not a number, returns 0.0
     params[:expected_average].to_f
-  end
-
-  def implementation_start_date
-    return if params[:implementation_start_date].blank?
-
-    Date.strptime(params[:implementation_start_date], '%Y-%m-%d')
   end
 
   def jira_api_client_service

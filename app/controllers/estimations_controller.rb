@@ -49,9 +49,11 @@ class EstimationsController < ApplicationController
 
   def redirect_to_project_epic_estimations
     redirect_to project_epic_estimations_path(
-      project_id: params[:project_id], epic_id: params[:epic_id],
-      implementation_start_date: params[:implementation_start_date], labels: params[:labels],
-      expected_average: params[:expected_average], uncertainty_level: params[:uncertainty_level]
+      project_id: params[:project_id],
+      epic_id: params[:epic_id],
+      labels: params[:labels],
+      expected_average: params[:expected_average],
+      uncertainty_level: params[:uncertainty_level]
     )
   end
 end

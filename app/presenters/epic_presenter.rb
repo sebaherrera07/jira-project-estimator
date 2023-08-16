@@ -3,10 +3,9 @@
 class EpicPresenter
   attr_reader :epic, :issues
 
-  def initialize(epic:, issues:, implementation_start_date: nil, expected_average: nil, uncertainty_level: nil)
+  def initialize(epic:, issues:, expected_average: nil, uncertainty_level: nil)
     @epic = epic
     @issues = issues
-    @implementation_start_date = implementation_start_date
     @expected_average = expected_average
     @uncertainty_level = uncertainty_level
   end
@@ -20,7 +19,7 @@ class EpicPresenter
   def progress_presenter
     @progress_presenter ||= EpicProgressPresenter.new(
       issues: issues,
-      implementation_start_date: implementation_start_date
+      implementation_start_date: epic.start_date
     )
   end
 
@@ -55,5 +54,5 @@ class EpicPresenter
 
   private
 
-  attr_reader :implementation_start_date, :expected_average, :uncertainty_level
+  attr_reader :expected_average, :uncertainty_level
 end
