@@ -34,4 +34,13 @@ class UncertaintyLevel
         0
       end
   end
+
+  def self.dropdown_options
+    [
+      ["Low (#{UncertaintyLevel.new(LOW).percentage.round}%)", LOW],
+      ["Medium (#{UncertaintyLevel.new(MEDIUM).percentage.round}%)", MEDIUM],
+      ["High (#{UncertaintyLevel.new(HIGH).percentage.round}%)", HIGH],
+      ["Very High (#{UncertaintyLevel.new(VERY_HIGH).percentage.round}%)", VERY_HIGH]
+    ]
+  end
 end

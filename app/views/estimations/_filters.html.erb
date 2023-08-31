@@ -17,7 +17,7 @@
     <div class="col-lg-2">
       <div class="form-group">
         <%= form.label :uncertainty_level, "Uncertainty Level", class: "form-label" %>
-        <%= form.select :uncertainty_level, [["Low", :low], ["Medium", :medium], ["High", :high], ["Very High", :very_high]], { selected: params[:uncertainty_level], include_blank: true }, { class: "form-control" } %>
+        <%= form.select :uncertainty_level, UncertaintyLevel.dropdown_options, { selected: params[:uncertainty_level], include_blank: true }, { class: "form-control" } %>
       </div>
     </div>
 
