@@ -11,10 +11,11 @@
     </tr>
   </thead>
   <tbody>
-    <% epic_earned_value_presenter.earned_value_items.each do |earned_value_item| %>
+    <% epic_earned_value_presenter.earned_value_items.each.with_index do |earned_value_item, index| %>
+      <% different_week_than_previous_item = (earned_value_item.finish_week_number != epic_earned_value_presenter.earned_value_items[index-1].finish_week_number) %>
       <tr>
-        <td><%= earned_value_item.finish_week_number %></td>
-        <td><%= earned_value_item.finish_week_dates %></td>
+        <td><%= different_week_than_previous_item ? earned_value_item.finish_week_number : '' %></td>
+        <td><%= different_week_than_previous_item ? earned_value_item.finish_week_dates : '' %></td>
         <td><%= earned_value_item.issue_key %></td>
         <td><%= earned_value_item.finish_date.strftime("%a, %d %b %Y") %></td>
         <td><%= earned_value_item.points %></td>
