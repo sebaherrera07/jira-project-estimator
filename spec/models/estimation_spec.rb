@@ -9,6 +9,7 @@ RSpec.describe Estimation do
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:epic_id) }
+    it { is_expected.to validate_presence_of(:category) }
     it { is_expected.to validate_presence_of(:total_points) }
     it { is_expected.to validate_presence_of(:last_completed_week_number) }
     it { is_expected.to validate_presence_of(:project_id) }

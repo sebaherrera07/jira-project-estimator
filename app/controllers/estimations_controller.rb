@@ -34,7 +34,7 @@ class EstimationsController < ApplicationController
   end
 
   def estimation_params
-    params.permit(:avg_weekly_earned_value, :epic_id, :last_completed_week_number, :project_id,
+    params.permit(:avg_weekly_earned_value, :category, :epic_id, :last_completed_week_number, :project_id,
                   :remaining_earned_value, :remaining_weeks, :remaining_weeks_with_uncertainty,
                   :total_points, :uncertainty_level)
   end

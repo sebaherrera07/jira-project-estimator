@@ -4,6 +4,7 @@
       <th scope="col">Estimation Date</th>
       <th scope="col">Total Points</th>
       <th scope="col">Avg. Points Per Week</th>
+      <th scope="col">Category</th>
       <th scope="col">Remaining Value</th>
       <th scope="col">Remaining Weeks</th>
       <th scope="col">Estimated Finish Date</th>
@@ -16,6 +17,7 @@
         <td><%= estimation_item.created_at.strftime("%a, %d %b %Y") %></td>
         <td><%= estimation_item.total_points %></td>
         <td><%= estimation_item.avg_weekly_earned_value %></td>
+        <td><%= estimation_item.category.humanize %></td>
         <td><%= "#{estimation_item.remaining_earned_value.round}%" %></td>
         <td><%= estimation_item.remaining_weeks %></td>
         <td><%= estimation_item.estimated_finish_date.strftime("%a, %d %b %Y") %></td>

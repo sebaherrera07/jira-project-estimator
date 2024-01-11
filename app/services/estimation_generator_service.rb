@@ -19,6 +19,7 @@ class EstimationGeneratorService
   def estimation_general_attributes
     {
       avg_weekly_earned_value: estimation_params[:avg_weekly_earned_value].to_d,
+      category: estimation_params[:category],
       last_completed_week_number: estimation_params[:last_completed_week_number].to_i,
       remaining_earned_value: estimation_params[:remaining_earned_value].to_d,
       remaining_weeks: estimation_params[:remaining_weeks].to_d,

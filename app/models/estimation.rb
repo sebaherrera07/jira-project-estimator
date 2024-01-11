@@ -6,6 +6,7 @@
 #
 #  id                               :bigint           not null, primary key
 #  avg_weekly_earned_value          :decimal(7, 2)    not null
+#  category                         :integer          default("neutral"), not null
 #  filters_applied                  :jsonb
 #  last_completed_week_number       :integer          not null
 #  remaining_earned_value           :decimal(5, 2)    not null
@@ -36,9 +37,10 @@ class Estimation < ApplicationRecord
   belongs_to :user, optional: true, inverse_of: nil
 
   enum uncertainty_level: UncertaintyLevel::LEVELS
+  enum category: EstimationCategory::CATEGORIES
 
   validates :avg_weekly_earned_value, :epic_id, :last_completed_week_number, :project_id, :remaining_earned_value,
-            :remaining_weeks, :total_points, presence: true
+            :remaining_weeks, :total_points, :category, presence: true
   validates :last_completed_week_number, :total_points,
             numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :avg_weekly_earned_value, :remaining_weeks, numericality: { greater_than_or_equal_to: 0 }

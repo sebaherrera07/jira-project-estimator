@@ -3,6 +3,7 @@
 FactoryBot.define do
   factory :estimation do
     avg_weekly_earned_value { [1.5, 2.0, 3.2, 4.6, 8.3].sample }
+    category { EstimationCategory::CATEGORIES.keys.sample }
     sequence(:epic_id) { |n| "EPIC-#{n}" }
     filters_applied { nil }
     last_completed_week_number { [1, 2, 3, 4].sample }
