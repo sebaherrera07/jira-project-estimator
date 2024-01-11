@@ -1,11 +1,12 @@
 require:
   - rubocop-rails
   - rubocop-rspec
-  - rubocop-capybara
   - rubocop-factory_bot
+  - rubocop-performance
 
 AllCops:
   NewCops: enable
+  SuggestExtensions: false
 
 Layout/LineLength:
   Exclude:
