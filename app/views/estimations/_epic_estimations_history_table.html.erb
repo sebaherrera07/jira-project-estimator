@@ -19,7 +19,7 @@
         <td><%= estimation_item.label %></td>
         <td><%= estimation_item.total_points %></td>
         <td><%= estimation_item.avg_weekly_earned_value %></td>
-        <td><%= estimation_item.category.humanize %></td>
+        <td><%= EstimationCategory::CATEGORIES_TITLE[estimation_item.category] %></td>
         <td><%= "#{estimation_item.remaining_earned_value.round}%" %></td>
         <td><%= estimation_item.remaining_weeks %></td>
         <td><%= estimation_item.estimated_finish_date.strftime("%a, %d %b %Y") %></td>
