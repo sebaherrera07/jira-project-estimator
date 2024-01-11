@@ -2,6 +2,7 @@
   <thead class="bg-light">
     <tr>
       <th scope="col">Estimation Date</th>
+      <th scope="col">Label</th>
       <th scope="col">Total Points</th>
       <th scope="col">Avg. Points Per Week</th>
       <th scope="col">Category</th>
@@ -15,6 +16,7 @@
     <% epic_estimation_history_presenter.estimation_items.each do |estimation_item| %>
       <tr>
         <td><%= estimation_item.created_at.strftime("%a, %d %b %Y") %></td>
+        <td><%= estimation_item.label %></td>
         <td><%= estimation_item.total_points %></td>
         <td><%= estimation_item.avg_weekly_earned_value %></td>
         <td><%= estimation_item.category.humanize %></td>

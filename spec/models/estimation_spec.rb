@@ -56,4 +56,26 @@ RSpec.describe Estimation do
 
     it { is_expected.to eq(Date.new(2022, 11, 28)) }
   end
+
+  describe '#label' do
+    subject { estimation.label }
+
+    context 'when filters_applied is nil' do
+      let(:estimation) { create(:estimation, filters_applied: nil) }
+
+      it { is_expected.to be_nil }
+    end
+
+    context 'when filters_applied has other attributes' do
+      let(:estimation) { create(:estimation, filters_applied: { 'uncertainty_level' => 'low' }) }
+
+      it { is_expected.to be_nil }
+    end
+
+    context 'when filters_applied has labels' do
+      let(:estimation) { create(:estimation, filters_applied: { 'labels' => 'v1' }) }
+
+      it { is_expected.to eq('v1') }
+    end
+  end
 end

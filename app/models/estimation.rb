@@ -58,6 +58,10 @@ class Estimation < ApplicationRecord
     beginning_of_week + remaining_weeks_with_uncertainty.weeks
   end
 
+  def label
+    filters_applied&.dig('labels')
+  end
+
   private
 
   def beginning_of_week

@@ -7,7 +7,7 @@ class EpicEstimationHistoryPresenter
 
   def estimation_items
     Estimation.where(epic_id: epic_id).order(created_at: :desc).to_dto(
-      methods: %i[estimated_finish_date estimated_finish_date_with_uncertainty]
+      methods: %i[estimated_finish_date estimated_finish_date_with_uncertainty label]
     )
   end
 
