@@ -11,7 +11,13 @@ class JiraApiMocker
 
   def stub_query_project_epics(project_key)
     url = "#{BASE_URL}/search"
-    query_params = { query: { jql: "project = #{project_key} AND issuetype = Epic" } }
+    query_params = {
+      query: {
+        jql: "project = #{project_key} AND issuetype = Epic",
+        startAt: 0,
+        maxResults: 100
+      }
+    }
     stub_request(url, request_params(query_params)).to_return(
       status: 200,
       body: JiraApiResponses.query_project_epics_response_body(project_key)
@@ -31,7 +37,9 @@ class JiraApiMocker
     url = "#{BASE_URL}/search"
     query_params = {
       query: {
-        jql: "project = #{project_key} AND (parent = #{epic_key} OR parentepic = #{epic_key}) AND issuetype != Epic"
+        jql: "project = #{project_key} AND (parent = #{epic_key} OR parentepic = #{epic_key}) AND issuetype != Epic",
+        startAt: 0,
+        maxResults: 100
       }
     }
     stub_request(url, request_params(query_params)).to_return(
@@ -44,7 +52,9 @@ class JiraApiMocker
     url = "#{BASE_URL}/search"
     query_params = { query: {
       jql: "project = #{project_key} AND (parent = #{epic_key} OR parentepic = #{epic_key}) AND issuetype != Epic " \
-           "AND labels in (#{labels.join(',')})"
+           "AND labels in (#{labels.join(',')})",
+      startAt: 0,
+      maxResults: 100
     } }
     stub_request(url, request_params(query_params)).to_return(
       status: 200,
@@ -56,7 +66,9 @@ class JiraApiMocker
     url = "#{BASE_URL}/search"
     query_params = {
       query: {
-        jql: "project = #{project_key} AND (parent = #{epic_key} OR parentepic = #{epic_key}) AND issuetype != Epic"
+        jql: "project = #{project_key} AND (parent = #{epic_key} OR parentepic = #{epic_key}) AND issuetype != Epic",
+        startAt: 0,
+        maxResults: 100
       }
     }
     stub_request(url, request_params(query_params)).to_return(

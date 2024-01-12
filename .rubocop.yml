@@ -18,6 +18,7 @@ Metrics/BlockLength:
     - lib/tasks/auto_annotate_models.rake
 
 Metrics/ClassLength:
+  Max: 150
   Exclude:
     - spec/support/mocks/jira_api_responses.rb
 
@@ -64,4 +65,7 @@ Style/Documentation:
   Enabled: false
 
 Style/HashSyntax:
+  Enabled: false
+
+Style/WhileUntilModifier:
   Enabled: false

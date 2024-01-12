@@ -18,6 +18,8 @@ class JiraApiResponses
 
   def self.query_project_epics_response_body(project_key)
     {
+      'total' => 2,
+      'maxResults' => 100,
       'issues' => [
         {
           'key' => 'EPIC-1',
@@ -62,6 +64,8 @@ class JiraApiResponses
 
   def self.query_epic_issues_response_body(project_key, epic_key)
     {
+      'total' => 2,
+      'maxResults' => 100,
       'issues' => [
         {
           'key' => 'ISSUE-1',
@@ -107,6 +111,8 @@ class JiraApiResponses
 
   def self.query_epic_issues_with_labels_response_body(project_key, epic_key, labels)
     {
+      'total' => 2,
+      'maxResults' => 100,
       'issues' => [
         {
           'key' => 'ISSUE-1',
@@ -152,6 +158,8 @@ class JiraApiResponses
 
   def self.query_epic_issues_with_custom_points_field_response_body(project_key, epic_key)
     {
+      'total' => 2,
+      'maxResults' => 100,
       'issues' => [
         {
           'key' => 'ISSUE-1',

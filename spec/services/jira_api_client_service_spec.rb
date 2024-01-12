@@ -44,7 +44,9 @@ RSpec.describe JiraApiClientService do
         headers: { 'Accept' => 'application/json' },
         basic_auth: [ENV.fetch('JIRA_USERNAME'), ENV.fetch('JIRA_API_TOKEN')],
         query: {
-          jql: "project = #{project_key} AND issuetype = Epic"
+          jql: "project = #{project_key} AND issuetype = Epic",
+          startAt: 0,
+          maxResults: 100
         }
       )
     end
@@ -105,7 +107,10 @@ RSpec.describe JiraApiClientService do
           headers: { 'Accept' => 'application/json' },
           basic_auth: [ENV.fetch('JIRA_USERNAME'), ENV.fetch('JIRA_API_TOKEN')],
           query: {
-            jql: "project = #{project_key} AND (parent = #{epic_key} OR parentepic = #{epic_key}) AND issuetype != Epic"
+            jql: "project = #{project_key} AND (parent = #{epic_key} OR parentepic = #{epic_key}) " \
+                 'AND issuetype != Epic',
+            startAt: 0,
+            maxResults: 100
           }
         )
       end
@@ -130,7 +135,9 @@ RSpec.describe JiraApiClientService do
           basic_auth: [ENV.fetch('JIRA_USERNAME'), ENV.fetch('JIRA_API_TOKEN')],
           query: {
             jql: "project = #{project_key} AND (parent = #{epic_key} OR parentepic = #{epic_key}) " \
-                 "AND issuetype != Epic AND labels in (#{labels.join(',')})"
+                 "AND issuetype != Epic AND labels in (#{labels.join(',')})",
+            startAt: 0,
+            maxResults: 100
           }
         )
       end
@@ -158,7 +165,10 @@ RSpec.describe JiraApiClientService do
           headers: { 'Accept' => 'application/json' },
           basic_auth: [ENV.fetch('JIRA_USERNAME'), ENV.fetch('JIRA_API_TOKEN')],
           query: {
-            jql: "project = #{project_key} AND (parent = #{epic_key} OR parentepic = #{epic_key}) AND issuetype != Epic"
+            jql: "project = #{project_key} AND (parent = #{epic_key} OR parentepic = #{epic_key}) " \
+                 'AND issuetype != Epic',
+            startAt: 0,
+            maxResults: 100
           }
         )
       end

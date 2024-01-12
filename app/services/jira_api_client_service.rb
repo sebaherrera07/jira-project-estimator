@@ -10,12 +10,17 @@ class JiraApiClientService
   end
 
   def query_project_epics(project_key)
-    request_query_params = { query: { jql: "project = #{project_key} AND issuetype = Epic" } }
-    response = HTTParty.get("#{BASE_URL}/search", request_params.merge(request_query_params))
-    json_response = JSON.parse(response.body)
-    json_response['issues'].map do |epic_hash|
-      epic(epic_hash)
+    jql_string = "project = #{project_key} AND issuetype = Epic"
+
+    epics = []
+    start_at = 0
+    total = 1
+
+    while start_at < total
+      start_at, total, epics = query_epics_page(jql_string, start_at, epics)
     end
+
+    epics
   end
 
   def query_project_epic(project_key, epic_key)
@@ -29,12 +34,16 @@ class JiraApiClientService
   def query_epic_issues(project_key, epic_key, labels = [])
     jql_string = "project = #{project_key} AND (parent = #{epic_key} OR parentepic = #{epic_key}) AND issuetype != Epic"
     jql_string += " AND labels in (#{labels.join(',')})" if labels.present?
-    request_query_params = { query: { jql: jql_string } }
-    response = HTTParty.get("#{BASE_URL}/search", request_params.merge(request_query_params))
-    json_response = JSON.parse(response.body)
-    json_response['issues'].map do |issue_hash|
-      issue(issue_hash)
+
+    issues = []
+    start_at = 0
+    total = 1
+
+    while start_at < total
+      start_at, total, issues = query_issues_page(jql_string, start_at, issues)
     end
+
+    issues
   end
 
   private
@@ -102,5 +111,33 @@ class JiraApiClientService
       return value
     end
     nil
+  end
+
+  def query_epics_page(jql_string, start_at, epics)
+    request_query_params = { query: { jql: jql_string, startAt: start_at, maxResults: 100 } }
+
+    response = HTTParty.get("#{BASE_URL}/search", request_params.merge(request_query_params))
+    json_response = JSON.parse(response.body)
+
+    total = json_response['total']
+    epics += json_response['issues'].map { |epic_hash| epic(epic_hash) }
+
+    start_at += json_response['maxResults']
+
+    [start_at, total, epics]
+  end
+
+  def query_issues_page(jql_string, start_at, issues)
+    request_query_params = { query: { jql: jql_string, startAt: start_at, maxResults: 100 } }
+
+    response = HTTParty.get("#{BASE_URL}/search", request_params.merge(request_query_params))
+    json_response = JSON.parse(response.body)
+
+    total = json_response['total']
+    issues += json_response['issues'].map { |issue_hash| issue(issue_hash) }
+
+    start_at += json_response['maxResults']
+
+    [start_at, total, issues]
   end
 end
