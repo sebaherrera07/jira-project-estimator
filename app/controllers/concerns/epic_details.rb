@@ -22,7 +22,8 @@ module EpicDetails
       epic: epic,
       issues: epic_issues,
       expected_average: expected_average,
-      uncertainty_level: uncertainty_level
+      uncertainty_level: uncertainty_level,
+      labels_filter: labels_filter
     )
   end
 
@@ -55,5 +56,9 @@ module EpicDetails
 
   def uncertainty_level
     params[:uncertainty_level]
+  end
+
+  def labels_filter
+    params[:labels]
   end
 end

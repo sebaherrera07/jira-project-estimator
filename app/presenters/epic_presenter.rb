@@ -3,11 +3,12 @@
 class EpicPresenter
   attr_reader :epic, :issues
 
-  def initialize(epic:, issues:, expected_average: nil, uncertainty_level: nil)
+  def initialize(epic:, issues:, expected_average: nil, uncertainty_level: nil, labels_filter: nil)
     @epic = epic
     @issues = issues
     @expected_average = expected_average
     @uncertainty_level = uncertainty_level
+    @labels_filter = labels_filter
   end
 
   delegate :key, :labels, :project_key, :summary, to: :epic
@@ -34,7 +35,10 @@ class EpicPresenter
   end
 
   def estimation_history_presenter
-    @estimation_history_presenter ||= EpicEstimationHistoryPresenter.new(epic_id: epic.key)
+    @estimation_history_presenter ||= EpicEstimationHistoryPresenter.new(
+      epic_id: epic.key,
+      labels_filter: labels_filter
+    )
   end
 
   def earned_value_presenter
@@ -54,5 +58,5 @@ class EpicPresenter
 
   private
 
-  attr_reader :expected_average, :uncertainty_level
+  attr_reader :expected_average, :uncertainty_level, :labels_filter
 end
