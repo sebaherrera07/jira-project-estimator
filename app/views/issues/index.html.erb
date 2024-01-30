@@ -8,5 +8,5 @@
   <%= render 'shared/epic_details_table', epic_presenter: @epic_presenter %>
 
   <p class="h5">Issues</p>
-  <%= render 'issues/issues_table', issues: @epic_presenter.issues %>
+  <%= render 'issues/issues_table', issues: @epic_presenter.issues_sorted %>
 </div>

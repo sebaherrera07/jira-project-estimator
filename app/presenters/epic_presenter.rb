@@ -13,6 +13,18 @@ class EpicPresenter
 
   delegate :key, :labels, :project_key, :summary, to: :epic
 
+  def issues_sorted
+    issues.sort_by do |issue|
+      if issue.started?
+        0
+      elsif issue.to_do?
+        1
+      else
+        issue.finish_date.to_i
+      end
+    end
+  end
+
   def issues_count_presenter
     @issues_count_presenter ||= EpicIssuesCountPresenter.new(issues: issues)
   end

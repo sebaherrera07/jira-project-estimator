@@ -15,6 +15,22 @@ RSpec.describe EpicPresenter do
     it { is_expected.to delegate_method(:summary).to(:epic) }
   end
 
+  describe '#issues_sorted' do
+    subject { described_class.new(epic: epic, issues: issues).issues_sorted }
+
+    let(:epic) { build(:epic) }
+    let(:issues) { [issue_done1, issue_done2, issue_to_do, issue_in_progress] }
+
+    let(:issue_done1) { build(:issue, :done, status_change_date: 2.days.ago) }
+    let(:issue_done2) { build(:issue, :done, status_change_date: 5.days.ago) }
+    let(:issue_to_do) { build(:issue, :to_do) }
+    let(:issue_in_progress) { build(:issue, :in_progress) }
+
+    it 'sorts issues by in progress, then pending, and then by completion date' do
+      expect(subject).to eq([issue_in_progress, issue_to_do, issue_done2, issue_done1])
+    end
+  end
+
   describe '#issues_count_presenter' do
     subject { described_class.new(epic: epic, issues: issues).issues_count_presenter }
 
