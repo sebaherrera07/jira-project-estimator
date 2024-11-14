@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_01_11_160129) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_14_144240) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension "pg_catalog.plpgsql"
 
   create_table "estimations", force: :cascade do |t|
     t.decimal "avg_weekly_earned_value", precision: 7, scale: 2, null: false
