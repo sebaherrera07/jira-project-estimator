@@ -36,8 +36,8 @@ class Estimation < ApplicationRecord
 
   belongs_to :user, optional: true, inverse_of: nil
 
-  enum uncertainty_level: UncertaintyLevel::LEVELS
-  enum category: EstimationCategory::CATEGORIES
+  enum :uncertainty_level, UncertaintyLevel::LEVELS
+  enum :category, EstimationCategory::CATEGORIES
 
   validates :avg_weekly_earned_value, :epic_id, :last_completed_week_number, :project_id, :remaining_earned_value,
             :remaining_weeks, :total_points, :category, presence: true
