@@ -88,7 +88,7 @@ User.find_by(email: 'admin@example.com').destroy!
 ## :computer: Development
 ### Ruby version
 ```
-3.3.6
+3.4.1
 ```
 
 ### Database creation
