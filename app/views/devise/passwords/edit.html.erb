@@ -4,7 +4,7 @@
   <div class="row justify-content-md-center">
     <div class="col col-lg-4">
       <h2>Change your password</h2>
-      <br />
+      <br>
 
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
@@ -14,7 +14,7 @@
         <div class="field form-outline mb-4">
           <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "form-control", placeholder: "New Password", required: true %>
           <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+            <em>(<%= @minimum_password_length %> characters minimum)</em><br>
           <% end %>
         </div>
 
