@@ -49,6 +49,7 @@ class JiraApiClientService
   private
 
   BASE_URL = "#{ENV.fetch('JIRA_SITE_URL')}/rest/api/3".freeze
+  private_constant :BASE_URL
 
   def request_params
     {

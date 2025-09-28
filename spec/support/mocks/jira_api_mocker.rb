@@ -80,6 +80,7 @@ class JiraApiMocker
   private
 
   BASE_URL = "#{ENV.fetch('JIRA_SITE_URL')}/rest/api/3".freeze
+  private_constant :BASE_URL
 
   def stub_request(url, query_params = {})
     WebMock.stub_request(:get, url).with(
