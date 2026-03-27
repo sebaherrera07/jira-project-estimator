@@ -13,19 +13,20 @@ class JiraApiClientService
     jql_string = "project = #{project_key} AND issuetype = Epic"
 
     epics = []
-    start_at = 0
-    total = 1
+    next_page_token = nil
 
-    while start_at < total
-      start_at, total, epics = query_epics_page(jql_string, start_at, epics)
+    loop do
+      next_page_token, is_last, epics = query_epics_page(jql_string, next_page_token, epics)
+      break if is_last
     end
 
     epics
   end
 
   def query_project_epic(project_key, epic_key)
-    request_query_params = { query: { jql: "project = #{project_key} AND issuetype = Epic AND key = #{epic_key}" } }
-    response = HTTParty.get("#{BASE_URL}/search", request_params.merge(request_query_params))
+    body = { jql: "project = #{project_key} AND issuetype = Epic AND key = #{epic_key}", maxResults: 1,
+             fields: epic_fields }
+    response = HTTParty.post("#{BASE_URL}/search/jql", request_params.merge(body: body.to_json, headers: json_headers))
     json_response = JSON.parse(response.body)
     epic_hash = json_response['issues'].first
     epic(epic_hash)
@@ -36,11 +37,11 @@ class JiraApiClientService
     jql_string += " AND labels in (#{labels.join(',')})" if labels.present?
 
     issues = []
-    start_at = 0
-    total = 1
+    next_page_token = nil
 
-    while start_at < total
-      start_at, total, issues = query_issues_page(jql_string, start_at, issues)
+    loop do
+      next_page_token, is_last, issues = query_issues_page(jql_string, next_page_token, issues)
+      break if is_last
     end
 
     issues
@@ -59,6 +60,24 @@ class JiraApiClientService
         password: ENV.fetch('JIRA_API_TOKEN')
       }
     }
+  end
+
+  def json_headers
+    {
+      'Accept' => 'application/json',
+      'Content-Type' => 'application/json'
+    }
+  end
+
+  def epic_fields
+    start_date_custom = ENV.fetch('JIRA_START_DATE_FIELD_CODES', '').split(',')
+    (%w[summary labels project customfield_10015] + start_date_custom).uniq
+  end
+
+  def issue_fields
+    points_custom = ENV.fetch('JIRA_STORY_POINTS_FIELD_CODES', '').split(',')
+    (%w[summary labels project status created parent statuscategorychangedate
+        customfield_10016] + points_custom).uniq
   end
 
   def project(project_hash)
@@ -114,31 +133,31 @@ class JiraApiClientService
     nil
   end
 
-  def query_epics_page(jql_string, start_at, epics)
-    request_query_params = { query: { jql: jql_string, startAt: start_at, maxResults: 100 } }
+  def query_epics_page(jql_string, next_page_token, epics)
+    body = { jql: jql_string, maxResults: 100, fields: epic_fields }
+    body[:nextPageToken] = next_page_token if next_page_token
 
-    response = HTTParty.get("#{BASE_URL}/search", request_params.merge(request_query_params))
+    response = HTTParty.post("#{BASE_URL}/search/jql", request_params.merge(body: body.to_json, headers: json_headers))
     json_response = JSON.parse(response.body)
 
-    total = json_response['total']
+    is_last = json_response['isLast']
     epics += json_response['issues'].map { |epic_hash| epic(epic_hash) }
+    next_token = json_response['nextPageToken']
 
-    start_at += json_response['maxResults']
-
-    [start_at, total, epics]
+    [next_token, is_last, epics]
   end
 
-  def query_issues_page(jql_string, start_at, issues)
-    request_query_params = { query: { jql: jql_string, startAt: start_at, maxResults: 100 } }
+  def query_issues_page(jql_string, next_page_token, issues)
+    body = { jql: jql_string, maxResults: 100, fields: issue_fields }
+    body[:nextPageToken] = next_page_token if next_page_token
 
-    response = HTTParty.get("#{BASE_URL}/search", request_params.merge(request_query_params))
+    response = HTTParty.post("#{BASE_URL}/search/jql", request_params.merge(body: body.to_json, headers: json_headers))
     json_response = JSON.parse(response.body)
 
-    total = json_response['total']
+    is_last = json_response['isLast']
     issues += json_response['issues'].map { |issue_hash| issue(issue_hash) }
+    next_token = json_response['nextPageToken']
 
-    start_at += json_response['maxResults']
-
-    [start_at, total, issues]
+    [next_token, is_last, issues]
   end
 end
