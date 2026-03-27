@@ -3,6 +3,16 @@
 require 'rails_helper'
 
 RSpec.describe JiraApiClientService do
+  def expected_epic_fields
+    start_date_custom = ENV.fetch('JIRA_START_DATE_FIELD_CODES', '').split(',')
+    (%w[summary labels project customfield_10015] + start_date_custom).uniq
+  end
+
+  def expected_issue_fields(extra: [])
+    points_custom = ENV.fetch('JIRA_STORY_POINTS_FIELD_CODES', '').split(',')
+    (%w[summary labels project status created parent statuscategorychangedate
+        customfield_10016] + points_custom + extra).uniq
+  end
   describe '#query_projects' do
     subject { described_class.new.query_projects }
 
@@ -39,15 +49,15 @@ RSpec.describe JiraApiClientService do
 
     it 'makes request with expected options' do
       subject
-      url = "#{ENV.fetch('JIRA_SITE_URL')}/rest/api/3/search"
-      expect(WebMock).to have_requested(:get, url).with(
-        headers: { 'Accept' => 'application/json' },
+      url = "#{ENV.fetch('JIRA_SITE_URL')}/rest/api/3/search/jql"
+      expect(WebMock).to have_requested(:post, url).with(
+        headers: { 'Accept' => 'application/json', 'Content-Type' => 'application/json' },
         basic_auth: [ENV.fetch('JIRA_USERNAME'), ENV.fetch('JIRA_API_TOKEN')],
-        query: {
+        body: {
           jql: "project = #{project_key} AND issuetype = Epic",
-          startAt: 0,
-          maxResults: 100
-        }
+          maxResults: 100,
+          fields: expected_epic_fields
+        }.to_json
       )
     end
   end
@@ -68,13 +78,15 @@ RSpec.describe JiraApiClientService do
 
     it 'makes request with expected options' do
       subject
-      url = "#{ENV.fetch('JIRA_SITE_URL')}/rest/api/3/search"
-      expect(WebMock).to have_requested(:get, url).with(
-        headers: { 'Accept' => 'application/json' },
+      url = "#{ENV.fetch('JIRA_SITE_URL')}/rest/api/3/search/jql"
+      expect(WebMock).to have_requested(:post, url).with(
+        headers: { 'Accept' => 'application/json', 'Content-Type' => 'application/json' },
         basic_auth: [ENV.fetch('JIRA_USERNAME'), ENV.fetch('JIRA_API_TOKEN')],
-        query: {
-          jql: "project = #{project_key} AND issuetype = Epic AND key = #{epic_key}"
-        }
+        body: {
+          jql: "project = #{project_key} AND issuetype = Epic AND key = #{epic_key}",
+          maxResults: 1,
+          fields: expected_epic_fields
+        }.to_json
       )
     end
   end
@@ -102,16 +114,16 @@ RSpec.describe JiraApiClientService do
 
       it 'makes request with expected options' do
         subject
-        url = "#{ENV.fetch('JIRA_SITE_URL')}/rest/api/3/search"
-        expect(WebMock).to have_requested(:get, url).with(
-          headers: { 'Accept' => 'application/json' },
+        url = "#{ENV.fetch('JIRA_SITE_URL')}/rest/api/3/search/jql"
+        expect(WebMock).to have_requested(:post, url).with(
+          headers: { 'Accept' => 'application/json', 'Content-Type' => 'application/json' },
           basic_auth: [ENV.fetch('JIRA_USERNAME'), ENV.fetch('JIRA_API_TOKEN')],
-          query: {
+          body: {
             jql: "project = #{project_key} AND (parent = #{epic_key} OR parentepic = #{epic_key}) " \
                  'AND issuetype != Epic',
-            startAt: 0,
-            maxResults: 100
-          }
+            maxResults: 100,
+            fields: expected_issue_fields
+          }.to_json
         )
       end
     end
@@ -129,16 +141,16 @@ RSpec.describe JiraApiClientService do
 
       it 'makes request with expected options' do
         subject
-        url = "#{ENV.fetch('JIRA_SITE_URL')}/rest/api/3/search"
-        expect(WebMock).to have_requested(:get, url).with(
-          headers: { 'Accept' => 'application/json' },
+        url = "#{ENV.fetch('JIRA_SITE_URL')}/rest/api/3/search/jql"
+        expect(WebMock).to have_requested(:post, url).with(
+          headers: { 'Accept' => 'application/json', 'Content-Type' => 'application/json' },
           basic_auth: [ENV.fetch('JIRA_USERNAME'), ENV.fetch('JIRA_API_TOKEN')],
-          query: {
+          body: {
             jql: "project = #{project_key} AND (parent = #{epic_key} OR parentepic = #{epic_key}) " \
                  "AND issuetype != Epic AND labels in (#{labels.join(',')})",
-            startAt: 0,
-            maxResults: 100
-          }
+            maxResults: 100,
+            fields: expected_issue_fields
+          }.to_json
         )
       end
     end
@@ -147,6 +159,8 @@ RSpec.describe JiraApiClientService do
       let(:labels) { nil }
 
       before do
+        allow(ENV).to receive(:fetch).and_call_original
+        allow(ENV).to receive(:fetch).with('JIRA_STORY_POINTS_FIELD_CODES', '').and_return('customfield_10034')
         JiraApiMocker.new.stub_query_epic_issues_with_custom_points_field(project_key, epic_key)
       end
 
@@ -160,16 +174,16 @@ RSpec.describe JiraApiClientService do
 
       it 'makes request with expected options' do
         subject
-        url = "#{ENV.fetch('JIRA_SITE_URL')}/rest/api/3/search"
-        expect(WebMock).to have_requested(:get, url).with(
-          headers: { 'Accept' => 'application/json' },
+        url = "#{ENV.fetch('JIRA_SITE_URL')}/rest/api/3/search/jql"
+        expect(WebMock).to have_requested(:post, url).with(
+          headers: { 'Accept' => 'application/json', 'Content-Type' => 'application/json' },
           basic_auth: [ENV.fetch('JIRA_USERNAME'), ENV.fetch('JIRA_API_TOKEN')],
-          query: {
+          body: {
             jql: "project = #{project_key} AND (parent = #{epic_key} OR parentepic = #{epic_key}) " \
                  'AND issuetype != Epic',
-            startAt: 0,
-            maxResults: 100
-          }
+            maxResults: 100,
+            fields: expected_issue_fields(extra: %w[customfield_10034])
+          }.to_json
         )
       end
     end
