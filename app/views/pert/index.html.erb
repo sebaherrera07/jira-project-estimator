@@ -1,9 +1,10 @@
-<div>
-  <p class="h1">PERT Estimation</p>
-  <br>
+<div class="mb-4">
+  <h1 class="font-manrope display-6 fw-bold mb-1">PERT Calculator</h1>
+  <p class="text-secondary fw-medium">Calculate realistic timeframes using three-point estimation theory.</p>
+</div>
 
-  <%= render 'pert/inputs' %>
-  <br>
+<%= render 'pert/inputs' %>
 
+<div class="mt-4">
   <%= render 'pert/estimations_table', pert_presenter: @pert_presenter %>
 </div>

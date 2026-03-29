@@ -1,23 +1,26 @@
-<header class="mb-3">
-  <nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid container px-0">
-      <a href="/" class="navbar-brand">
-        <img src="/ms-icon-70x70.png" alt="Logo" width="40" height="40" class="bi me-2">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a href="/projects" class="nav-link px-2 link-dark">Projects</a></li>
-          <li class="nav-item"><a href="/pert" class="nav-link px-2 link-dark">PERT</a></li>
-          <li class="nav-item"><a href="/about" class="nav-link px-2 link-dark">About</a></li>
-        </ul>
+<nav class="navbar navbar-expand-md sticky-top mb-4">
+  <div class="container-xxl px-4">
+    <a href="/" class="navbar-brand d-flex align-items-center">
+      <img src="/ms-icon-70x70.png" alt="Logo" width="32" height="32" class="me-2">
+      Jira Estimator
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse ms-md-4" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a href="/projects" class="nav-link <%= current_page?('/projects') ? 'active' : '' rescue '' %>">Projects</a></li>
+        <li class="nav-item"><a href="/pert" class="nav-link <%= current_page?('/pert') ? 'active' : '' rescue '' %>">PERT</a></li>
+        <li class="nav-item"><a href="/about" class="nav-link <%= current_page?('/about') ? 'active' : '' rescue '' %>">About</a></li>
+      </ul>
 
-        <div class="d-flex">
-          <a href="/users/sign_out" class="nav-link px-2 link-dark">Sign out</a>
-        </div>
+      <div class="d-flex align-items-center gap-2 mt-3 mt-md-0 border-top border-md-0 pt-3 pt-md-0 border-secondary-subtle">
+        <span class="small fw-medium text-muted me-2 d-none d-md-block"><%= current_user&.email %></span>
+        <a href="/users/sign_out" class="btn btn-sm btn-outline-secondary d-flex align-items-center gap-1">
+          <span class="material-symbols-outlined" style="font-size: 1.1rem;">logout</span>
+          <span>Sign out</span>
+        </a>
       </div>
     </div>
-  </nav>
-</header>
+  </div>
+</nav>

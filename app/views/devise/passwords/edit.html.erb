@@ -1,39 +1,44 @@
-<div class="container text-center">
-  <%= image_tag("/ms-icon-150x150.png", alt: "Logo") %>
-
-  <div class="row justify-content-md-center">
-    <div class="col col-lg-4">
-      <h2>Change your password</h2>
-      <br>
+<div class="d-flex align-items-center justify-content-center w-100 mt-5">
+  <div class="login-card overflow-hidden">
+    <div class="aspirational-banner p-4 p-md-5 text-center">
+      <h2 class="h4 font-manrope fw-bold text-dark mb-2">
+        Change Password
+      </h2>
+      <p class="small text-muted mb-0 mx-auto" style="max-width: 280px; line-height: 1.5;">
+        Enter your new Jira Estimator credentials below
+      </p>
+    </div>
+    
+    <div class="p-4 p-md-5">
+      <div class="text-center mb-4">
+        <h1 class="h3 font-manrope fw-bold mb-1">Choose a new password</h1>
+      </div>
 
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
-
         <%= f.hidden_field :reset_password_token %>
 
-        <div class="field form-outline mb-4">
-          <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "form-control", placeholder: "New Password", required: true %>
+        <div class="mb-4">
+          <%= f.label :password, "New password", class: "label-heading" %>
           <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> characters minimum)</em><br>
+            <span class="small text-muted mb-2 d-block">(<%= @minimum_password_length %> characters minimum)</span>
           <% end %>
+          <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "form-control-custom", placeholder: "New Password", required: true %>
         </div>
 
-        <div class="field form-outline mb-4">
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Confirm New Password", required: true %>
-        </div>
-
-        <div class="row mb-4">
-          <div class="col d-flex justify-content-center">
-            <div class="col forgot">
-              <%= render "devise/shared/links" %>
-            </div>
-          </div>
+        <div class="mb-4">
+          <%= f.label :password_confirmation, "Confirm new password", class: "label-heading" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control-custom", placeholder: "Confirm New Password", required: true %>
         </div>
 
         <div class="actions">
-          <%= f.submit "Change my password", class: "btn btn-primary btn-block w-100" %>
+          <%= f.submit "Change my password", class: "btn-primary-custom" %>
         </div>
       <% end %>
+
+      <div class="mt-4 text-center">
+        <%= link_to "Back to Log in", new_session_path(resource_name), class: "small fw-bold text-decoration-none text-primary" %>
+      </div>
     </div>
   </div>
 </div>

@@ -1,15 +1,37 @@
-<div>
-  <p class="h1">Estimations</p>
+<div class="mb-4">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb mb-2">
+      <li class="breadcrumb-item"><%= link_to "Projects", projects_path, class: "text-decoration-none" %></li>
+      <li class="breadcrumb-item"><%= link_to @epic_presenter.project_key, project_epics_path(project_id: @epic_presenter.project_key), class: "text-decoration-none" %></li>
+      <li class="breadcrumb-item"><%= link_to @epic_presenter.key, project_epic_path(project_id: @epic_presenter.project_key, id: @epic_presenter.key), class: "text-decoration-none" %></li>
+      <li class="breadcrumb-item active">Estimations</li>
+    </ol>
+  </nav>
 
-  <%= render 'estimations/filters', project_id: @epic_presenter.project_key, epic_id: @epic_presenter.key %>
-  <br>
+  <h1 class="font-manrope display-6 fw-bold mb-1">Epic Estimations</h1>
+  <p class="text-secondary fw-medium">Calculate and track predictive timelines for this epic based on historical velocity.</p>
+</div>
 
-  <p class="h5">Epic Details</p>
-  <%= render 'shared/epic_details_table', epic_presenter: @epic_presenter %>
+<%= render 'estimations/filters', project_id: @epic_presenter.project_key, epic_id: @epic_presenter.key %>
 
-  <p class="h5">Estimations</p>
-  <%= render 'shared/epic_estimations_tables', epic_estimation_presenter: @epic_presenter.estimation_presenter, epic_progress_presenter: @epic_presenter.progress_presenter, project_id: @epic_presenter.project_key, epic_id: @epic_presenter.key %>
+<div class="row g-4 mt-2">
+  <aside class="col-12 col-lg-3">
+    <div class="card p-4 mb-4 border-0 shadow-sm" style="background-color: var(--surface-container);">
+      <div class="d-flex align-items-center gap-2 mb-4">
+        <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">bookmarks</span>
+        <h2 class="h6 fw-bold mb-0">Epic Details</h2>
+      </div>
+      <%= render 'shared/epic_details_table', epic_presenter: @epic_presenter %>
+    </div>
+  </aside>
 
-  <p class="h5">Estimations History</p>
-  <%= render 'estimations/epic_estimations_history_table', epic_estimation_history_presenter: @epic_presenter.estimation_history_presenter %>
+  <div class="col-12 col-lg-9">
+    <h2 class="h5 font-manrope fw-bold mb-3">Saved Estimations History</h2>
+    <div class="projects-card mb-5">
+      <%= render 'estimations/epic_estimations_history_table', epic_estimation_history_presenter: @epic_presenter.estimation_history_presenter %>
+    </div>
+    
+    <h2 class="h5 font-manrope fw-bold mb-3">Live Forecasting</h2>
+    <%= render 'shared/epic_estimations_tables', epic_estimation_presenter: @epic_presenter.estimation_presenter, epic_progress_presenter: @epic_presenter.progress_presenter, project_id: @epic_presenter.project_key, epic_id: @epic_presenter.key %>
+  </div>
 </div>
