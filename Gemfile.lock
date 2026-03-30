@@ -158,6 +158,9 @@ GEM
       bigdecimal
       rake (~> 13.3)
     hashdiff (1.2.1)
+    herb (0.9.3-arm64-darwin)
+    herb (0.9.3-x86_64-darwin)
+    herb (0.9.3-x86_64-linux-gnu)
     httparty (0.24.2)
       csv
       mini_mime (>= 1.0.0)
@@ -286,6 +289,9 @@ GEM
       erb
       psych (>= 4.0.0)
       tsort
+    reactionview (0.3.0)
+      actionview (>= 7.0)
+      herb (>= 0.9.0, < 1.0.0)
     regexp_parser (2.11.3)
     reline (0.6.3)
       io-console (~> 0.5)
@@ -418,6 +424,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   faker
+  herb
   httparty
   importmap-rails
   letter_opener
@@ -425,6 +432,7 @@ DEPENDENCIES
   propshaft
   puma
   rails (~> 8.1)
+  reactionview
   rspec-rails
   rubocop-factory_bot
   rubocop-performance

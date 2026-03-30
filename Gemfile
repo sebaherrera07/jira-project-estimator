@@ -62,6 +62,9 @@ gem 'devise'
 # For DTOs usage
 gem 'ar2dto'
 
+# A new ActionView-compatible ERB engine
+gem 'reactionview'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'byebug'
@@ -69,6 +72,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'herb', require: false
   gem 'rspec-rails'
   gem 'rubocop-factory_bot', require: false
   gem 'rubocop-performance', require: false
