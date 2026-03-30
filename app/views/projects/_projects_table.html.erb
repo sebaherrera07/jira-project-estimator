@@ -1,7 +1,7 @@
-<table class="table align-middle mb-0 bg-white table-hover mb-5">
-  <thead class="bg-light">
+<table class="table table-hover mb-0">
+  <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col" style="width: 80px;">#</th>
       <th scope="col">Project Key</th>
       <th scope="col">Name</th>
       <th scope="col">Epics</th>
@@ -10,10 +10,21 @@
   <tbody>
     <% projects.each.with_index(1) do |project, index| %>
       <tr>
-        <th scope="row"><%= index %></th>
-        <td><%= project.key %></td>
-        <td><%= project.name %></td>
-        <td><%= link_to "Epics", project_epics_path(project_id: project.key) %></td>
+        <th scope="row" class="small fw-medium text-secondary"><%= index %></th>
+        <td>
+          <span class="project-badge"><%= project.key %></span>
+        </td>
+        <td>
+          <div class="d-flex flex-column">
+            <span class="small fw-bold font-manrope"><%= project.name %></span>
+          </div>
+        </td>
+        <td>
+          <%= link_to project_epics_path(project_id: project.key), class: "epic-link d-inline-flex align-items-center gap-1" do %>
+            <span>Epics</span>
+            <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_forward</span>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

@@ -1,5 +1,5 @@
-<table class="table align-middle mb-0 bg-white table-hover mb-5">
-  <thead class="bg-light">
+<table class="table table-hover mb-0">
+  <thead>
     <tr>
       <th scope="col">Total Issues</th>
       <th scope="col">Completed Issues</th>
@@ -10,11 +10,11 @@
   </thead>
   <tbody>
     <tr>
-      <td><%= epic_issues_count_presenter.total_issues_count %></td>
-      <td><%= epic_issues_count_presenter.completed_issues_count %></td>
-      <td><%= epic_issues_count_presenter.remaining_issues_count %></td>
-      <td><%= epic_issues_count_presenter.started_issues_count %></td>
-      <td><%= epic_issues_count_presenter.unestimated_issues_count %></td>
+      <td class="fs-5 fw-bold text-dark"><%= epic_issues_count_presenter.total_issues_count %></td>
+      <td class="fs-5 fw-bold text-success"><%= epic_issues_count_presenter.completed_issues_count %></td>
+      <td class="fs-5 fw-bold text-secondary"><%= epic_issues_count_presenter.remaining_issues_count %></td>
+      <td class="fs-5 fw-bold text-primary"><%= epic_issues_count_presenter.started_issues_count %></td>
+      <td class="fs-5 fw-bold text-danger"><%= epic_issues_count_presenter.unestimated_issues_count %></td>
     </tr>
   </tbody>
 </table>

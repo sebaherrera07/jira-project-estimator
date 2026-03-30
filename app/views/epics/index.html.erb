@@ -1,6 +1,19 @@
-<div>
-  <p class="h1"><%= "Project #{@project_key} Epics" %></p>
-  <br>
+<div class="mb-5">
+  <nav aria-label="Breadcrumb">
+    <ol class="breadcrumb mb-2">
+      <li class="breadcrumb-item"><%= link_to "Projects", projects_path, class: "text-decoration-none" %></li>
+      <li class="breadcrumb-item active"><%= @project_key %></li>
+    </ol>
+  </nav>
 
-  <%= render 'epics/epics_table', epics: @epics %>
+  <h1 class="display-6 fw-bold mb-2 font-manrope">Project <%= @project_key %> Epics</h1>
+  <p class="text-secondary fw-medium">
+    Each epic represents a significant body of work managed across iterations.
+  </p>
+</div>
+
+<div class="projects-card">
+  <div class="table-responsive">
+    <%= render 'epics/epics_table', epics: @epics %>
+  </div>
 </div>

@@ -1,21 +1,60 @@
-<div>
-  <p class="h1">Epic</p>
+<div class="mb-4">
+  <nav aria-label="Breadcrumb">
+    <ol class="breadcrumb mb-2">
+      <li class="breadcrumb-item"><%= link_to "Projects", projects_path, class: "text-decoration-none" %></li>
+      <li class="breadcrumb-item"><%= link_to @epic_presenter.project_key, project_epics_path(project_id: @epic_presenter.project_key), class: "text-decoration-none" %></li>
+      <li class="breadcrumb-item active"><%= @epic_presenter.key %></li>
+    </ol>
+  </nav>
 
-  <%= render 'epics/filters', project_id: @epic_presenter.project_key, epic_id: @epic_presenter.key %>
-  <br>
+  <h1 class="font-manrope display-6 fw-bold mb-1">Epic Dashboard</h1>
+  <p class="text-secondary fw-medium">Monitor progress, issues, and estimations for this epic.</p>
+</div>
 
-  <p class="h5">Epic Details</p>
-  <%= render 'shared/epic_details_table', epic_presenter: @epic_presenter %>
+<%= render 'epics/filters', project_id: @epic_presenter.project_key, epic_id: @epic_presenter.key %>
 
-  <p class="h5">Issues</p>
-  <%= link_to "View Details", project_epic_issues_path(project_id: @epic_presenter.project_key, epic_id: @epic_presenter.key, labels: params[:labels]) %>
-  <%= render 'epics/epic_issues_count_table', epic_issues_count_presenter: @epic_presenter.issues_count_presenter %>
+<div class="row g-4 mt-2">
+  <aside class="col-12 col-lg-3">
+    <div class="card p-4 mb-4 border-0 shadow-sm" style="background-color: var(--surface-container);">
+      <div class="d-flex align-items-center gap-2 mb-4">
+        <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">bookmarks</span>
+        <h2 class="h6 fw-bold mb-0">Epic Details</h2>
+      </div>
+      <%= render 'shared/epic_details_table', epic_presenter: @epic_presenter %>
+    </div>
+  </aside>
 
-  <p class="h5">Progress</p>
-  <%= link_to 'View Details', project_epic_progress_index_path(project_id: @epic_presenter.project_key, epic_id: @epic_presenter.key, labels: params[:labels]) %>
-  <%= render 'shared/epic_progress_table', epic_progress_presenter: @epic_presenter.progress_presenter %>
+  <div class="col-12 col-lg-9">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+      <h2 class="h5 font-manrope fw-bold mb-0">Issues Summary</h2>
+      <%= link_to project_epic_issues_path(project_id: @epic_presenter.project_key, epic_id: @epic_presenter.key, labels: params[:labels]), class: "epic-link d-inline-flex align-items-center gap-1" do %>
+        <span>View Details</span><span class="material-symbols-outlined" style="font-size: 1rem;">arrow_forward</span>
+      <% end %>
+    </div>
+    <div class="projects-card mb-5">
+      <div class="table-responsive">
+        <%= render 'epics/epic_issues_count_table', epic_issues_count_presenter: @epic_presenter.issues_count_presenter %>
+      </div>
+    </div>
 
-  <p class="h5">Estimations</p>
-  <%= link_to 'View Details', project_epic_estimations_path(project_id: @epic_presenter.project_key, epic_id: @epic_presenter.key, labels: params[:labels], expected_average: params[:expected_average], uncertainty_level: params[:uncertainty_level]) %>
-  <%= render 'shared/epic_estimations_tables', epic_estimation_presenter: @epic_presenter.estimation_presenter, epic_progress_presenter: @epic_presenter.progress_presenter, project_id: @epic_presenter.project_key, epic_id: @epic_presenter.key %>
+    <div class="d-flex align-items-center justify-content-between mb-3">
+      <h2 class="h5 font-manrope fw-bold mb-0">Progress Metrics</h2>
+      <%= link_to project_epic_progress_index_path(project_id: @epic_presenter.project_key, epic_id: @epic_presenter.key, labels: params[:labels]), class: "epic-link d-inline-flex align-items-center gap-1" do %>
+        <span>View Details</span><span class="material-symbols-outlined" style="font-size: 1rem;">arrow_forward</span>
+      <% end %>
+    </div>
+    <div class="projects-card mb-5">
+      <div class="table-responsive">
+        <%= render 'shared/epic_progress_table', epic_progress_presenter: @epic_presenter.progress_presenter %>
+      </div>
+    </div>
+
+    <div class="d-flex align-items-center justify-content-between mb-3">
+      <h2 class="h5 font-manrope fw-bold mb-0">Estimations</h2>
+      <%= link_to project_epic_estimations_path(project_id: @epic_presenter.project_key, epic_id: @epic_presenter.key, labels: params[:labels], expected_average: params[:expected_average], uncertainty_level: params[:uncertainty_level]), class: "epic-link d-inline-flex align-items-center gap-1" do %>
+        <span>View Details</span><span class="material-symbols-outlined" style="font-size: 1rem;">arrow_forward</span>
+      <% end %>
+    </div>
+    <%= render 'shared/epic_estimations_tables', epic_estimation_presenter: @epic_presenter.estimation_presenter, epic_progress_presenter: @epic_presenter.progress_presenter, project_id: @epic_presenter.project_key, epic_id: @epic_presenter.key %>
+  </div>
 </div>

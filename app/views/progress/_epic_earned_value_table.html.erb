@@ -1,26 +1,26 @@
-<table class="table align-middle mb-0 bg-white table-hover mb-5">
+<table class="table table-hover mb-0">
   <thead class="bg-light">
     <tr>
-      <th scope="col">Week Number</th>
+      <th scope="col">Week Num</th>
       <th scope="col">Week Dates</th>
       <th scope="col">Issue Key</th>
       <th scope="col">Finish Date</th>
       <th scope="col">Points</th>
-      <th scope="col">Earned Value</th>
-      <th scope="col">Cumulative Earned Value</th>
+      <th scope="col">Earn. Value</th>
+      <th scope="col">Cum. Earn. Value</th>
     </tr>
   </thead>
   <tbody>
     <% epic_earned_value_presenter.earned_value_items.each.with_index do |earned_value_item, index| %>
-      <% different_week_than_previous_item = (earned_value_item.finish_week_number != epic_earned_value_presenter.earned_value_items[index-1].finish_week_number) %>
+      <% different_week_than_previous_item = index.zero? || (earned_value_item.finish_week_number != epic_earned_value_presenter.earned_value_items[index-1].finish_week_number) %>
       <tr>
-        <td><%= different_week_than_previous_item ? earned_value_item.finish_week_number : '' %></td>
-        <td><%= different_week_than_previous_item ? earned_value_item.finish_week_dates : '' %></td>
-        <td><%= earned_value_item.issue_key %></td>
-        <td><%= earned_value_item.finish_date.strftime("%a, %d %b %Y") %></td>
-        <td><%= earned_value_item.points %></td>
-        <td><%= "#{earned_value_item.earned_value}%" %></td>
-        <td><%= "#{earned_value_item.cumulative_earned_value}%" %></td>
+        <td class="font-monospace fw-bold"><%= different_week_than_previous_item ? earned_value_item.finish_week_number : '' %></td>
+        <td class="text-secondary small fw-medium"><%= different_week_than_previous_item ? earned_value_item.finish_week_dates : '' %></td>
+        <td><span class="badge border border-secondary text-secondary rounded-pill fw-medium"><%= earned_value_item.issue_key %></span></td>
+        <td class="text-secondary small fw-medium"><%= earned_value_item.finish_date.strftime("%d %b %Y") %></td>
+        <td class="text-center font-monospace"><%= earned_value_item.points %></td>
+        <td class="fw-bold text-primary"><%= "#{earned_value_item.earned_value}%" %></td>
+        <td class="fw-bold text-info"><%= "#{earned_value_item.cumulative_earned_value}%" %></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,4 +1,4 @@
-<table class="table align-middle mb-0 bg-white table-hover mb-5">
+<table class="table table-hover mb-0">
   <thead class="bg-light">
     <tr>
       <th scope="col">Week Number</th>
@@ -11,11 +11,11 @@
   <tbody>
     <% epic_weekly_earned_value_presenter.weekly_earned_value_items.each do |weekly_earned_value_item| %>
       <tr>
-        <td><%= weekly_earned_value_item.week_number %></td>
-        <td><%= weekly_earned_value_item.week_dates %></td>
-        <td><%= weekly_earned_value_item.points_completed %></td>
-        <td><%= "#{weekly_earned_value_item.earned_value}%" %></td>
-        <td><%= "#{weekly_earned_value_item.cumulative_earned_value}%" %></td>
+        <td class="font-monospace fw-bold"><%= weekly_earned_value_item.week_number %></td>
+        <td class="text-secondary small fw-medium"><%= weekly_earned_value_item.week_dates %></td>
+        <td class="fs-6 fw-bold text-success"><%= weekly_earned_value_item.points_completed %></td>
+        <td class="fs-6 fw-bold text-primary"><%= "#{weekly_earned_value_item.earned_value}%" %></td>
+        <td class="fs-6 fw-bold text-info"><%= "#{weekly_earned_value_item.cumulative_earned_value}%" %></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,49 +1,52 @@
 <%= form_with url: pert_index_path, method: :get do |form| %>
-  <div class="row">
-    <div class="col-lg-3">
-      <div class="form-group">
-        <%= form.label :points, "Critical Path Points", class: "form-label" %>
-        <%= form.number_field :points, value: params[:points], class: "form-control", required: true, min: 1, step: 1 %>
+  <section class="p-4 mb-4 rounded-4 border bg-white shadow-sm" style="border-radius: 1rem;">
+    <div class="row align-items-end g-4 mb-4">
+      <div class="col-12 col-md-4">
+        <%= form.label :points, "Critical Path Points", class: "text-uppercase fw-bold text-secondary text-2xs mb-2 d-block" %>
+        <%= form.number_field :points, value: params[:points], class: "form-control bg-light py-2 px-3 shadow-none border-0", style: "border-radius: 0.5rem;", required: true, min: 1, step: 1 %>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <%= form.label :start_date, "Project Start Date (Optional)", class: "text-uppercase fw-bold text-secondary text-2xs mb-2 d-block" %>
+        <%= form.date_field :start_date, value: params[:start_date], class: "form-control bg-light py-2 px-3 shadow-none border-0", style: "border-radius: 0.5rem;" %>
       </div>
     </div>
 
-    <div class="col-lg-3">
-      <div class="form-group">
-        <%= form.label :start_date, "Start Date (optional)", class: "form-label" %>
-        <%= form.date_field :start_date, value: params[:start_date], class: "form-control" %>
+    <hr class="border-secondary opacity-25 my-4">
+
+    <div class="mb-3">
+      <h3 class="h6 font-manrope fw-bold mb-1">Point Delivery Estimates</h3>
+      <p class="text-secondary small">Define the average number of days required to fully complete 1 point.</p>
+    </div>
+
+    <div class="row align-items-end g-4">
+      <div class="col-12 col-md-3">
+        <%= form.label :optimistic, "Optimistic (Best Case)", class: "text-uppercase fw-bold text-secondary text-2xs mb-2 d-block" %>
+        <div class="position-relative">
+          <span class="material-symbols-outlined position-absolute top-50 translate-middle-y ms-3 text-success" style="font-size: 1.1rem">sentiment_very_satisfied</span>
+          <%= form.number_field :optimistic, value: params[:optimistic], class: "form-control bg-light py-2 pe-3 ps-5 border-0 shadow-none", style: "border-radius: 0.5rem;", required: true, min: 0.1, step: 0.1 %>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-3">
+        <%= form.label :most_likely, "Most Likely (Probable)", class: "text-uppercase fw-bold text-secondary text-2xs mb-2 d-block" %>
+        <div class="position-relative">
+          <span class="material-symbols-outlined position-absolute top-50 translate-middle-y ms-3 text-primary" style="font-size: 1.1rem">sentiment_satisfied</span>
+          <%= form.number_field :most_likely, value: params[:most_likely], class: "form-control bg-light py-2 pe-3 ps-5 border-0 shadow-none", style: "border-radius: 0.5rem;", required: true, min: 0.1, step: 0.1 %>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-3">
+        <%= form.label :pessimistic, "Pessimistic (Worst Case)", class: "text-uppercase fw-bold text-secondary text-2xs mb-2 d-block" %>
+        <div class="position-relative">
+          <span class="material-symbols-outlined position-absolute top-50 translate-middle-y ms-3 text-danger" style="font-size: 1.1rem">sentiment_very_dissatisfied</span>
+          <%= form.number_field :pessimistic, value: params[:pessimistic], class: "form-control bg-light py-2 pe-3 ps-5 border-0 shadow-none", style: "border-radius: 0.5rem;", required: true, min: 0.1, step: 0.1 %>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-3">
+        <%= form.submit "Calculate Forecast", name: nil, class: "btn-primary-custom w-100 py-2", style: "padding-top: 0.55rem!important; padding-bottom: 0.55rem!important;" %>
       </div>
     </div>
-  </div>
-
-  <br>
-  <div class="row">
-    <p class="h6">The following values represent the average number of days to complete 1 Point</p>
-
-    <div class="col-lg-2">
-      <div class="form-group">
-        <%= form.label :optimistic, "Optimistic", class: "form-label" %>
-        <%= form.number_field :optimistic, value: params[:optimistic], class: "form-control", required: true, min: 0.1, step: 0.1 %>
-      </div>
-    </div>
-
-    <div class="col-lg-2">
-      <div class="form-group">
-        <%= form.label :most_likely, "Most Likely", class: "form-label" %>
-        <%= form.number_field :most_likely, value: params[:most_likely], class: "form-control", required: true, min: 0.1, step: 0.1 %>
-      </div>
-    </div>
-
-    <div class="col-lg-2">
-      <div class="form-group">
-        <%= form.label :pessimistic, "Pessimistic", class: "form-label" %>
-        <%= form.number_field :pessimistic, value: params[:pessimistic], class: "form-control", required: true, min: 0.1, step: 0.1 %>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-2" style="margin-top: 30px;">
-      <%= form.submit "Calculate", name: nil, class: "btn btn-primary" %>
-    </div>
-  </div>
+  </section>
 <% end %>

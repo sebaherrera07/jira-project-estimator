@@ -1,36 +1,53 @@
-<div class="container text-center">
-  <%= image_tag("/ms-icon-150x150.png", alt: "Logo") %>
+<div class="d-flex align-items-center justify-content-center w-100 mt-5">
+  <div class="login-card overflow-hidden">
+    <div class="aspirational-banner p-4 p-md-5 text-center">
+      <h2 class="h4 font-manrope fw-bold text-dark mb-2">
+        Jira Project Estimator
+      </h2>
+      <p class="small text-muted mb-0 mx-auto" style="max-width: 280px; line-height: 1.5;">
+        Calculate predictive estimates and track timeline progress for your Jira projects.
+      </p>
+    </div>
 
-  <div class="row justify-content-md-center">
-    <div class="col col-lg-4">
-      <h2>Log in</h2>
-      <br>
+    <div class="p-4 p-md-5">
+      <div class="text-center mb-4">
+        <h1 class="h3 font-manrope fw-bold mb-1">Log in</h1>
+        <p class="small text-muted">Access your project estimator platform</p>
+      </div>
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="field form-outline mb-4">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email", required: true %>
+        <div class="mb-4">
+          <%= f.label :email, class: "label-heading" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control-custom", placeholder: "name@company.com", required: true %>
         </div>
 
-        <div class="field form-outline mb-4">
-          <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "Password", required: true %>
-        </div>
-
-        <div class="row mb-4">
-          <div class="col d-flex justify-content-center">
-            <% if devise_mapping.rememberable? %>
-              <div class="field form-check">
-                <%= f.check_box :remember_me, class: "form-check-input" %>
-                <%= f.label :remember_me, class: "form-check-label"  %>
-              </div>
+        <div class="mb-4">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <%= f.label :password, class: "label-heading mb-0" %>
+            <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+              <%= link_to "Forgot password?", new_password_path(resource_name), class: "small fw-bold text-decoration-none text-primary" %>
             <% end %>
-            <div class="col forgot">
-              <%= render "devise/shared/links" %>
-            </div>
           </div>
+          <%= f.password_field :password, autocomplete: "current-password", class: "form-control-custom", placeholder: "••••••••", required: true %>
         </div>
+
+        <% if devise_mapping.rememberable? %>
+          <div class="d-flex align-items-center mb-4 px-1">
+            <%= f.check_box :remember_me, class: "form-check-input mt-0 me-2 border-secondary", style: "width: 1rem; height: 1rem;" %>
+            <%= f.label :remember_me, class: "small fw-medium text-muted mb-0", style: "cursor: pointer;" %>
+          </div>
+        <% end %>
 
         <div class="actions">
-          <%= f.submit "Log in", class: "btn btn-primary btn-block w-100" %>
+          <%= f.submit "Log in", class: "btn-primary-custom" %>
+        </div>
+      <% end %>
+
+      <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+        <div class="mt-4 text-center">
+          <p class="small text-muted mb-0">
+            Need an account? <%= link_to "Sign up", new_registration_path(resource_name), class: "fw-bold text-decoration-none text-primary" %>
+          </p>
         </div>
       <% end %>
     </div>

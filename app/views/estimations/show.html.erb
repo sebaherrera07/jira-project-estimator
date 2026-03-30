@@ -1,10 +1,111 @@
-<div>
-  <p class="h1">Estimation</p>
+<div class="mb-4">
+  <nav aria-label="Breadcrumb">
+    <ol class="breadcrumb mb-2">
+      <li class="breadcrumb-item"><%= link_to "Projects", projects_path, class: "text-decoration-none" %></li>
+      <li class="breadcrumb-item"><%= link_to @estimation.project_id, project_epics_path(project_id: @estimation.project_id), class: "text-decoration-none" %></li>
+      <li class="breadcrumb-item"><%= link_to @estimation.epic_id, project_epic_estimations_path(project_id: @estimation.project_id, epic_id: @estimation.epic_id), class: "text-decoration-none" %></li>
+      <li class="breadcrumb-item active">Snapshot</li>
+    </ol>
+  </nav>
 
-  <%= link_to 'Back To Epic Estimations', project_epic_estimations_path(project_id: @estimation.project_id, epic_id: @estimation.epic_id) %>
-  <br>
-  <br>
+  <h1 class="font-manrope display-6 fw-bold mb-1">Estimation Snapshot</h1>
+  <p class="text-secondary fw-medium">View the fixed calculation details from this point in time.</p>
+</div>
 
-  <p class="h5">Details</p>
-  <%= render 'estimations/estimation_details_table', estimation: @estimation %>
+<div class="row g-4 mt-2">
+  <aside class="col-12 col-lg-3">
+    <div class="card p-4 mb-4 border-0 shadow-sm" style="background-color: var(--surface-container);">
+      <div class="d-flex align-items-center gap-2 mb-4">
+        <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">analytics</span>
+        <h2 class="h6 fw-bold mb-0">Context Details</h2>
+      </div>
+
+      <div class="d-flex flex-column gap-3">
+        <div>
+          <div class="text-uppercase fw-bold text-secondary text-2xs d-block mb-1 tracking-widest">Project / Epic</div>
+          <div class="small fw-bold text-dark font-monospace"><%= @estimation.project_id %> / <%= @estimation.epic_id %></div>
+        </div>
+        <div>
+          <div class="text-uppercase fw-bold text-secondary text-2xs d-block mb-1 tracking-widest">Created By</div>
+          <div class="small fw-medium text-secondary text-break"><%= @estimation.user&.email || 'N/A' %></div>
+        </div>
+        <div>
+          <div class="text-uppercase fw-bold text-secondary text-2xs d-block mb-1 tracking-widest">Snapshot Date</div>
+          <div class="small fw-medium text-secondary"><%= @estimation.created_at.strftime("%a, %d %b %Y") %></div>
+        </div>
+        <div>
+          <div class="text-uppercase fw-bold text-secondary text-2xs d-block mb-1 tracking-widest">Initial Week Assessed</div>
+          <div class="small fw-medium text-secondary"><%= @estimation.created_at.beginning_of_week.strftime("%a, %d %b %Y") %></div>
+        </div>
+        <div>
+          <div class="text-uppercase fw-bold text-secondary text-2xs d-block mb-1 tracking-widest">Last Completed Week Num</div>
+          <div class="small fw-bold text-dark font-monospace"><%= @estimation.last_completed_week_number.presence || 'N/A' %></div>
+        </div>
+        <div>
+          <div class="text-uppercase fw-bold text-secondary text-2xs d-block mb-1 tracking-widest">Dynamic Filters Applied</div>
+          <div class="small fw-medium text-secondary"><%= @estimation.filters_applied.presence || 'None' %></div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="col-12 col-lg-9">
+    <h2 class="h5 font-manrope fw-bold mb-3">Snapshot Metrics</h2>
+    <div class="projects-card mb-5">
+      <table class="table table-hover mb-0">
+        <thead class="bg-light">
+          <tr>
+            <th scope="col">Total Points</th>
+            <th scope="col">Avg. Weekly Velocity</th>
+            <th scope="col">Remaining Scope</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="font-monospace fw-bold fs-6"><%= @estimation.total_points %></td>
+            <td class="fw-bold fs-6 text-primary"><%= @estimation.avg_weekly_earned_value %></td>
+            <td class="fw-bold fs-6 text-info"><%= "#{@estimation.remaining_earned_value.round}%" %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="h5 font-manrope fw-bold mb-3">Baseline Forecast</h2>
+    <div class="projects-card mb-5">
+      <table class="table table-hover mb-0">
+        <thead class="bg-light">
+          <tr>
+            <th scope="col">Remaining Weeks</th>
+            <th scope="col">Estimated Finish Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="font-monospace fw-bold fs-6"><%= @estimation.remaining_weeks %></td>
+            <td class="fw-bold fs-6 text-success"><%= @estimation.estimated_finish_date.strftime("%d %b %Y") %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="h5 font-manrope fw-bold mb-3">Buffered Forecast (Uncertainty)</h2>
+    <div class="projects-card mb-5">
+      <table class="table table-hover mb-0">
+        <thead class="bg-light">
+          <tr>
+            <th scope="col">Uncertainty Parameter</th>
+            <th scope="col">Remaining Weeks (Buffer)</th>
+            <th scope="col">Finish Date (Buffer)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-secondary small fw-medium"><%= @estimation.uncertainty_level.presence || 'None' %> (<%= "#{@estimation.uncertainty_percentage}%" %>)</td>
+            <td class="font-monospace fw-bold fs-6 text-danger"><%= @estimation.remaining_weeks_with_uncertainty.presence || 'N/A' %></td>
+            <td class="fw-bold fs-6 text-danger"><%= @estimation.estimated_finish_date_with_uncertainty&.strftime("%d %b %Y") || 'N/A' %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

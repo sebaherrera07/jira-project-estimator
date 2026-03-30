@@ -1,25 +1,34 @@
-<table class="table align-middle mb-0 bg-white table-hover mb-5">
-  <thead class="bg-light">
+<table class="table table-hover mb-0">
+  <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Issue Key</th>
+      <th scope="col" style="width: 70px;">#</th>
+      <th scope="col" style="width: 140px;">Issue Key</th>
       <th scope="col">Summary</th>
-      <th scope="col">Labels</th>
-      <th scope="col">Status</th>
-      <th scope="col">Points</th>
-      <th scope="col">Finish Date</th>
+      <th scope="col" style="width: 150px;">Labels</th>
+      <th scope="col" style="width: 100px;">Status</th>
+      <th scope="col" class="text-center" style="width: 80px;">Points</th>
+      <th scope="col" style="width: 140px;">Finish Date</th>
     </tr>
   </thead>
   <tbody>
     <% issues.each.with_index(1) do |issue, index| %>
       <tr>
-        <th scope="row"><%= index %></th>
-        <td><%= issue.key %></td>
-        <td><%= issue.summary %></td>
-        <td><%= issue.labels %></td>
-        <td><%= issue.status %></td>
-        <td><%= issue.points %></td>
-        <td><%= issue.finish_date&.strftime("%a, %d %b %Y") %></td>
+        <th scope="row" class="text-secondary fw-medium small"><%= index %></th>
+        <td class="font-monospace text-primary fw-bold small"><%= issue.key %></td>
+        <td class="small fw-bold font-manrope text-dark"><%= issue.summary %></td>
+        <td>
+          <% if issue.labels.present? %>
+            <span class="label-pill"><%= issue.labels %></span>
+          <% end %>
+        </td>
+        <td>
+          <span class="d-flex align-items-center small fw-bold text-secondary">
+            <span class="status-dot bg-secondary border"></span>
+            <%= issue.status %>
+          </span>
+        </td>
+        <td class="text-center fw-bold small"><%= issue.points %></td>
+        <td class="text-secondary small"><%= issue.finish_date&.strftime("%d %b %Y") %></td>
       </tr>
     <% end %>
   </tbody>

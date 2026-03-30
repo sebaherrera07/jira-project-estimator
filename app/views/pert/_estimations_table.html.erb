@@ -1,24 +1,28 @@
 <% if pert_presenter.present? %>
-  <table class="table align-middle mb-0 bg-white table-hover mb-5">
-    <thead class="bg-light">
-      <tr>
-        <th scope="col">PERT</th>
-        <th scope="col">Days To Complete</th>
-        <th scope="col">Weeks To Complete</th>
-        <% if pert_presenter.estimated_finish_date.present? %>
-          <th scope="col">Finish Date</th>
-        <% end %>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><%= pert_presenter.pert_formula %></td>
-        <td><%= pert_presenter.estimated_days_to_complete %></td>
-        <td><%= pert_presenter.estimated_weeks_to_complete %></td>
-        <% if pert_presenter.estimated_finish_date.present? %>
-          <td><%= pert_presenter.estimated_finish_date %></td>
-        <% end %>
-      </tr>
-    </tbody>
-  </table>
+  <div class="projects-card mb-5">
+    <div class="table-responsive">
+      <table class="table table-hover mb-0">
+        <thead>
+          <tr>
+            <th scope="col">Result (PERT)</th>
+            <th scope="col">Days To Complete</th>
+            <th scope="col">Weeks To Complete</th>
+            <% if pert_presenter.estimated_finish_date.present? %>
+              <th scope="col">Estimated Finish Date</th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="font-monospace fw-bold"><%= pert_presenter.pert_formula %></td>
+            <td class="fs-5 fw-bold text-dark"><%= pert_presenter.estimated_days_to_complete %></td>
+            <td class="fs-5 fw-bold text-primary"><%= pert_presenter.estimated_weeks_to_complete %></td>
+            <% if pert_presenter.estimated_finish_date.present? %>
+              <td class="fs-5 fw-bold text-success"><%= pert_presenter.estimated_finish_date %></td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 <% end %>

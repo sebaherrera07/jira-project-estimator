@@ -1,12 +1,34 @@
-<div>
-  <p class="h1">Issues</p>
+<div class="mb-4">
+  <nav aria-label="Breadcrumb">
+    <ol class="breadcrumb mb-2">
+      <li class="breadcrumb-item"><%= link_to "Projects", projects_path, class: "text-decoration-none" %></li>
+      <li class="breadcrumb-item"><%= link_to @epic_presenter.project_key, project_epics_path(project_id: @epic_presenter.project_key), class: "text-decoration-none" %></li>
+      <li class="breadcrumb-item active">Issues</li>
+    </ol>
+  </nav>
 
-  <%= render 'issues/filters', project_id: @epic_presenter.project_key, epic_id: @epic_presenter.key %>
-  <br>
+  <h1 class="font-manrope display-6 fw-bold mb-1">Issues</h1>
+  <p class="text-secondary fw-medium">Manage and track your epic tasks.</p>
+</div>
 
-  <p class="h5">Epic Details</p>
-  <%= render 'shared/epic_details_table', epic_presenter: @epic_presenter %>
+<%= render 'issues/filters', project_id: @epic_presenter.project_key, epic_id: @epic_presenter.key %>
 
-  <p class="h5">Issues</p>
-  <%= render 'issues/issues_table', issues: @epic_presenter.issues_sorted %>
+<div class="row g-4 mt-2">
+  <aside class="col-12 col-lg-3">
+    <div class="card p-4 mb-4 border-0 shadow-sm" style="background-color: var(--surface-container);">
+      <div class="d-flex align-items-center gap-2 mb-4">
+        <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">bookmarks</span>
+        <h2 class="h6 fw-bold mb-0">Epic Details</h2>
+      </div>
+      <%= render 'shared/epic_details_table', epic_presenter: @epic_presenter %>
+    </div>
+  </aside>
+
+  <div class="col-12 col-lg-9">
+    <div class="projects-card mb-5">
+      <div class="table-responsive">
+        <%= render 'issues/issues_table', issues: @epic_presenter.issues_sorted %>
+      </div>
+    </div>
+  </div>
 </div>

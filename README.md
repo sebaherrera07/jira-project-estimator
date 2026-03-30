@@ -38,7 +38,7 @@ To see some of the main screens, please check the [screens](docs/SCREENS.md) pag
 
 9. The tool allows you to consider a level of uncertainty when calculating an estimation, with 5 possible values: Empty, Low, Medium, High, Very High. For each value you can set a percentage associated to it, by setting the `LOW_UNCERTAINTY_PERCENTAGE, MEDIUM_UNCERTAINTY_PERCENTAGE, HIGH_UNCERTAINTY_PERCENTAGE, VERY_HIGH_UNCERTAINTY_PERCENTAGE` environment variables. What this will do is, for example, if right now you have 20 points remaining, and you set the `MEDIUM_UNCERTAINTY_PERCENTAGE` to 20% and select `Uncertainty level` filter to Medium, the tool will consider that you have 24 points remaining and calculate the number of weeks remaining based on that.
 
-10. The calculations are more accurate when you estimate **ALL** the Issues and after multiple weeks of work (the first few weeks is expected to see unaccurate estimates).
+10. The calculations are more accurate when you estimate **ALL** the Issues and after multiple weeks of work (the first few weeks is expected to see inaccurate estimates).
 
 11. The tool works for Scrum, Kanban, or any other Jira board type. By default it might just work with Scrum boards by using the existing points field, and if you need to use another custom field, you should set the `JIRA_STORY_POINTS_FIELD_CODES` environment variable, which allows comma separated values (e.g. `customfield_10016,customfield_10034`)
 
