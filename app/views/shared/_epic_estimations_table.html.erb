@@ -21,19 +21,17 @@
         <td class="small font-monospace fw-bold text-secondary"><%= "#{uncertainty_title} #{uncertainty_percentage}%" %></td>
       <% end %>
       <td class="align-middle">
-        <%=
-          render 'shared/create_estimation_button',
-            avg_weekly_earned_value: avg_points,
-            category: category,
-            epic_id: epic_id,
-            implementation_start_date: implementation_start_date,
-            last_completed_week_number: last_completed_week_number,
-            project_id: project_id,
-            remaining_earned_value: remaining_earned_value,
-            remaining_weeks: estimated_weeks_to_complete_without_uncertainty,
-            remaining_weeks_with_uncertainty: estimated_weeks_to_complete_with_uncertainty,
-            total_points: total_points
-        %>
+        <%= render 'shared/create_estimation_button',
+                   avg_weekly_earned_value: avg_points,
+                   category: category,
+                   epic_id: epic_id,
+                   implementation_start_date: implementation_start_date,
+                   last_completed_week_number: last_completed_week_number,
+                   project_id: project_id,
+                   remaining_earned_value: remaining_earned_value,
+                   remaining_weeks: estimated_weeks_to_complete_without_uncertainty,
+                   remaining_weeks_with_uncertainty: estimated_weeks_to_complete_with_uncertainty,
+                   total_points: total_points %>
       </td>
     </tr>
   </tbody>

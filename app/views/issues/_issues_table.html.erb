@@ -22,13 +22,13 @@
           <% end %>
         </td>
         <td>
-          <span class="d-flex align-items-center small fw-bold text-<%= issue.color_variant %>">
-            <span class="status-dot bg-<%= issue.color_variant %> border"></span>
+          <span class="d-flex align-items-center small fw-bold <%= "text-#{issue.color_variant}" %>">
+            <span class="status-dot <%= "bg-#{issue.color_variant}" %> border"></span>
             <%= issue.status %>
           </span>
         </td>
         <td class="text-center fw-bold small"><%= issue.points %></td>
-        <td class="text-secondary small"><%= issue.finish_date&.strftime("%d %b %Y") %></td>
+        <td class="text-secondary small"><%= issue.finish_date&.strftime('%d %b %Y') %></td>
       </tr>
     <% end %>
   </tbody>

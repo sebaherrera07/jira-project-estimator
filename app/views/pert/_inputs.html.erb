@@ -2,13 +2,13 @@
   <section class="p-4 mb-4 rounded-4 border bg-white shadow-sm" style="border-radius: 1rem;">
     <div class="row align-items-end g-4 mb-4">
       <div class="col-12 col-md-4">
-        <%= form.label :points, "Critical Path Points", class: "text-uppercase fw-bold text-secondary text-2xs mb-2 d-block" %>
-        <%= form.number_field :points, value: params[:points], class: "form-control bg-light py-2 px-3 shadow-none border-0", style: "border-radius: 0.5rem;", required: true, min: 1, step: 1 %>
+        <%= form.label :points, 'Critical Path Points', class: 'text-uppercase fw-bold text-secondary text-2xs mb-2 d-block' %>
+        <%= form.number_field :points, value: params[:points], class: 'form-control bg-light py-2 px-3 shadow-none border-0', style: 'border-radius: 0.5rem;', required: true, min: 1, step: 1 %>
       </div>
 
       <div class="col-12 col-md-4">
-        <%= form.label :start_date, "Project Start Date (Optional)", class: "text-uppercase fw-bold text-secondary text-2xs mb-2 d-block" %>
-        <%= form.date_field :start_date, value: params[:start_date], class: "form-control bg-light py-2 px-3 shadow-none border-0", style: "border-radius: 0.5rem;" %>
+        <%= form.label :start_date, 'Project Start Date (Optional)', class: 'text-uppercase fw-bold text-secondary text-2xs mb-2 d-block' %>
+        <%= form.date_field :start_date, value: params[:start_date], class: 'form-control bg-light py-2 px-3 shadow-none border-0', style: 'border-radius: 0.5rem;' %>
       </div>
     </div>
 
@@ -21,31 +21,31 @@
 
     <div class="row align-items-end g-4">
       <div class="col-12 col-md-3">
-        <%= form.label :optimistic, "Optimistic (Best Case)", class: "text-uppercase fw-bold text-secondary text-2xs mb-2 d-block" %>
+        <%= form.label :optimistic, 'Optimistic (Best Case)', class: 'text-uppercase fw-bold text-secondary text-2xs mb-2 d-block' %>
         <div class="position-relative">
-          <span class="material-symbols-outlined position-absolute top-50 translate-middle-y ms-3 text-success" style="font-size: 1.1rem">sentiment_very_satisfied</span>
-          <%= form.number_field :optimistic, value: params[:optimistic], class: "form-control bg-light py-2 pe-3 ps-5 border-0 shadow-none", style: "border-radius: 0.5rem;", required: true, min: 0.1, step: 0.1 %>
+          <span class="material-symbols-outlined position-absolute top-50 translate-middle-y ms-3 text-success" style="font-size: 1.1rem" aria-hidden="true">sentiment_very_satisfied</span>
+          <%= form.number_field :optimistic, value: params[:optimistic], class: 'form-control bg-light py-2 pe-3 ps-5 border-0 shadow-none', style: 'border-radius: 0.5rem;', required: true, min: 0.1, step: 0.1 %>
         </div>
       </div>
 
       <div class="col-12 col-md-3">
-        <%= form.label :most_likely, "Most Likely (Probable)", class: "text-uppercase fw-bold text-secondary text-2xs mb-2 d-block" %>
+        <%= form.label :most_likely, 'Most Likely (Probable)', class: 'text-uppercase fw-bold text-secondary text-2xs mb-2 d-block' %>
         <div class="position-relative">
-          <span class="material-symbols-outlined position-absolute top-50 translate-middle-y ms-3 text-primary" style="font-size: 1.1rem">sentiment_satisfied</span>
-          <%= form.number_field :most_likely, value: params[:most_likely], class: "form-control bg-light py-2 pe-3 ps-5 border-0 shadow-none", style: "border-radius: 0.5rem;", required: true, min: 0.1, step: 0.1 %>
+          <span class="material-symbols-outlined position-absolute top-50 translate-middle-y ms-3 text-primary" style="font-size: 1.1rem" aria-hidden="true">sentiment_satisfied</span>
+          <%= form.number_field :most_likely, value: params[:most_likely], class: 'form-control bg-light py-2 pe-3 ps-5 border-0 shadow-none', style: 'border-radius: 0.5rem;', required: true, min: 0.1, step: 0.1 %>
         </div>
       </div>
 
       <div class="col-12 col-md-3">
-        <%= form.label :pessimistic, "Pessimistic (Worst Case)", class: "text-uppercase fw-bold text-secondary text-2xs mb-2 d-block" %>
+        <%= form.label :pessimistic, 'Pessimistic (Worst Case)', class: 'text-uppercase fw-bold text-secondary text-2xs mb-2 d-block' %>
         <div class="position-relative">
-          <span class="material-symbols-outlined position-absolute top-50 translate-middle-y ms-3 text-danger" style="font-size: 1.1rem">sentiment_very_dissatisfied</span>
-          <%= form.number_field :pessimistic, value: params[:pessimistic], class: "form-control bg-light py-2 pe-3 ps-5 border-0 shadow-none", style: "border-radius: 0.5rem;", required: true, min: 0.1, step: 0.1 %>
+          <span class="material-symbols-outlined position-absolute top-50 translate-middle-y ms-3 text-danger" style="font-size: 1.1rem" aria-hidden="true">sentiment_very_dissatisfied</span>
+          <%= form.number_field :pessimistic, value: params[:pessimistic], class: 'form-control bg-light py-2 pe-3 ps-5 border-0 shadow-none', style: 'border-radius: 0.5rem;', required: true, min: 0.1, step: 0.1 %>
         </div>
       </div>
 
       <div class="col-12 col-md-3">
-        <%= form.submit "Calculate Forecast", name: nil, class: "btn-primary-custom w-100 py-2", style: "padding-top: 0.55rem!important; padding-bottom: 0.55rem!important;" %>
+        <%= form.submit 'Calculate Forecast', name: nil, class: 'btn-primary-custom btn-primary-custom-sm w-100 py-2' %>
       </div>
     </div>
   </section>

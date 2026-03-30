@@ -16,21 +16,21 @@
       </div>
 
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
+        <%= render 'devise/shared/error_messages', resource: resource %>
 
         <div class="mb-4">
-          <%= f.label :email, class: "label-heading" %>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control-custom", placeholder: "name@company.com", required: true %>
+          <%= f.label :email, class: 'label-heading' %>
+          <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control-custom', placeholder: 'name@company.com', required: true %>
         </div>
 
         <div class="actions">
-          <%= f.submit "Send instructions", class: "btn-primary-custom" %>
+          <%= f.submit 'Send instructions', class: 'btn-primary-custom' %>
         </div>
       <% end %>
 
       <div class="mt-4 text-center">
         <%- if controller_name != 'sessions' %>
-          <%= link_to "Back to Log in", new_session_path(resource_name), class: "small fw-bold text-decoration-none text-primary" %>
+          <%= link_to 'Back to Log in', new_session_path(resource_name), class: 'small fw-bold text-decoration-none text-primary' %>
         <% end %>
       </div>
     </div>

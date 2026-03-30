@@ -1,6 +1,6 @@
 <div class="mb-3">
   <div class="text-uppercase fw-bold text-secondary label-heading d-block mb-1">Epic Key</div>
-  <%= link_to epic_presenter.key, project_epic_path(project_id: epic_presenter.project_key, id: epic_presenter.key, labels: params[:labels], expected_average: params[:expected_average], uncertainty_level: params[:uncertainty_level]), class: "font-monospace fw-bold text-primary small text-decoration-none hover-primary" %>
+  <%= link_to epic_presenter.key, project_epic_path(project_id: epic_presenter.project_key, id: epic_presenter.key, labels: params[:labels], expected_average: params[:expected_average], uncertainty_level: params[:uncertainty_level]), class: 'font-monospace fw-bold text-primary small text-decoration-none hover-primary' %>
 </div>
 
 <div class="mb-3">
@@ -10,14 +10,14 @@
 
 <div class="mb-3">
   <div class="text-uppercase fw-bold text-secondary label-heading d-block mb-1">Project</div>
-  <%= link_to epic_presenter.project_key, project_epics_path(project_id: epic_presenter.project_key), class: "project-badge text-decoration-none d-inline-block" %>
+  <%= link_to epic_presenter.project_key, project_epics_path(project_id: epic_presenter.project_key), class: 'project-badge text-decoration-none d-inline-block' %>
 </div>
 
 <hr class="opacity-10 my-3">
 
 <div class="mb-3">
   <div class="text-uppercase fw-bold text-secondary label-heading d-block mb-1">Start Week</div>
-  <p class="font-monospace fw-bold text-dark small mb-0"><%= epic_presenter.progress_presenter.implementation_start_date&.strftime("%d %b %Y") || "N/A" %></p>
+  <p class="font-monospace fw-bold text-dark small mb-0"><%= epic_presenter.progress_presenter.implementation_start_date&.strftime('%d %b %Y') || 'N/A' %></p>
 </div>
 
 <div class="mb-3">

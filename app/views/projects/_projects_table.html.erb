@@ -20,9 +20,9 @@
           </div>
         </td>
         <td>
-          <%= link_to project_epics_path(project_id: project.key), class: "epic-link d-inline-flex align-items-center gap-1" do %>
+          <%= link_to project_epics_path(project_id: project.key), class: 'epic-link d-inline-flex align-items-center gap-1' do %>
             <span>Epics</span>
-            <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_forward</span>
+            <span class="material-symbols-outlined" style="font-size: 1rem;" aria-hidden="true">arrow_forward</span>
           <% end %>
         </td>
       </tr>
