@@ -15,29 +15,29 @@
       </div>
 
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
+        <%= render 'devise/shared/error_messages', resource: resource %>
         <%= f.hidden_field :reset_password_token %>
 
         <div class="mb-4">
-          <%= f.label :password, "New password", class: "label-heading" %>
+          <%= f.label :password, 'New password', class: 'label-heading' %>
           <% if @minimum_password_length %>
             <span class="small text-muted mb-2 d-block">(<%= @minimum_password_length %> characters minimum)</span>
           <% end %>
-          <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "form-control-custom", placeholder: "New Password", required: true %>
+          <%= f.password_field :password, autofocus: true, autocomplete: 'new-password', class: 'form-control-custom', placeholder: 'New Password', required: true %>
         </div>
 
         <div class="mb-4">
-          <%= f.label :password_confirmation, "Confirm new password", class: "label-heading" %>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control-custom", placeholder: "Confirm New Password", required: true %>
+          <%= f.label :password_confirmation, 'Confirm new password', class: 'label-heading' %>
+          <%= f.password_field :password_confirmation, autocomplete: 'new-password', class: 'form-control-custom', placeholder: 'Confirm New Password', required: true %>
         </div>
 
         <div class="actions">
-          <%= f.submit "Change my password", class: "btn-primary-custom" %>
+          <%= f.submit 'Change my password', class: 'btn-primary-custom' %>
         </div>
       <% end %>
 
       <div class="mt-4 text-center">
-        <%= link_to "Back to Log in", new_session_path(resource_name), class: "small fw-bold text-decoration-none text-primary" %>
+        <%= link_to 'Back to Log in', new_session_path(resource_name), class: 'small fw-bold text-decoration-none text-primary' %>
       </div>
     </div>
   </div>

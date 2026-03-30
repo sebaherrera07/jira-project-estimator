@@ -9,15 +9,27 @@
     </button>
     <div class="collapse navbar-collapse ms-md-4" id="navbarNav">
       <ul class="navbar-nav me-auto">
-        <li class="nav-item"><a href="/projects" class="nav-link <%= request.path.start_with?('/projects') ? 'active' : '' rescue '' %>">Projects</a></li>
-        <li class="nav-item"><a href="/pert" class="nav-link <%= request.path.start_with?('/pert') ? 'active' : '' rescue '' %>">PERT</a></li>
-        <li class="nav-item"><a href="/about" class="nav-link <%= request.path.start_with?('/about') ? 'active' : '' rescue '' %>">About</a></li>
+        <li class="nav-item"><a href="/projects" class="nav-link <%= begin
+                                                                       request.path.start_with?('/projects') ? 'active' : ''
+                                                                     rescue StandardError
+                                                                       ''
+                                                                     end %>">Projects</a></li>
+        <li class="nav-item"><a href="/pert" class="nav-link <%= begin
+                                                                   request.path.start_with?('/pert') ? 'active' : ''
+                                                                 rescue StandardError
+                                                                   ''
+                                                                 end %>">PERT</a></li>
+        <li class="nav-item"><a href="/about" class="nav-link <%= begin
+                                                                    request.path.start_with?('/about') ? 'active' : ''
+                                                                  rescue StandardError
+                                                                    ''
+                                                                  end %>">About</a></li>
       </ul>
 
       <div class="d-flex align-items-center gap-2 mt-3 mt-md-0 pt-3 pt-md-0">
         <span class="small fw-medium text-muted me-2 d-none d-md-block"><%= current_user&.email %></span>
         <a href="/users/sign_out" class="btn btn-sm btn-outline-secondary d-flex align-items-center gap-1">
-          <span class="material-symbols-outlined" style="font-size: 1.1rem;">logout</span>
+          <span class="material-symbols-outlined" style="font-size: 1.1rem;" aria-hidden="true">logout</span>
           <span>Sign out</span>
         </a>
       </div>

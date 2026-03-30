@@ -14,13 +14,13 @@
         <td><span class="project-badge"><%= epic.key %></span></td>
         <td>
           <div class="d-flex align-items-center gap-3">
-            <%= link_to epic.summary, project_epic_path(project_id: epic.project_key, id: epic.key), class: "small fw-bold font-manrope text-dark text-decoration-none hover-primary" %>
+            <%= link_to epic.summary, project_epic_path(project_id: epic.project_key, id: epic.key), class: 'small fw-bold font-manrope text-dark text-decoration-none hover-primary' %>
           </div>
         </td>
         <td>
-          <%= link_to project_epic_issues_path(project_id: epic.project_key, epic_id: epic.key), class: "epic-link d-inline-flex align-items-center gap-1" do %>
+          <%= link_to project_epic_issues_path(project_id: epic.project_key, epic_id: epic.key), class: 'epic-link d-inline-flex align-items-center gap-1' do %>
             <span>Issues</span>
-            <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_forward</span>
+            <span class="material-symbols-outlined" style="font-size: 1rem;" aria-hidden="true">arrow_forward</span>
           <% end %>
         </td>
       </tr>

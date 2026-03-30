@@ -13,12 +13,12 @@
 
     <div class="d-flex align-items-center gap-2">
       <% if category.blank? %>
-        <%= form.select :category, EstimationCategory.dropdown_options, { include_blank: false }, { class: "form-select form-select-sm shadow-sm bg-light w-auto" } %>
+        <%= form.select :category, EstimationCategory.dropdown_options, { include_blank: false }, { class: 'form-select form-select-sm shadow-sm bg-light w-auto' } %>
       <% else %>
         <%= form.hidden_field :category, value: category %>
       <% end %>
 
-      <%= form.submit "Save", name: nil, class: "btn-primary-custom", style: "padding: 0.25rem 0.75rem !important; width: auto !important; font-size: 0.75rem;" %>
+      <%= form.submit 'Save', name: nil, class: 'btn-primary-custom btn-primary-custom-sm' %>
     </div>
   <% end %>
 <% end %>

@@ -17,36 +17,36 @@
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="mb-4">
-          <%= f.label :email, class: "label-heading" %>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control-custom", placeholder: "name@company.com", required: true %>
+          <%= f.label :email, class: 'label-heading' %>
+          <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control-custom', placeholder: 'name@company.com', required: true %>
         </div>
 
         <div class="mb-4">
           <div class="d-flex justify-content-between align-items-center mb-1">
-            <%= f.label :password, class: "label-heading mb-0" %>
+            <%= f.label :password, class: 'label-heading mb-0' %>
             <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-              <%= link_to "Forgot password?", new_password_path(resource_name), class: "small fw-bold text-decoration-none text-primary" %>
+              <%= link_to 'Forgot password?', new_password_path(resource_name), class: 'small fw-bold text-decoration-none text-primary' %>
             <% end %>
           </div>
-          <%= f.password_field :password, autocomplete: "current-password", class: "form-control-custom", placeholder: "••••••••", required: true %>
+          <%= f.password_field :password, autocomplete: 'current-password', class: 'form-control-custom', placeholder: '••••••••', required: true %>
         </div>
 
         <% if devise_mapping.rememberable? %>
           <div class="d-flex align-items-center mb-4 px-1">
-            <%= f.check_box :remember_me, class: "form-check-input mt-0 me-2 border-secondary", style: "width: 1rem; height: 1rem;" %>
-            <%= f.label :remember_me, class: "small fw-medium text-muted mb-0", style: "cursor: pointer;" %>
+            <%= f.check_box :remember_me, class: 'form-check-input mt-0 me-2 border-secondary', style: 'width: 1rem; height: 1rem;' %>
+            <%= f.label :remember_me, class: 'small fw-medium text-muted mb-0', style: 'cursor: pointer;' %>
           </div>
         <% end %>
 
         <div class="actions">
-          <%= f.submit "Log in", class: "btn-primary-custom" %>
+          <%= f.submit 'Log in', class: 'btn-primary-custom' %>
         </div>
       <% end %>
 
       <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
         <div class="mt-4 text-center">
           <p class="small text-muted mb-0">
-            Need an account? <%= link_to "Sign up", new_registration_path(resource_name), class: "fw-bold text-decoration-none text-primary" %>
+            Need an account? <%= link_to 'Sign up', new_registration_path(resource_name), class: 'fw-bold text-decoration-none text-primary' %>
           </p>
         </div>
       <% end %>

@@ -17,18 +17,18 @@
         <td class="font-monospace text-primary fw-bold small"><%= issue.key %></td>
         <td class="small fw-bold font-manrope text-dark"><%= issue.summary %></td>
         <td>
-          <% if issue.labels.present? %>
-            <span class="label-pill"><%= issue.labels %></span>
+          <% issue.labels.each do |label| %>
+            <span class="label-pill"><%= label %></span>
           <% end %>
         </td>
         <td>
-          <span class="d-flex align-items-center small fw-bold text-secondary">
-            <span class="status-dot bg-secondary border"></span>
+          <span class="d-flex align-items-center small fw-bold <%= "text-#{issue.color_variant}" %>">
+            <span class="status-dot <%= "bg-#{issue.color_variant}" %> border"></span>
             <%= issue.status %>
           </span>
         </td>
         <td class="text-center fw-bold small"><%= issue.points %></td>
-        <td class="text-secondary small"><%= issue.finish_date&.strftime("%d %b %Y") %></td>
+        <td class="text-secondary small"><%= issue.finish_date&.strftime('%d %b %Y') %></td>
       </tr>
     <% end %>
   </tbody>

@@ -41,6 +41,16 @@ class Issue
     !to_do? && !done?
   end
 
+  def color_variant
+    if done?
+      'success'
+    elsif started?
+      'primary'
+    else
+      'secondary'
+    end
+  end
+
   def finish_date
     return unless done?
 

@@ -1,10 +1,10 @@
 <div class="mb-4">
   <nav aria-label="Breadcrumb">
     <ol class="breadcrumb mb-2">
-      <li class="breadcrumb-item"><%= link_to "Projects", projects_path, class: "text-decoration-none" %></li>
-      <li class="breadcrumb-item"><%= link_to @estimation.project_id, project_epics_path(project_id: @estimation.project_id), class: "text-decoration-none" %></li>
-      <li class="breadcrumb-item"><%= link_to @estimation.epic_id, project_epic_estimations_path(project_id: @estimation.project_id, epic_id: @estimation.epic_id), class: "text-decoration-none" %></li>
-      <li class="breadcrumb-item active">Snapshot</li>
+      <li class="breadcrumb-item"><%= link_to 'Projects', projects_path, class: 'text-decoration-none' %></li>
+      <li class="breadcrumb-item"><%= link_to @estimation.project_id, project_epics_path(project_id: @estimation.project_id), class: 'text-decoration-none' %></li>
+      <li class="breadcrumb-item"><%= link_to @estimation.epic_id, project_epic_estimations_path(project_id: @estimation.project_id, epic_id: @estimation.epic_id), class: 'text-decoration-none' %></li>
+      <li class="breadcrumb-item active" aria-current="page">Snapshot</li>
     </ol>
   </nav>
 
@@ -16,7 +16,7 @@
   <aside class="col-12 col-lg-3">
     <div class="card p-4 mb-4 border-0 shadow-sm" style="background-color: var(--surface-container);">
       <div class="d-flex align-items-center gap-2 mb-4">
-        <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">analytics</span>
+        <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;" aria-hidden="true">analytics</span>
         <h2 class="h6 fw-bold mb-0">Context Details</h2>
       </div>
 
@@ -31,11 +31,11 @@
         </div>
         <div>
           <div class="text-uppercase fw-bold text-secondary text-2xs d-block mb-1 tracking-widest">Snapshot Date</div>
-          <div class="small fw-medium text-secondary"><%= @estimation.created_at.strftime("%a, %d %b %Y") %></div>
+          <div class="small fw-medium text-secondary"><%= @estimation.created_at.strftime('%a, %d %b %Y') %></div>
         </div>
         <div>
           <div class="text-uppercase fw-bold text-secondary text-2xs d-block mb-1 tracking-widest">Initial Week Assessed</div>
-          <div class="small fw-medium text-secondary"><%= @estimation.created_at.beginning_of_week.strftime("%a, %d %b %Y") %></div>
+          <div class="small fw-medium text-secondary"><%= @estimation.created_at.beginning_of_week.strftime('%a, %d %b %Y') %></div>
         </div>
         <div>
           <div class="text-uppercase fw-bold text-secondary text-2xs d-block mb-1 tracking-widest">Last Completed Week Num</div>
@@ -82,7 +82,7 @@
         <tbody>
           <tr>
             <td class="font-monospace fw-bold fs-6"><%= @estimation.remaining_weeks %></td>
-            <td class="fw-bold fs-6 text-success"><%= @estimation.estimated_finish_date.strftime("%d %b %Y") %></td>
+            <td class="fw-bold fs-6 text-success"><%= @estimation.estimated_finish_date.strftime('%d %b %Y') %></td>
           </tr>
         </tbody>
       </table>
@@ -102,7 +102,7 @@
           <tr>
             <td class="text-secondary small fw-medium"><%= @estimation.uncertainty_level.presence || 'None' %> (<%= "#{@estimation.uncertainty_percentage}%" %>)</td>
             <td class="font-monospace fw-bold fs-6 text-danger"><%= @estimation.remaining_weeks_with_uncertainty.presence || 'N/A' %></td>
-            <td class="fw-bold fs-6 text-danger"><%= @estimation.estimated_finish_date_with_uncertainty&.strftime("%d %b %Y") || 'N/A' %></td>
+            <td class="fw-bold fs-6 text-danger"><%= @estimation.estimated_finish_date_with_uncertainty&.strftime('%d %b %Y') || 'N/A' %></td>
           </tr>
         </tbody>
       </table>

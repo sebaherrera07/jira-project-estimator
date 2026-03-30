@@ -1,22 +1,22 @@
 <div class="d-flex flex-column gap-3">
   <% [
-    ['Project', estimation.project_id, true],
-    ['Epic', estimation.epic_id, true],
-    ['Created By', estimation.user&.email, false],
-    ['Creation Date', estimation.created_at.strftime("%a, %d %b %Y"), false],
-    ['Initial Week', estimation.created_at.beginning_of_week.strftime("%a, %d %b %Y"), false],
-    ['Last Completed Week', estimation.last_completed_week_number, true],
-    ['Total Points', estimation.total_points, true],
-    ['Avg. Weekly Velocity', estimation.avg_weekly_earned_value, true],
-    ['Remaining Value', "#{estimation.remaining_earned_value.round}%", false],
-    ['Remaining Weeks', estimation.remaining_weeks, true],
-    ['Estimated Finish Date', estimation.estimated_finish_date.strftime("%a, %d %b %Y"), true],
-    ['Uncertainty Level', estimation.uncertainty_level, false],
-    ['Uncertainty %', "#{estimation.uncertainty_percentage}%", false],
-    ['Remaining Weeks (buffer)', estimation.remaining_weeks_with_uncertainty, true],
-    ['Finish Date (buffer)', estimation.estimated_finish_date_with_uncertainty&.strftime("%a, %d %b %Y"), true],
-    ['Filters Applied', estimation.filters_applied, false]
-  ].each do |label, value, is_bold| %>
+       ['Project', estimation.project_id, true],
+       ['Epic', estimation.epic_id, true],
+       ['Created By', estimation.user&.email, false],
+       ['Creation Date', estimation.created_at.strftime('%a, %d %b %Y'), false],
+       ['Initial Week', estimation.created_at.beginning_of_week.strftime('%a, %d %b %Y'), false],
+       ['Last Completed Week', estimation.last_completed_week_number, true],
+       ['Total Points', estimation.total_points, true],
+       ['Avg. Weekly Velocity', estimation.avg_weekly_earned_value, true],
+       ['Remaining Value', "#{estimation.remaining_earned_value.round}%", false],
+       ['Remaining Weeks', estimation.remaining_weeks, true],
+       ['Estimated Finish Date', estimation.estimated_finish_date.strftime('%a, %d %b %Y'), true],
+       ['Uncertainty Level', estimation.uncertainty_level, false],
+       ['Uncertainty %', "#{estimation.uncertainty_percentage}%", false],
+       ['Remaining Weeks (buffer)', estimation.remaining_weeks_with_uncertainty, true],
+       ['Finish Date (buffer)', estimation.estimated_finish_date_with_uncertainty&.strftime('%a, %d %b %Y'), true],
+       ['Filters Applied', estimation.filters_applied, false]
+     ].each do |label, value, is_bold| %>
     <div>
       <div class="text-uppercase fw-bold text-secondary text-2xs d-block mb-1 tracking-widest"><%= label %></div>
       <div class="small <%= 'fw-bold text-dark font-monospace' if is_bold %> <%= 'fw-medium text-secondary' unless is_bold %>"><%= value.presence || 'N/A' %></div>
