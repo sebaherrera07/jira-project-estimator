@@ -5,12 +5,12 @@
         <%= form.label :labels, "Label", class: "text-uppercase fw-bold text-secondary label-heading d-block mb-2 text-2xs" %>
         <%= form.text_field :labels, value: params[:labels], class: "form-control py-2 shadow-sm bg-light", placeholder: "e.g. backend" %>
       </div>
-      
+
       <div class="col-12 col-md-3">
         <%= form.label :expected_average, "Expected Average", class: "text-uppercase fw-bold text-secondary label-heading d-block mb-2 text-2xs" %>
         <%= form.text_field :expected_average, value: params[:expected_average], class: "form-control py-2 shadow-sm bg-light", placeholder: "Average" %>
       </div>
-      
+
       <div class="col-12 col-md-4">
         <%= form.label :uncertainty_level, "Uncertainty Level", class: "text-uppercase fw-bold text-secondary label-heading d-block mb-2 text-2xs" %>
         <%= form.select :uncertainty_level, UncertaintyLevel.dropdown_options, { selected: params[:uncertainty_level], include_blank: true }, { class: "form-select py-2 shadow-sm bg-light" } %>

@@ -1,4 +1,4 @@
-<table class="table table-hover mb-0">
+<table class="table table-hover table-sm mb-0">
   <thead class="bg-light">
     <tr>
       <th scope="col">Estimation Date</th>
@@ -9,22 +9,22 @@
       <th scope="col">Remaining Value</th>
       <th scope="col">Remaining Weeks</th>
       <th scope="col">Est. Finish Date</th>
-      <th scope="col"></th>
+      <th scope="col" style="width: 100px;"></th>
     </tr>
   </thead>
   <tbody>
     <% epic_estimation_history_presenter.estimation_items.each do |estimation_item| %>
       <tr>
         <td class="text-secondary small fw-medium"><%= estimation_item.created_at.strftime("%d %b %Y") %></td>
-        <td class="fw-bold"><%= estimation_item.label %></td>
-        <td class="text-center font-monospace"><%= estimation_item.total_points %></td>
-        <td class="text-center fw-bold text-primary"><%= estimation_item.avg_weekly_earned_value %></td>
+        <td class="small fw-bold"><%= estimation_item.label %></td>
+        <td class="text-center font-monospace small"><%= estimation_item.total_points %></td>
+        <td class="text-center small fw-bold text-primary"><%= estimation_item.avg_weekly_earned_value %></td>
         <td><span class="label-pill"><%= EstimationCategory::CATEGORIES_TITLE[estimation_item.category] %></span></td>
-        <td class="text-center fw-bold text-info"><%= "#{estimation_item.remaining_earned_value.round}%" %></td>
-        <td class="text-center font-monospace fw-bold"><%= estimation_item.remaining_weeks %></td>
+        <td class="text-center small fw-bold text-info"><%= "#{estimation_item.remaining_earned_value.round}%" %></td>
+        <td class="text-center font-monospace small fw-bold"><%= estimation_item.remaining_weeks %></td>
         <td class="text-secondary small fw-medium"><%= estimation_item.estimated_finish_date.strftime("%d %b %Y") %></td>
         <td>
-          <%= link_to project_epic_estimation_path(project_id: estimation_item.project_id, epic_id: estimation_item.epic_id, id: estimation_item.id), class: "epic-link d-inline-flex align-items-center gap-1" do %>
+          <%= link_to project_epic_estimation_path(project_id: estimation_item.project_id, epic_id: estimation_item.epic_id, id: estimation_item.id), class: "epic-link d-inline-flex align-items-center gap-1", target: "_blank", rel: "noopener noreferrer" do %>
             <span>View</span>
             <span class="material-symbols-outlined" style="font-size: 1rem;">open_in_new</span>
           <% end %>

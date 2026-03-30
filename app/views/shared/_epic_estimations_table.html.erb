@@ -1,4 +1,4 @@
-<table class="table table-hover mb-0">
+<table class="table table-hover table-sm mb-0">
   <thead class="bg-light">
     <tr>
       <th scope="col">Avg. Period</th>
@@ -13,12 +13,12 @@
   </thead>
   <tbody>
     <tr>
-      <td class="fw-bold fs-6"><%= period %></td>
-      <td class="fs-6 fw-medium text-dark"><%= avg_points %></td>
-      <td class="fs-6 fw-bold text-primary"><%= estimated_weeks_to_complete_without_uncertainty %></td>
+      <td class="small fw-bold font-manrope"><%= period %></td>
+      <td class="small font-monospace fw-medium text-dark"><%= avg_points %></td>
+      <td class="small font-monospace fw-bold text-primary"><%= estimated_weeks_to_complete_without_uncertainty %></td>
       <% if uncertainty_percentage.positive? %>
-        <td class="fs-6 fw-bold text-danger"><%= estimated_weeks_to_complete_with_uncertainty %></td>
-        <td class="fs-6 fw-bold text-secondary"><%= "#{uncertainty_title} #{uncertainty_percentage}%" %></td>
+        <td class="small font-monospace fw-bold text-danger"><%= estimated_weeks_to_complete_with_uncertainty %></td>
+        <td class="small font-monospace fw-bold text-secondary"><%= "#{uncertainty_title} #{uncertainty_percentage}%" %></td>
       <% end %>
       <td class="align-middle">
         <%=

@@ -67,3 +67,5 @@ yarn-debug.log*
 !/storage/.keep
 
 .DS_Store
+
+.erb_lint_cache/

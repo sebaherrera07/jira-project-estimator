@@ -186,10 +186,18 @@ h1, h2, h3, .navbar-brand, .font-manrope {
   border-bottom: 1px solid rgba(194, 198, 216, 0.15);
 }
 
-.table tbody td {
+.table tbody td, .table tbody th {
   padding: 1.25rem 1.5rem;
   vertical-align: middle;
   border-bottom: 1px solid rgba(194, 198, 216, 0.05);
+}
+
+.table.table-sm thead th {
+  padding: 0.75rem 0.75rem;
+}
+
+.table.table-sm tbody td, .table.table-sm tbody th {
+  padding: 0.75rem 0.75rem;
 }
 
 .project-badge {
@@ -239,3 +247,11 @@ h1, h2, h3, .navbar-brand, .font-manrope {
   color: var(--primary-blue) !important;
 }
 
+/* Base Typography Utilities */
+.text-2xs {
+  font-size: 0.65rem;
+}
+
+.tracking-widest {
+  letter-spacing: 0.05em;
+}

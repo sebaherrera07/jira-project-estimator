@@ -19,7 +19,7 @@
 
 <%=
   render 'shared/epic_estimations_table',
-  period: 'Since Last 3 Weeks',
+  period: 'Last 3 Weeks',
   avg_points: epic_estimation_presenter.avg_points_per_week(weeks_ago_since: 3),
   category: EstimationCategory::AVERAGE_LAST_3_WEEKS,
   epic_id: epic_id,

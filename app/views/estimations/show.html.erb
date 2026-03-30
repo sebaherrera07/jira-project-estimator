@@ -22,27 +22,27 @@
 
       <div class="d-flex flex-column gap-3">
         <div>
-          <label class="text-uppercase fw-bold text-secondary text-2xs d-block mb-1 tracking-widest" style="font-size: 0.65rem;">Project / Epic</label>
+          <div class="text-uppercase fw-bold text-secondary text-2xs d-block mb-1 tracking-widest">Project / Epic</div>
           <div class="small fw-bold text-dark font-monospace"><%= @estimation.project_id %> / <%= @estimation.epic_id %></div>
         </div>
         <div>
-          <label class="text-uppercase fw-bold text-secondary text-2xs d-block mb-1 tracking-widest" style="font-size: 0.65rem;">Created By</label>
+          <div class="text-uppercase fw-bold text-secondary text-2xs d-block mb-1 tracking-widest">Created By</div>
           <div class="small fw-medium text-secondary text-break"><%= @estimation.user&.email || 'N/A' %></div>
         </div>
         <div>
-          <label class="text-uppercase fw-bold text-secondary text-2xs d-block mb-1 tracking-widest" style="font-size: 0.65rem;">Snapshot Date</label>
+          <div class="text-uppercase fw-bold text-secondary text-2xs d-block mb-1 tracking-widest">Snapshot Date</div>
           <div class="small fw-medium text-secondary"><%= @estimation.created_at.strftime("%a, %d %b %Y") %></div>
         </div>
         <div>
-          <label class="text-uppercase fw-bold text-secondary text-2xs d-block mb-1 tracking-widest" style="font-size: 0.65rem;">Initial Week Assessed</label>
+          <div class="text-uppercase fw-bold text-secondary text-2xs d-block mb-1 tracking-widest">Initial Week Assessed</div>
           <div class="small fw-medium text-secondary"><%= @estimation.created_at.beginning_of_week.strftime("%a, %d %b %Y") %></div>
         </div>
         <div>
-          <label class="text-uppercase fw-bold text-secondary text-2xs d-block mb-1 tracking-widest" style="font-size: 0.65rem;">Last Completed Week Num</label>
+          <div class="text-uppercase fw-bold text-secondary text-2xs d-block mb-1 tracking-widest">Last Completed Week Num</div>
           <div class="small fw-bold text-dark font-monospace"><%= @estimation.last_completed_week_number.presence || 'N/A' %></div>
         </div>
         <div>
-          <label class="text-uppercase fw-bold text-secondary text-2xs d-block mb-1 tracking-widest" style="font-size: 0.65rem;">Dynamic Filters Applied</label>
+          <div class="text-uppercase fw-bold text-secondary text-2xs d-block mb-1 tracking-widest">Dynamic Filters Applied</div>
           <div class="small fw-medium text-secondary"><%= @estimation.filters_applied.presence || 'None' %></div>
         </div>
       </div>

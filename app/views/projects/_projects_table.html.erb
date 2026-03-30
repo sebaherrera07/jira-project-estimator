@@ -1,16 +1,16 @@
 <table class="table table-hover mb-0">
   <thead>
     <tr>
-      <th style="width: 80px;">#</th>
-      <th>Project Key</th>
-      <th>Name</th>
-      <th>Epics</th>
+      <th scope="col" style="width: 80px;">#</th>
+      <th scope="col">Project Key</th>
+      <th scope="col">Name</th>
+      <th scope="col">Epics</th>
     </tr>
   </thead>
   <tbody>
     <% projects.each.with_index(1) do |project, index| %>
       <tr>
-        <td class="small fw-medium text-secondary"><%= index %></td>
+        <th scope="row" class="small fw-medium text-secondary"><%= index %></th>
         <td>
           <span class="project-badge"><%= project.key %></span>
         </td>

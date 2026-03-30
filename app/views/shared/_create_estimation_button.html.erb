@@ -11,18 +11,14 @@
     <%= form.hidden_field :total_points, value: total_points %>
     <%= form.hidden_field :uncertainty_level, value: params[:uncertainty_level] %>
 
-    <div class="row">
+    <div class="d-flex align-items-center gap-2">
       <% if category.blank? %>
-        <div class="col-lg-8">
-          <%= form.select :category, EstimationCategory.dropdown_options, { include_blank: false }, { class: "form-control" } %>
-        </div>
+        <%= form.select :category, EstimationCategory.dropdown_options, { include_blank: false }, { class: "form-select form-select-sm shadow-sm bg-light w-auto" } %>
       <% else %>
         <%= form.hidden_field :category, value: category %>
       <% end %>
 
-      <div class="col-lg-4">
-        <%= form.submit "Save", name: nil, class: "btn btn-primary btn-sm"  %>
-      </div>
+      <%= form.submit "Save", name: nil, class: "btn-primary-custom", style: "padding: 0.25rem 0.75rem !important; width: auto !important; font-size: 0.75rem;" %>
     </div>
   <% end %>
 <% end %>
