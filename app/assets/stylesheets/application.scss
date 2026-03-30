@@ -212,7 +212,8 @@ h1, h2, h3, .navbar-brand, .font-manrope {
 }
 
 .epic-link:hover {
-  text-decoration: underline;
+  text-decoration: none;
+  opacity: 0.8;
 }
 
 .label-pill {

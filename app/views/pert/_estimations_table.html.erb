@@ -18,7 +18,7 @@
             <td class="fs-5 fw-bold text-dark"><%= pert_presenter.estimated_days_to_complete %></td>
             <td class="fs-5 fw-bold text-primary"><%= pert_presenter.estimated_weeks_to_complete %></td>
             <% if pert_presenter.estimated_finish_date.present? %>
-              <td class="fs-5 fw-bold text-success"><%= pert_presenter.estimated_finish_date.strftime("%d %b %Y") %></td>
+              <td class="fs-5 fw-bold text-success"><%= pert_presenter.estimated_finish_date %></td>
             <% end %>
           </tr>
         </tbody>
