@@ -14,14 +14,16 @@
  *= require_self
  */
 
- // here your custom bootstrap variables...
+// here your custom bootstrap variables...
 @import "bootstrap";
 
 .navbar-toggler {
   margin-right: .5rem;
 }
 
-.forgot { text-align: end; }
+.forgot {
+  text-align: end;
+}
 
 :root {
   --primary-blue: #0057cd;
@@ -42,7 +44,11 @@ body {
   flex-direction: column;
 }
 
-h1, h2, h3, .navbar-brand, .font-manrope {
+h1,
+h2,
+h3,
+.navbar-brand,
+.font-manrope {
   font-family: 'Manrope', sans-serif;
 }
 
@@ -54,7 +60,7 @@ h1, h2, h3, .navbar-brand, .font-manrope {
 /* Navbar Customization */
 .navbar {
   background-color: #fff;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   padding: 0.75rem 0;
 }
 
@@ -72,7 +78,8 @@ h1, h2, h3, .navbar-brand, .font-manrope {
   margin: 0 0.75rem;
 }
 
-.nav-link.active, .nav-link:hover {
+.nav-link.active,
+.nav-link:hover {
   color: var(--primary-blue) !important;
 }
 
@@ -103,13 +110,18 @@ h1, h2, h3, .navbar-brand, .font-manrope {
   border-left-color: #198754;
 }
 
+.custom-alert-warning {
+  background-color: rgba(255, 193, 7, 0.12);
+  border-left-color: #ffc107;
+}
+
 /* Authentication Forms */
 .login-card {
   max-width: 480px;
   width: 100%;
   border-radius: 1.5rem;
   background-color: #ffffff;
-  box-shadow: 0 24px 48px -12px rgba(0,0,0,0.06);
+  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.06);
 }
 
 .aspirational-banner {
@@ -172,7 +184,7 @@ h1, h2, h3, .navbar-brand, .font-manrope {
   border-radius: 0.75rem;
   border: 1px solid rgba(194, 198, 216, 0.2);
   overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .table thead th {
@@ -186,7 +198,8 @@ h1, h2, h3, .navbar-brand, .font-manrope {
   border-bottom: 1px solid rgba(194, 198, 216, 0.15);
 }
 
-.table tbody td, .table tbody th {
+.table tbody td,
+.table tbody th {
   padding: 1.25rem 1.5rem;
   vertical-align: middle;
   border-bottom: 1px solid rgba(194, 198, 216, 0.05);
@@ -196,7 +209,8 @@ h1, h2, h3, .navbar-brand, .font-manrope {
   padding: 0.75rem 0.75rem;
 }
 
-.table.table-sm tbody td, .table.table-sm tbody th {
+.table.table-sm tbody td,
+.table.table-sm tbody th {
   padding: 0.75rem 0.75rem;
 }
 
