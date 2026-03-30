@@ -150,4 +150,26 @@ RSpec.describe Issue do
       it { is_expected.to be_nil }
     end
   end
+
+  describe '#color_variant' do
+    subject { issue.color_variant }
+
+    context 'when issue is done' do
+      let(:issue) { build(:issue, status: 'Done') }
+
+      it { is_expected.to eq('success') }
+    end
+
+    context 'when issue is started' do
+      let(:issue) { build(:issue, status: 'In Progress') }
+
+      it { is_expected.to eq('primary') }
+    end
+
+    context 'when issue is to do' do
+      let(:issue) { build(:issue, status: 'To Do') }
+
+      it { is_expected.to eq('secondary') }
+    end
+  end
 end
