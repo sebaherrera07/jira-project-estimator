@@ -16,7 +16,9 @@ So the purpose of this tool is to help you monitor your team's progress and auto
 
 
 ## :camera: Screens
-To see some of the main screens, please check the [screens](docs/SCREENS.md) page.
+To see more screens, please check the [screens](docs/SCREENS.md) page.
+
+![Epic dashboard](docs/images/03_epic_dashboard.png)
 
 
 ## :thought_balloon: Considerations
