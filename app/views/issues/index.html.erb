@@ -3,6 +3,7 @@
     <ol class="breadcrumb mb-2">
       <li class="breadcrumb-item"><%= link_to 'Projects', projects_path, class: 'text-decoration-none' %></li>
       <li class="breadcrumb-item"><%= link_to @epic_presenter.project_key, project_epics_path(project_id: @epic_presenter.project_key), class: 'text-decoration-none' %></li>
+      <li class="breadcrumb-item"><%= link_to @epic_presenter.key, project_epic_path(project_id: @epic_presenter.project_key, id: @epic_presenter.key, labels: params[:labels]), class: 'text-decoration-none' %></li>
       <li class="breadcrumb-item active" aria-current="page">Issues</li>
     </ol>
   </nav>
@@ -25,6 +26,15 @@
   </aside>
 
   <div class="col-12 col-lg-9">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+      <h2 class="h5 font-manrope fw-bold mb-0">Issues Summary</h2>
+    </div>
+    <div class="projects-card mb-5">
+      <div class="table-responsive">
+        <%= render 'epics/epic_issues_count_table', epic_issues_count_presenter: @epic_presenter.issues_count_presenter %>
+      </div>
+    </div>
+
     <div class="projects-card mb-5">
       <div class="table-responsive">
         <%= render 'issues/issues_table', issues: @epic_presenter.issues_sorted %>
