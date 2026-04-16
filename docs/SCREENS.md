@@ -1,9 +1,5 @@
 # :camera: Screens
 
-These screenshots are meant to document **every GET page** in the app.
-
-For consistent screenshots, the app is currently running in a **forced screenshot mock mode** (temporary) so every page renders with meaningful example data.
-
 ---
 
 ### :clipboard: Projects
