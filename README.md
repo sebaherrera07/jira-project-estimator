@@ -20,29 +20,29 @@ To see some of the main screens, please check the [screens](docs/SCREENS.md) pag
 
 
 ## :thought_balloon: Considerations
-1. The tool tracks progress and generates estimates for the **Epic**, based on its Issues points and status (To Do, In Progress, Done, ...).
+1. The tool tracks progress and generates estimates for an **Epic**, based on its Issues’ points and status (_To Do_, _In Progress_, _Done_, ...).
 
-2. The tool considers all types of Issues (Story, Task, Bug, ...).
+2. The tool includes all Issue types (_Story_, _Task_, _Bug_, ...).
 
-3. The tool does not track progress or generate estimates for Issues without Epic.
+3. The tool does not track progress or generate estimates for Issues without an Epic.
 
 4. The tool does not consider Sub-Tasks.
 
-5. For calculating average velocity and generating estimates is **the unit of time is the week**. This is to avoid having to consider if the team uses sprints, and eventually the sprint length which could be different for each team. Also, estimates in number of weeks should be fine for everyone.
+5. For average velocity and estimates, **the time unit is one week**. This avoids dealing with whether you use sprints (and sprint lengths that may vary by team). Estimates in weeks should work for everyone.
 
-6. By default there are 2 estimations which are calculated based on the average velocity since: (1) the implementation start week; (2) the last 3 weeks. You can also ask for a 3rd estimation based on the average velocity you expect to achieve by using the `Expected average` filter.
+6. By default, there are 2 estimations based on average velocity since: (1) the implementation start week; (2) the last 3 weeks. You can also request a 3rd estimation based on the average velocity you expect to achieve, using the `Expected average` filter.
 
-7. The tool considers that weeks start on Monday and end on Sunday. Why do I mention this? Because if you started the implementation of a project on a Friday, the tool will consider that the implementation started on the previous Monday, and therefore your average velocity will be lower than expected. In this case you can either live with this difference, or set the Epic start date in Jira and say implementation started the following Monday. If you need to use another custom field for the start date, you should set the `JIRA_START_DATE_FIELD_CODES` environment variable, which allows comma separated values (e.g. `customfield_10015,customfield_10034`)
+7. The tool assumes weeks start on Monday and end on Sunday. Why mention this? If implementation starts on a Friday, the tool treats the start as the previous Monday, which can make your average velocity look lower than expected. You can either accept the difference, or set the Epic start date in Jira and treat implementation as starting the following Monday. If you need a different custom field for the start date, set `JIRA_START_DATE_FIELD_CODES` (comma-separated, e.g. `customfield_10015,customfield_10034`).
 
-8. If you want to estimate just a subset of an Epic, you can make use of Jira labels to filter the Issues you want to consider. First label your Issues in Jira, and then use the `Label` filter.
+8. To estimate only a subset of an Epic, use Jira labels to filter the Issues you want. Label the Issues in Jira, then use the `Label` filter.
 
-9. The tool allows you to consider a level of uncertainty when calculating an estimation, with 5 possible values: Empty, Low, Medium, High, Very High. For each value you can set a percentage associated to it, by setting the `LOW_UNCERTAINTY_PERCENTAGE, MEDIUM_UNCERTAINTY_PERCENTAGE, HIGH_UNCERTAINTY_PERCENTAGE, VERY_HIGH_UNCERTAINTY_PERCENTAGE` environment variables. What this will do is, for example, if right now you have 20 points remaining, and you set the `MEDIUM_UNCERTAINTY_PERCENTAGE` to 20% and select `Uncertainty level` filter to Medium, the tool will consider that you have 24 points remaining and calculate the number of weeks remaining based on that.
+9. You can include uncertainty in the estimate with 5 levels: Empty, Low, Medium, High, Very High. Each level maps to a percentage via `LOW_UNCERTAINTY_PERCENTAGE, MEDIUM_UNCERTAINTY_PERCENTAGE, HIGH_UNCERTAINTY_PERCENTAGE, VERY_HIGH_UNCERTAINTY_PERCENTAGE`. For example, if you have 20 points remaining, set `MEDIUM_UNCERTAINTY_PERCENTAGE` to 20%, and select `Uncertainty level` = Medium, the tool will treat it as 24 points remaining and estimate weeks based on that.
 
-10. The calculations are more accurate when you estimate **ALL** the Issues and after multiple weeks of work (the first few weeks is expected to see inaccurate estimates).
+10. Estimates become more accurate when you estimate **ALL** Issues and after multiple weeks of work (the first few weeks are expected to be less accurate).
 
-11. The tool works for Scrum, Kanban, or any other Jira board type. By default it might just work with Scrum boards by using the existing points field, and if you need to use another custom field, you should set the `JIRA_STORY_POINTS_FIELD_CODES` environment variable, which allows comma separated values (e.g. `customfield_10016,customfield_10034`)
+11. The tool works with Scrum, Kanban, or any Jira board type. By default it uses the existing points field (often enough for Scrum boards). If you need a different custom field, set `JIRA_STORY_POINTS_FIELD_CODES` (comma-separated, e.g. `customfield_10016,customfield_10034`).
 
-12. The tool allows you to define your own set of ticket statuses. By default it uses `To Do` for "not started", `Done` for "finished", and every other status for "in progress". If you need to use a different set of statuses, should set the `TO_DO_STATUSES` and `DONE_STATUSES` environment variables, which allows comma separated values and is case insensitive (e.g. `TO_DO_STATUSES=To do,Open,pending review` and `DONE_STATUSES=done,resolved,Closed`)
+12. You can define your own ticket statuses. By default the tool treats `To Do` as “not started”, `Done` as “finished”, and any other status as “in progress”. To customize this, set `TO_DO_STATUSES` and `DONE_STATUSES` (comma-separated, case-insensitive; e.g. `TO_DO_STATUSES=To do,Open,pending review` and `DONE_STATUSES=done,resolved,Closed`).
 
 ## :electric_plug: Connecting to your Jira instance
 
