@@ -1,29 +1,61 @@
 # :camera: Screens
 
-### :book: Epic details
-![Epic details](images/1_epic_details.png)
+These screenshots are meant to document **every GET page** in the app.
+
+For consistent screenshots, the app is currently running in a **forced screenshot mock mode** (temporary) so every page renders with meaningful example data.
 
 ---
 
-### :chart_with_upwards_trend: Epic progress
-![Epic progress](images/2_epic_progress.png)
+### :clipboard: Projects
+`/projects`
+
+![Projects](images/01_projects.png)
+
+---
+
+### :file_folder: Project epics
+`/projects/JPE/epics`
+
+![Project epics](images/02_project_epics.png)
+
+---
+
+### :book: Epic dashboard
+`/projects/JPE/epics/JPE-243`
+
+![Epic dashboard](images/03_epic_dashboard.png)
 
 ---
 
 ### :bookmark: Epic issues
-![Epic issues](images/3_epic_issues.png)
+`/projects/JPE/epics/JPE-243/issues`
+
+![Epic issues](images/04_epic_issues.png)
 
 ---
 
-### :scroll: Epic estimations history
-![Epic estimations history](images/4_epic_estimations_history.png)
+### :chart_with_upwards_trend: Epic progress
+`/projects/JPE/epics/JPE-243/progress`
+
+![Epic progress](images/05_epic_progress.png)
 
 ---
 
-### :eyeglasses: Epic estimation details
-![Epic estimation details](images/5_epic_estimation_details.png)
+### :scroll: Epic estimations
+`/projects/JPE/epics/JPE-243/estimations`
+
+![Epic estimations](images/06_epic_estimations.png)
 
 ---
 
-### :crystal_ball: PERT estimation
-![PERT estimation](images/6_pert_estimation.png)
+### :camera_flash: Estimation snapshot
+`/projects/JPE/epics/JPE-243/estimations/123`
+
+![Estimation snapshot](images/07_estimation_snapshot.png)
+
+---
+
+### :crystal_ball: PERT calculator
+`/pert`
+
+![PERT calculator](images/08_pert_calculator.png)
